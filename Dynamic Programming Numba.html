@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Faster Dynamic Programming with Numba - Macroeconomics II (Econ-6395)</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link href="https://macroeconomics.github.io/images/favicomatic/favicon.ico" rel="icon">
+
+<link rel="canonical" href="https://macroeconomics.github.io/Dynamic Programming Numba.html">
+
+        <meta name="author" content="Ömer Özak" />
+        <meta name="keywords" content="Macroeconomics,IPython,Notebooks" />
+        <meta name="description" content="Faster Computations with Numba¶ Some notes mostly for myself¶ Altough Python is fast compared to other high-level languages, it still is noat as fast as C, C++ or Fortran. Luckily, two open source projects Numba and Cython can be used to speed-up computations. Numba is sponsored by the producer of Anaconda, Continuum Analytics" />
+
+        <meta property="og:site_name" content="Macroeconomics II (Econ-6395)" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Faster Dynamic Programming with Numba"/>
+        <meta property="og:url" content="https://macroeconomics.github.io/Dynamic Programming Numba.html"/>
+        <meta property="og:description" content="Faster Computations with Numba¶ Some notes mostly for myself¶ Altough Python is fast compared to other high-level languages, it still is noat as fast as C, C++ or Fortran. Luckily, two open source projects Numba and Cython can be used to speed-up computations. Numba is sponsored by the producer of Anaconda, Continuum Analytics"/>
+        <meta property="article:published_time" content="2016-12-29" />
+            <meta property="article:section" content="Ph.D." />
+            <meta property="article:tag" content="Macroeconomics" />
+            <meta property="article:tag" content="IPython" />
+            <meta property="article:tag" content="Notebooks" />
+            <meta property="article:author" content="Ömer Özak" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://macroeconomics.github.io/theme/css/bootstrap.slate.min.css" type="text/css"/>
+    <link href="https://macroeconomics.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://macroeconomics.github.io/theme/css/pygments/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://macroeconomics.github.io/theme/css/style.css" type="text/css"/>
+
+        <link href="https://macroeconomics.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Macroeconomics II (Econ-6395) ATOM Feed"/>
+
+
+
+        <link href="https://macroeconomics.github.io/feeds/phd.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Macroeconomics II (Econ-6395) Ph.D. ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://macroeconomics.github.io/" class="navbar-brand">
+Macroeconomics II (Econ-6395)            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/pages/Syllabus.html">Syllabus</a></li>
+                    <li><a href="/pages/Lecture Notes.html">Lecture Notes</a></li>
+                    <li><a href="/pages/Practice Material.html">Practice Material</a></li>
+                    <li><a href="/pages/Computation.html">Computation</a></li>
+                    <li><a href="/pages/CV.html">CV</a></li>
+                    <li><a href="http://www.google.com/recaptcha/mailhide/d?6LfmLBAUAAAAADdznVp2XJ1GUaPXKYV56-VSIn5E">Email</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://macroeconomics.github.io/Dynamic Programming Numba.html"
+                       rel="bookmark"
+                       title="Permalink to Faster Dynamic Programming with Numba">
+                        Faster Dynamic Programming with Numba
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2016-12-29T10:20:00-06:00"> Thu 29 December 2016</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://macroeconomics.github.io/tag/macroeconomics.html">Macroeconomics</a>
+        /
+	<a href="https://macroeconomics.github.io/tag/ipython.html">IPython</a>
+        /
+	<a href="https://macroeconomics.github.io/tag/notebooks.html">Notebooks</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Faster-Computations-with-Numba">Faster Computations with Numba<a class="anchor-link" href="#Faster-Computations-with-Numba">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Some-notes-mostly-for-myself">Some notes mostly for myself<a class="anchor-link" href="#Some-notes-mostly-for-myself">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Altough Python is fast compared to other high-level languages, it still is noat as fast as C, C++ or Fortran. Luckily, two open source projects <a href="http://numba.pydata.org/">Numba</a> and <a href="http://cython.org/">Cython</a> can be used to speed-up computations. <a href="http://numba.pydata.org/">Numba</a> is sponsored by the producer of <a href="https://store.continuum.io/cshop/anaconda/">Anaconda</a>, <a href="http://continuum.io/">Continuum Analytics</a>. Both projects allow you to convert your code to interpreted language so that it runs faster. Here I will use Numba, given its ease and Just-In-Time nature, although I still have to figure out how to save and use the compiled functions (pycc and static libraries it seems?). Cython on the other hand needs you to understand much more of C and Ctypes. But once you figure out a way to run your code and compile it, you have a library ready to use and import. See the code for the repository for my paper <a href="http://ozak.github.io/BoundedConsumption/">Optimal consumption under uncertainty, liquidity constraints, and bounded rationality</a> where I used Cython for the dynsysf.pyx function.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Numba">Numba<a class="anchor-link" href="#Numba">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Numba is quite easy to use. Start by importing it</p>
+<pre><code>import numba as nb
+
+</code></pre>
+<p>or some of its functions</p>
+<pre><code>from numba import jit, autojit, njit
+
+</code></pre>
+<p>Then define your function and notate it using the Numba commands jit, njit, autojit or their decorators @jit, @njit.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Examples:">Examples:<a class="anchor-link" href="#Examples:">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [455]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span><span class="p">,</span> <span class="n">njit</span><span class="p">,</span> <span class="n">autojit</span>
+<span class="kn">import</span> <span class="nn">numba</span> <span class="kn">as</span> <span class="nn">nb</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1"># A simple funtion that computes the maximum distance between two vectors</span>
+<span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8(f8[:],f8[:])'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">errnb</span><span class="p">(</span><span class="n">V0</span><span class="p">,</span><span class="n">V1</span><span class="p">):</span>
+    <span class="n">maxi</span><span class="o">=</span><span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">V0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">m</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">V1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">V0</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">m</span><span class="o">>=</span><span class="n">maxi</span><span class="p">:</span>
+            <span class="n">maxi</span><span class="o">=</span><span class="n">m</span>
+    <span class="k">return</span> <span class="n">maxi</span>
+
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1000</span><span class="p">))</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1000</span><span class="p">))</span>
+
+<span class="o">%</span><span class="k">timeit</span> errnb(x,y)
+<span class="o">%</span><span class="k">timeit</span> np.max(np.abs(x-y))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>100000 loops, best of 3: 4.13 µs per loop
+10000 loops, best of 3: 21.7 µs per loop
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Let's use Numba to compute a Cobb-Douglas function</span>
+<span class="nd">@jit</span>
+<span class="k">def</span> <span class="nf">CobbDouglas</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">K</span><span class="o">**</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">L</span><span class="o">**</span><span class="n">beta</span>
+
+<span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">.</span><span class="mi">3</span><span class="p">,</span><span class="o">.</span><span class="mi">7</span>
+
+<span class="n">CobbDouglas</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's time it and compare with Numpy or simple Python</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> A * K**alpha * L**beta
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K,L,A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Well not fast enough...why?</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">CobbDouglas</span><span class="o">.</span><span class="n">inspect_types</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>OK...it is correctly compiled and it is using Numba types and not PyObjects. So perhaps we cannot gain much in this simple computation...but that is ok. Let's try something a little more complex, computing a CobbDouglas for vectors K and L</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Python function</span>
+<span class="k">def</span> <span class="nf">CobbDouglas</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">K</span><span class="o">**</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">L</span><span class="o">**</span><span class="n">beta</span>
+
+<span class="n">CobbDouglas_nb</span><span class="o">=</span><span class="n">autojit</span><span class="p">(</span><span class="n">CobbDouglas</span><span class="p">)</span>
+<span class="n">CobbDouglas_nb2</span><span class="o">=</span><span class="n">njit</span><span class="p">(</span><span class="n">CobbDouglas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">L</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K,L,A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas_nb(K,L,A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas_nb2(K,L,A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ooops what went wrong? Up to V.0.12.2 Numba cannot create Arrays in njit mode, i.e. without using Python Objects. But do not despair, we can create a fast CobbDouglas function by iterating over our vectors. Here I first create the <code>CobbDouglasNB</code> function which takes floating point numbers and tells Numba not to use PyObjects, and then I create the vectorized version <code>CobbDouglasVecNB</code>, which iterates over the elements of K and L (here we assume both are vectors) and returns our output Y. I know it is strange that we have to giv ethe output as part of the function, but it allows us to speed up the computations.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nd">@nb.njit</span><span class="p">(</span><span class="s1">'f8(f8,f8,f8,f8,f8)'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">CobbDouglasNB</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">K</span><span class="o">**</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">L</span><span class="o">**</span><span class="n">beta</span>
+
+<span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8[:](f8[:],f8[:],f8[:],f8,f8,f8)'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">CobbDouglasVecNB</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">CobbDouglasNB</span><span class="p">(</span><span class="n">K</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Y</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">K</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K[:,0],L[:,0],A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> CobbDouglasVecNB(Y[:,0],K[:,0],L[:,0],A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Twice-as-fast-as-Numpy!">Twice as fast as Numpy!<a class="anchor-link" href="#Twice-as-fast-as-Numpy!">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's generalize the function to arrays of 2 dimensions</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8[:,:](f8[:,:],f8[:,:],f8[:,:],f8,f8,f8)'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">CobbDouglasVecNB</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">CobbDouglasNB</span><span class="p">(</span><span class="n">K</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Y</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
+<span class="n">L</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
+<span class="o">%</span><span class="k">timeit</span> CobbDouglas(K,L,A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> CobbDouglasVecNB(Y,K,L,A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="20%-faster-than-Numpy...so-we-get-the-idea.">20% faster than Numpy...so we get the idea.<a class="anchor-link" href="#20%-faster-than-Numpy...so-we-get-the-idea.">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>While this is great to speed up, we see that there are some issues one has to think about in order to get those gains.</p>
+<p>Now let's use the vectorize option, which creates Numpy Ufunctions, that is functions that operate on vectors (or at leats that s what I gather).</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nd">@nb.vectorize</span><span class="p">(</span><span class="s1">'f8(f8,f8,f8,f8,f8,)'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">CobbDouglasNB2</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">K</span><span class="o">**</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">L</span><span class="o">**</span><span class="n">beta</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasNB2(K,L,A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's compare these functions on different sizes of matrices $K$ and $L$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mf">1e4</span><span class="p">,</span><span class="mf">1e4</span><span class="p">))</span>
+<span class="n">L</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mf">1e4</span><span class="p">,</span><span class="mf">1e4</span><span class="p">))</span>
+<span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K[1:100,1:100],L[1:100,1:100],A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasVecNB(Y[1:100,1:100],K[1:100,1:100],L[1:100,1:100],A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasNB2(K[1:100,1:100],L[1:100,1:100],A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K[1:1000,1:1000],L[1:1000,1:1000],A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasVecNB(Y[1:1000,1:1000],K[1:1000,1:1000],L[1:1000,1:1000],A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasNB2(K[1:1000,1:1000],L[1:1000,1:1000],A,alpha,beta)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's try the CRRA utility function</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8(f8,f8)'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">U_numba</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
+    <span class="sd">'''This function returns the value of utility when the CRRA</span>
+<span class="sd">    coefficient is sigma. I.e. </span>
+<span class="sd">    u(c,sigma)=(c**(1-sigma)-1)/(1-sigma) if sigma!=1 </span>
+<span class="sd">    and </span>
+<span class="sd">    u(c,sigma)=ln(c) if sigma==1</span>
+<span class="sd">    Usage: u(c,sigma)</span>
+<span class="sd">    '''</span>
+    <span class="k">if</span> <span class="n">sigma</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">return</span> <span class="n">u</span>
+
+<span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8[:,:](f8[:,:],f8)'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">Uvec</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">sigma</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">U_numba</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">u</span>
+
+<span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8[:,:](f8[:,:],f8)'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">U</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">sigma</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="n">Unb</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span><span class="c1">#(c**(1-sigma)-1)/(1-sigma)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">u</span>
+
+<span class="k">def</span> <span class="nf">Unp</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">sigma</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">u</span>
+
+<span class="nd">@nb.vectorize</span><span class="p">(</span><span class="s1">'f8(f8,f8)'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">Unb</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">sigma</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">u</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> U(grid,1)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Unp(grid,1)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Unb(grid,1)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> Uvec(u,grid,1)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> U(grid,3)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Unb(grid,3)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Unp(grid,3)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> Uvec(u,grid,3)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Optimizing-the-code-for-Dynamic-Programming-and-GIS">Optimizing the code for Dynamic Programming and GIS<a class="anchor-link" href="#Optimizing-the-code-for-Dynamic-Programming-and-GIS">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Optimal-Growth">Optimal Growth<a class="anchor-link" href="#Optimal-Growth">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [292]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Parameters Optimal Growth</span>
+<span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span>
+<span class="n">beta</span><span class="o">=.</span><span class="mi">9</span>
+<span class="n">sigma</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">delta</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">A</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="c1"># Grid of values for state variable over which function will be approximated</span>
+<span class="n">gridmin</span><span class="p">,</span> <span class="n">gridmax</span><span class="p">,</span> <span class="n">gridsize</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">300</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">gridmin</span><span class="p">,</span> <span class="n">gridmax</span><span class="o">**</span><span class="mf">1e-1</span><span class="p">,</span> <span class="n">gridsize</span><span class="p">)</span><span class="o">**</span><span class="mi">10</span>
+
+<span class="c1"># Parameters for the optimization procedures</span>
+<span class="n">count</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span>
+<span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">'tol=</span><span class="si">%f</span><span class="s1">'</span> <span class="o">%</span> <span class="n">tol</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tol=0.000001
+(300,)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [355]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numba</span> <span class="kn">as</span> <span class="nn">nb</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fminbound</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interp</span>
+
+<span class="c1"># Auxiliary functions </span>
+<span class="c1"># Maximize function V on interval [a,b]</span>
+<span class="k">def</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="n">fminbound</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">V</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)))</span>
+
+<span class="c1"># Return Maximizer of function V on interval [a,b]</span>
+<span class="k">def</span> <span class="nf">maximizer</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">fminbound</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">V</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">))</span>
+
+<span class="c1"># Interpolation functions Class</span>
+<span class="k">class</span> <span class="nc">LinInterp</span><span class="p">:</span>
+    <span class="s2">"Provides linear interpolation in one dimension."</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+        <span class="sd">"""Parameters: X and Y are sequences or arrays</span>
+<span class="sd">        containing the (x,y) interpolation points.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+        <span class="sd">"""Parameters: z is a number, sequence or array.</span>
+<span class="sd">        This method makes an instance f of LinInterp callable,</span>
+<span class="sd">        so f(z) returns the interpolation value(s) at z.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">interp</span> <span class="p">([</span><span class="n">z</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">interp</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+
+<span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8[:](f8[:],f8)'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">U</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">sigma</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="n">Unb</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span><span class="c1">#(c**(1-sigma)-1)/(1-sigma)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">u</span>
+
+<span class="nd">@nb.vectorize</span><span class="p">(</span><span class="s1">'f8(f8,f8)'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">Unb</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">sigma</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">u</span>
+
+<span class="nd">@nb.vectorize</span><span class="p">(</span><span class="s1">'f8(f8,f8,f8,f8,f8,)'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">CobbDouglasNB2</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
+    <span class="sd">'''CobbDouglasNB2(K,L,A,alpha,beta)'''</span>
+    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">K</span><span class="o">**</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">L</span><span class="o">**</span><span class="n">beta</span>
+
+<span class="nd">@nb.vectorize</span><span class="p">(</span><span class="s1">'f8(f8,f8,f8)'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">F_nb</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">'''</span>
+<span class="sd">    Cobb-Douglas production function</span>
+<span class="sd">    F(K)=A* K^alpha</span>
+<span class="sd">    '''</span>
+    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">K</span><span class="o">**</span><span class="n">alpha</span>
+
+<span class="k">def</span> <span class="nf">F_np</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">A</span><span class="p">):</span>
+    <span class="sd">'''</span>
+<span class="sd">    Cobb-Douglas production function</span>
+<span class="sd">    F(K)=A* K^alpha</span>
+<span class="sd">    '''</span>
+    <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">K</span><span class="o">**</span><span class="n">alpha</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [294]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasNB2(grid,1,A,alpha,0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10000 loops, best of 3: 34.2 µs per loop
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [295]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> F_nb(grid,alpha,A)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10000 loops, best of 3: 27.7 µs per loop
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [296]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> F_np(grid,alpha,A)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10000 loops, best of 3: 29.7 µs per loop
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [412]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">V0</span><span class="o">=</span><span class="n">LinInterp</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">U</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">sigma</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">bellman</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">):</span>
+    <span class="sd">"""The approximate Bellman operator.</span>
+<span class="sd">    Parameters: w is a LinInterp object (i.e., a </span>
+<span class="sd">    callable object which acts pointwise on arrays).</span>
+<span class="sd">    Returns: An instance of LinInterp that represents the optimal operator.</span>
+<span class="sd">    w is a function defined on the state space.</span>
+<span class="sd">    """</span>
+    <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+        <span class="n">kmax</span><span class="o">=</span><span class="n">F_nb</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">kp</span><span class="p">:</span> <span class="n">U</span><span class="p">(</span><span class="n">kmax</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span> <span class="o">-</span> <span class="n">kp</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">w</span><span class="p">(</span><span class="n">kp</span><span class="p">)</span>
+        <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">maximum</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">kmax</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">LinInterp</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">vals</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">policy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    For each function w, policy(w) returns the function that maximizes the </span>
+<span class="sd">    RHS of the Bellman operator.</span>
+<span class="sd">    Replace w for the Value function to get optimal policy.</span>
+<span class="sd">    The approximate optimal policy operator w-greedy (See Stachurski (2009)). </span>
+<span class="sd">    Parameters: w is a LinInterp object (i.e., a </span>
+<span class="sd">    callable object which acts pointwise on arrays).</span>
+<span class="sd">    Returns: An instance of LinInterp that captures the optimal policy.</span>
+<span class="sd">    """</span>
+    <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+        <span class="n">kmax</span><span class="o">=</span><span class="n">F_nb</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">kp</span><span class="p">:</span> <span class="n">U</span><span class="p">(</span><span class="n">kmax</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span> <span class="o">-</span> <span class="n">kp</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">w</span><span class="p">(</span><span class="n">kp</span><span class="p">)</span>
+        <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">maximizer</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">kmax</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">LinInterp</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">vals</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">solve</span><span class="p">():</span>
+    <span class="n">count</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">V0</span><span class="o">=</span><span class="n">LinInterp</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">U</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">sigma</span><span class="p">))</span>
+    <span class="k">while</span> <span class="n">count</span><span class="o"><</span><span class="n">maxiter</span><span class="p">:</span>
+        <span class="n">V1</span><span class="o">=</span><span class="n">bellman</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">)</span>
+        <span class="n">err</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">V1</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">V0</span><span class="p">(</span><span class="n">grid</span><span class="p">))))</span>
+        <span class="n">V0</span><span class="o">=</span><span class="n">V1</span>
+        <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="n">err</span><span class="o"><</span><span class="n">tol</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">V0</span>
+
+
+<span class="n">V0</span><span class="o">=</span><span class="n">bellman</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">)</span>
+<span class="n">C0</span><span class="o">=</span><span class="n">policy</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> bellman(grid,V0)
+<span class="o">%</span><span class="k">timeit</span> policy(grid,V0)
+<span class="o">%</span><span class="k">timeit</span> solve()
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1 loops, best of 3: 681 ms per loop
+1 loops, best of 3: 669 ms per loop
+138
+138
+138
+138
+1 loops, best of 3: 1min 33s per loop
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [407]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">Utrf</span><span class="p">(</span><span class="n">kp</span><span class="p">,</span><span class="n">kmax</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">w</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">U</span><span class="p">(</span><span class="n">kmax</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span> <span class="o">-</span> <span class="n">kp</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">w</span><span class="p">(</span><span class="n">kp</span><span class="p">)</span>
+
+<span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8[:](f8[:],f8[:])'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">bellmannb</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w0</span><span class="p">):</span>
+    <span class="sd">"""The approximate Bellman operator.</span>
+<span class="sd">    Parameters: w is a LinInterp object (i.e., a </span>
+<span class="sd">    callable object which acts pointwise on arrays).</span>
+<span class="sd">    Returns: An instance of LinInterp that represents the optimal operator.</span>
+<span class="sd">    w is a function defined on the state space.</span>
+<span class="sd">    """</span>
+    <span class="n">w</span><span class="o">=</span><span class="n">LinInterp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w0</span><span class="p">)</span>
+    <span class="n">vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+        <span class="n">kmax</span><span class="o">=</span><span class="n">F_nb</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+        <span class="n">vals</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span><span class="o">-</span><span class="n">Utrf</span><span class="p">(</span><span class="n">fminbound</span><span class="p">(</span><span class="n">Utrf</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">kmax</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">kmax</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">w</span><span class="p">]),</span><span class="n">kmax</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">w</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">vals</span>
+
+<span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8[:](f8[:],f8[:])'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">policynb</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w0</span><span class="p">):</span>
+    <span class="sd">"""The approximate Bellman operator.</span>
+<span class="sd">    Parameters: w is a LinInterp object (i.e., a </span>
+<span class="sd">    callable object which acts pointwise on arrays).</span>
+<span class="sd">    Returns: An instance of LinInterp that represents the optimal operator.</span>
+<span class="sd">    w is a function defined on the state space.</span>
+<span class="sd">    """</span>
+    <span class="n">w</span><span class="o">=</span><span class="n">LinInterp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w0</span><span class="p">)</span>
+    <span class="n">vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+        <span class="n">kmax</span><span class="o">=</span><span class="n">F_nb</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
+        <span class="n">vals</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span><span class="n">fminbound</span><span class="p">(</span><span class="n">Utrf</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">kmax</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">kmax</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">w</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">vals</span>
+
+<span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8(f8[:],f8[:])'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">errnb</span><span class="p">(</span><span class="n">V0</span><span class="p">,</span><span class="n">V1</span><span class="p">):</span>
+    <span class="n">maxi</span><span class="o">=</span><span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">V0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">m</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">V1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">V0</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">m</span><span class="o">>=</span><span class="n">maxi</span><span class="p">:</span>
+            <span class="n">maxi</span><span class="o">=</span><span class="n">m</span>
+    <span class="k">return</span> <span class="n">maxi</span>
+
+<span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8[:]()'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">solvenb</span><span class="p">():</span>
+    <span class="n">count</span><span class="o">=</span><span class="mf">0.0</span>
+    <span class="n">V0</span><span class="o">=</span><span class="n">U</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">count</span><span class="o"><</span><span class="n">maxiter</span><span class="p">:</span>
+        <span class="n">V1</span><span class="o">=</span><span class="n">bellmannb</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">)</span>
+        <span class="n">err</span><span class="o">=</span><span class="n">errnb</span><span class="p">(</span><span class="n">V1</span><span class="p">,</span><span class="n">V0</span><span class="p">)</span>
+        <span class="n">V0</span><span class="o">=</span><span class="n">V1</span>
+        <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="n">err</span><span class="o"><</span><span class="n">tol</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">V0</span>
+
+<span class="n">U0</span><span class="o">=</span><span class="n">U</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span>
+<span class="n">U0</span><span class="o">=</span><span class="n">bellmannb</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">U0</span><span class="p">)</span>
+<span class="n">c0</span><span class="o">=</span><span class="n">policynb</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">U0</span><span class="p">)</span>
+<span class="o">%</span><span class="k">timeit</span> bellmannb(grid,U0)
+<span class="o">%</span><span class="k">timeit</span> policynb(grid,U0)
+<span class="o">%</span><span class="k">timeit</span> solvenb()
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1 loops, best of 3: 645 ms per loop
+1 loops, best of 3: 513 ms per loop
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [404]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">'V0'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">U0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[404]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre><matplotlib.legend.legend at 0x113768f90></pre>
+</div>
+</div>
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+ExEJ5v8DV5vUZp6T+oYAAAAASUVORK5CYII=
+">
+</img></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [405]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">C0</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">'C0'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">c0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[405]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre><matplotlib.legend.legend at 0x10c821a10></pre>
+</div>
+</div>
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+AAAASUVORK5CYII=
+">
+</img></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [446]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8(f8[:],f8[:])'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">errnb</span><span class="p">(</span><span class="n">V0</span><span class="p">,</span><span class="n">V1</span><span class="p">):</span>
+    <span class="n">maxi</span><span class="o">=</span><span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">V0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">m</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">V1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">V0</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">m</span><span class="o">>=</span><span class="n">maxi</span><span class="p">:</span>
+            <span class="n">maxi</span><span class="o">=</span><span class="n">m</span>
+    <span class="k">return</span> <span class="n">maxi</span>
+
+<span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8[:]()'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">solvenb</span><span class="p">():</span>
+    <span class="n">count</span><span class="o">=</span><span class="mf">0.0</span>
+    <span class="n">V0</span><span class="o">=</span><span class="n">U</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">count</span><span class="o"><</span><span class="n">maxiter</span><span class="p">:</span>
+        <span class="n">V1</span><span class="o">=</span><span class="n">bellmannb</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">)</span>
+        <span class="n">err</span><span class="o">=</span><span class="n">errnb</span><span class="p">(</span><span class="n">V1</span><span class="p">,</span><span class="n">V0</span><span class="p">)</span>
+        <span class="n">V0</span><span class="o">=</span><span class="n">V1</span>
+        <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="n">err</span><span class="o"><</span><span class="n">tol</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">V0</span>
+<span class="o">%</span><span class="k">timeit</span> solvenb()
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>138.0
+138.0
+138.0
+138.0
+1 loops, best of 3: 1min 18s per loop
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+            </div>
+            <!-- /.entry-content -->
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="https://github.com/Macroeconomics"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://linkedin.com/in/omerozak"><i class="fa fa-linkedin-square fa-lg"></i> Linkedin</a></li>
+                <li class="list-group-item"><a href="https://www.researchgate.net/profile/Oemer_Oezak"><i class="fa fa-researchgate-square fa-lg"></i> Researchgate</a></li>
+              </ul>
+            </li>
+
+    <li class="list-group-item"><h4><i class="fa fa-external-link fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://omerozak.com/" target="_blank">
+                Ömer Özak
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.smu.edu/economics" target="_blank">
+                Dept. Economics
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.smu.edu/" target="_blank">
+                SMU
+            </a>
+        </li>
+      </ul>
+    </li>
+
+
+
+            <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="https://macroeconomics.github.io/tag/ipython.html">
+                            IPython
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
+                            Macroeconomics
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="https://macroeconomics.github.io/tag/notebooks.html">
+                            Notebooks
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+        <div id="gh_repos">
+            <p class="list-group-item">Status updating...</p>
+        </div>
+            <a href="https://github.com/Macroeconomics">@Macroeconomics</a> on GitHub
+    </li>
+    </ul>
+</section>            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Ömer Özak
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://macroeconomics.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://macroeconomics.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://macroeconomics.github.io/theme/js/respond.min.js"></script>
+
+    <!-- GitHub JS -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (!window.jXHR) {
+                var jxhr = document.createElement('script');
+                jxhr.type = 'text/javascript';
+                jxhr.src = 'https://macroeconomics.github.io/theme/js/jXHR.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(jxhr, s);
+            }
+
+            github.showRepos({
+                user: 'Macroeconomics',
+                count: 2,
+                skip_forks: false,
+                target: '#gh_repos'
+            });
+        });
+    </script>
+    <script src="https://macroeconomics.github.io/theme/js/github.js" type="text/javascript"></script>
+    <!-- End GitHub JS Code -->
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-586c25633fd6ba9b"></script>
+</body>
+</html>
