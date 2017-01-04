@@ -1807,55 +1807,55 @@ $$\arg\min\limits _{y\in [\underline x,\bar x]}\left\{ U(x,y)+\beta V(y)\right\}
 </content><category term="Macroeconomics"></category><category term="IPython"></category><category term="Notebooks"></category></entry><entry><title>Dynamic Programming in Python</title><link href="https://macroeconomics.github.io/dynamic-programming-in-python.html" rel="alternate"></link><published>2016-12-29T10:20:00-06:00</published><updated>2016-12-29T10:20:00-06:00</updated><author><name>Ömer Özak</name></author><id>tag:macroeconomics.github.io,2016-12-29:/dynamic-programming-in-python.html</id><summary type="html">&lt;h1&gt;Introduction to Dynamic Programming&lt;/h1&gt;
 &lt;p&gt;We have studied the theory of dynamic programming in discrete time under certainty. Let's review what we know so far, so that we can start thinking about how to take to the computer.&lt;/p&gt;
 &lt;h2&gt;The Problem&lt;/h2&gt;
-&lt;p&gt;We want to find a sequence ${x_t}_{t=0}^\infty …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Introduction to Dynamic Programming&lt;/h1&gt;
+&lt;p&gt;We want to find a sequence &lt;span class="math"&gt;\(\{x_t\}_{t=0}^\infty …&lt;/span&gt;&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Introduction to Dynamic Programming&lt;/h1&gt;
 &lt;p&gt;We have studied the theory of dynamic programming in discrete time under certainty. Let's review what we know so far, so that we can start thinking about how to take to the computer.&lt;/p&gt;
 &lt;h2&gt;The Problem&lt;/h2&gt;
-&lt;p&gt;We want to find a sequence ${x_t}_{t=0}^\infty$ and a function $V^*:X\to\mathbb{R}$ such that &lt;/p&gt;
-&lt;p&gt;$$V^{\ast}\left(x_{0}\right)=\sup\limits &lt;em t&gt;{\left{ x&lt;/em&gt;\right} &lt;em t="0"&gt;{t=0}^{\infty}}\sum\limits &lt;/em&gt;^{\infty}\beta^{t}U(x_{t},x_{t+1})$$ &lt;/p&gt;
-&lt;p&gt;subject to $x_{t+1}\in G(x_{t})\subseteq X\subseteq\mathbb{R}^K$, for all $t\geq0$ and $x_0\in\mathbb{R}$ given. We assume $\beta\in(0,1)$.&lt;/p&gt;
+&lt;p&gt;We want to find a sequence &lt;span class="math"&gt;\(\{x_t\}_{t=0}^\infty\)&lt;/span&gt; and a function &lt;span class="math"&gt;\(V^*:X\to\mathbb{R}\)&lt;/span&gt; such that &lt;/p&gt;
+&lt;div class="math"&gt;$$V^{\ast}\left(x_{0}\right)=\sup\limits _{\left\{ x_{t}\right\} _{t=0}^{\infty}}\sum\limits _{t=0}^{\infty}\beta^{t}U(x_{t},x_{t+1})$$&lt;/div&gt;
+&lt;p&gt;subject to &lt;span class="math"&gt;\(x_{t+1}\in G(x_{t})\subseteq X\subseteq\mathbb{R}^K\)&lt;/span&gt;, for all &lt;span class="math"&gt;\(t\geq0\)&lt;/span&gt; and &lt;span class="math"&gt;\(x_0\in\mathbb{R}\)&lt;/span&gt; given. We assume &lt;span class="math"&gt;\(\beta\in(0,1)\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;We have seen that we can analyze this problem by solving instead the related problem &lt;/p&gt;
-&lt;p&gt;$$V(x)=\sup\limits _{y\in G(x)}\left{ U(x,y)+\beta V(y)\right} ,\text{ for all }x\in X.$$&lt;/p&gt;
+&lt;div class="math"&gt;$$V(x)=\sup\limits _{y\in G(x)}\left\{ U(x,y)+\beta V(y)\right\} ,\text{ for all }x\in X.$$&lt;/div&gt;
 &lt;h2&gt;Basic Results&lt;/h2&gt;
 &lt;h3&gt;Assumptions&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;$G\left(x\right)$  is nonempty for all $x\in X$ ; and for all $x_{0}\in X$  and $\mathbf{x}\in \Phi (x_{0})$, $\lim\nolimits_{n\rightarrow\infty}\sum_{t=0}^{n}\beta^{t}U(x_{t},x_{t+1})$ exists and is finite.&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(G\left(x\right)\)&lt;/span&gt;  is nonempty for all &lt;span class="math"&gt;\(x\in X\)&lt;/span&gt; ; and for all &lt;span class="math"&gt;\(x_{0}\in X\)&lt;/span&gt;  and &lt;span class="math"&gt;\(\mathbf{x}\in \Phi (x_{0})\)&lt;/span&gt;, &lt;span class="math"&gt;\(\lim\nolimits_{n\rightarrow\infty}\sum_{t=0}^{n}\beta^{t}U(x_{t},x_{t+1})\)&lt;/span&gt; exists and is finite.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;$X$  is a compact subset of $\mathbb{R}^{K}$, $G$ is nonempty, compact-valued and continuous. Moreover, $U:\mathbf{X}&lt;em G&gt;{G}\rightarrow\mathbb{R}$  is continuous, where $\mathbf{X}&lt;/em&gt;=\left{ (x,y)\in X\times X:y\in G(x)\right}$&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(X\)&lt;/span&gt;  is a compact subset of &lt;span class="math"&gt;\(\mathbb{R}^{K}\)&lt;/span&gt;, &lt;span class="math"&gt;\(G\)&lt;/span&gt; is nonempty, compact-valued and continuous. Moreover, &lt;span class="math"&gt;\(U:\mathbf{X}_{G}\rightarrow\mathbb{R}\)&lt;/span&gt;  is continuous, where &lt;span class="math"&gt;\(\mathbf{X}_{G}=\left\{ (x,y)\in X\times X:y\in G(x)\right\}\)&lt;/span&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;$U$ is strictly concave and $G$  is convex&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(U\)&lt;/span&gt; is strictly concave and &lt;span class="math"&gt;\(G\)&lt;/span&gt;  is convex&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;For each $y\in X$, $U(\cdot,y)$  is strictly increasing in each of its first $K$  arguments, and $G$  is monotone in the sense that $x\leq x^{\prime}$  implies $G(x)\subset G(x^{\prime})$.&lt;/p&gt;
+&lt;p&gt;For each &lt;span class="math"&gt;\(y\in X\)&lt;/span&gt;, &lt;span class="math"&gt;\(U(\cdot,y)\)&lt;/span&gt;  is strictly increasing in each of its first &lt;span class="math"&gt;\(K\)&lt;/span&gt;  arguments, and &lt;span class="math"&gt;\(G\)&lt;/span&gt;  is monotone in the sense that &lt;span class="math"&gt;\(x\leq x^{\prime}\)&lt;/span&gt;  implies &lt;span class="math"&gt;\(G(x)\subset G(x^{\prime})\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;$U$  is continuously differentiable on the interior of its domain $\mathbf{X}_{G}$.&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(U\)&lt;/span&gt;  is continuously differentiable on the interior of its domain &lt;span class="math"&gt;\(\mathbf{X}_{G}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Let $\Phi (x_{t})={{x_{s}}&lt;em s_1="s+1"&gt;{s=t}^{\infty}:x&lt;/em&gt;\in G(x_{s})\text{, for }s=t,t+1,...}$ and assume that $\lim_{t\rightarrow\infty}\beta^{t}V\left(x_{t}\right)=0$  for all $\left(x,x_{1},x_{2},...\right)\in \Phi (x)$.&lt;/p&gt;
+&lt;p&gt;Let &lt;span class="math"&gt;\(\Phi (x_{t})=\{\{x_{s}\}_{s=t}^{\infty}:x_{s+1}\in G(x_{s})\text{, for }s=t,t+1,...\}\)&lt;/span&gt; and assume that &lt;span class="math"&gt;\(\lim_{t\rightarrow\infty}\beta^{t}V\left(x_{t}\right)=0\)&lt;/span&gt;  for all &lt;span class="math"&gt;\(\left(x,x_{1},x_{2},...\right)\in \Phi (x)\)&lt;/span&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;If all of these conditions are satisfied, then we have the following&lt;/p&gt;
 &lt;h3&gt;Theorem&lt;/h3&gt;
-&lt;p&gt;&lt;em&gt;There exists a unique (value) function $V^&lt;/em&gt;(x_0)=V(x_0)$, which is continuous, strictly increasing, strictly concave, and differentiable. Also, there exists a unique path ${x^&lt;em&gt;&lt;em t="0"&gt;t}&lt;/em&gt;^\infty$, which starting from the given $x_0$ attains the value $V^&lt;/em&gt;(x_0)$. The path can be found through a unique continuous policy function $\pi: X\to X$ such that $x^&lt;em&gt;_{t+1}=\pi(x^&lt;/em&gt;_t)$. *&lt;/p&gt;
+&lt;p&gt;*There exists a unique (value) function &lt;span class="math"&gt;\(V^*(x_0)=V(x_0)\)&lt;/span&gt;, which is continuous, strictly increasing, strictly concave, and differentiable. Also, there exists a unique path &lt;span class="math"&gt;\(\{x^*_t\}_{t=0}^\infty\)&lt;/span&gt;, which starting from the given &lt;span class="math"&gt;\(x_0\)&lt;/span&gt; attains the value &lt;span class="math"&gt;\(V^*(x_0)\)&lt;/span&gt;. The path can be found through a unique continuous policy function &lt;span class="math"&gt;\(\pi: X\to X\)&lt;/span&gt; such that &lt;span class="math"&gt;\(x^*_{t+1}=\pi(x^*_t)\)&lt;/span&gt;. *&lt;/p&gt;
 &lt;h2&gt;Taking it to the computer&lt;/h2&gt;
 &lt;p&gt;Ok. Now that we know the conditions for the existence and uniqueness (plus other characteristics) of our problem, how do we go about solving it?&lt;/p&gt;
 &lt;p&gt;The idea is going to be simple and is based on what we saw when we proved the contraction mapping theorem and the proof of the previous theorem (Yes I know...we split this in various steps and intermediate results, which might have confused you). &lt;/p&gt;
-&lt;p&gt;Remember that our Bellman Operator $T: C(X)\to C(X)$ defined as &lt;/p&gt;
-&lt;p&gt;$$T(V(x))\equiv\sup\limits _{y\in G(x)}\left{ U(x,y)+\beta V(y)\right}$$&lt;/p&gt;
-&lt;p&gt;assigns a continuous, strictly increasing, strictly concave function $T(V)$ to each continuous, increasing, and concave function $V$ defined on $X$. Since $T(V)$ is a contraction mapping, we know that if $V_0$ is any initial continuous, increasing, and concave function defined on $X$, then $T^n(V_0)\to V^*$. This is precisely what we are going to do using the computer (well we will also do it by hand for a couple of examples).&lt;/p&gt;
+&lt;p&gt;Remember that our Bellman Operator &lt;span class="math"&gt;\(T: C(X)\to C(X)\)&lt;/span&gt; defined as &lt;/p&gt;
+&lt;div class="math"&gt;$$T(V(x))\equiv\sup\limits _{y\in G(x)}\left\{ U(x,y)+\beta V(y)\right\}$$&lt;/div&gt;
+&lt;p&gt;assigns a continuous, strictly increasing, strictly concave function &lt;span class="math"&gt;\(T(V)\)&lt;/span&gt; to each continuous, increasing, and concave function &lt;span class="math"&gt;\(V\)&lt;/span&gt; defined on &lt;span class="math"&gt;\(X\)&lt;/span&gt;. Since &lt;span class="math"&gt;\(T(V)\)&lt;/span&gt; is a contraction mapping, we know that if &lt;span class="math"&gt;\(V_0\)&lt;/span&gt; is any initial continuous, increasing, and concave function defined on &lt;span class="math"&gt;\(X\)&lt;/span&gt;, then &lt;span class="math"&gt;\(T^n(V_0)\to V^*\)&lt;/span&gt;. This is precisely what we are going to do using the computer (well we will also do it by hand for a couple of examples).&lt;/p&gt;
 &lt;h3&gt;A first example&lt;/h3&gt;
 &lt;p&gt;Assume we want to solve the following finite dimensional problem. &lt;/p&gt;
-&lt;p&gt;An apple farmer wants to maximize her discounted sum of utilities from consuming special non-peroshable apples. She owns only one tree which each period produces $y_t\in{0,1,\ldots,ymax}={y^i}_{i=0}^N$ apples, where $y_t=y^i$ with probability $p^i$. Each period she has to decide how many apples to pick and consume. If &lt;/p&gt;
-&lt;p&gt;two choices, it can leave the market and make zero profits that period or stay and get a profit $\pi$. If the firm stays in the market it must take the same decision next period. If it exits in one period it can never return.&lt;/p&gt;
+&lt;p&gt;An apple farmer wants to maximize her discounted sum of utilities from consuming special non-peroshable apples. She owns only one tree which each period produces &lt;span class="math"&gt;\(y_t\in\{0,1,\ldots,ymax\}=\{y^i\}_{i=0}^N\)&lt;/span&gt; apples, where &lt;span class="math"&gt;\(y_t=y^i\)&lt;/span&gt; with probability &lt;span class="math"&gt;\(p^i\)&lt;/span&gt;. Each period she has to decide how many apples to pick and consume. If &lt;/p&gt;
+&lt;p&gt;two choices, it can leave the market and make zero profits that period or stay and get a profit &lt;span class="math"&gt;\(\pi\)&lt;/span&gt;. If the firm stays in the market it must take the same decision next period. If it exits in one period it can never return.&lt;/p&gt;
 &lt;h3&gt;Value function iteration&lt;/h3&gt;
 &lt;p&gt;So, now that we have a strategy to tackle the problem, and you have learned some basic Python at &lt;a href="http://codeacademy.com"&gt;Code Academy&lt;/a&gt; and IPython in our other &lt;a href="https://github.com/ozak/CompEcon/blob/master/notebooks/IntroPython.ipynb"&gt;notebook&lt;/a&gt;, we are ready to write some code and do some dynamic economic analysis.&lt;/p&gt;
-&lt;p&gt;But before we start, there is one issue I want to highlight. Notice that our state space $X$ is not assumed to be finite, and clearly the fact that our functions are continuous imply that we cannot be in a finite problem. So how do we represent such an infinite object in a computer, which only has finite memory? The solution is to take an approximation to the function, what Stachurski (2009) calls a fitted function. There are various methods to approximate functions (see Judd (1998) for an excellent presentation). The simplest method is a linear interpolation, which is what we will use here. &lt;/p&gt;
-&lt;p&gt;The idea behind linear interpolation is quite simple. Assume we want to approximate the function $V: X\to X$, $X\subseteq\mathbb{R}$. The only thing we need is a finite set ${x_i}&lt;em i="0"&gt;{i=0}^N\subseteq X$ for which we compute the value under $V$, i.e. we create the finite set of values ${V_i=V(x_i)}&lt;/em&gt;^N$. Then our approximate function $V$, $\hat V$, will be defined as&lt;/p&gt;
-&lt;p&gt;$$\hat V(x)=V_{i-1}+\frac{V_i-V_{i-1}}{x_i-x_{i-1}}(x-x_{i-1}) \quad\text{ if } x_{i-1}\le x &amp;lt; x_i.$$&lt;/p&gt;
-&lt;p&gt;In principle we could construct our own interpolation function, but &lt;a href="http://www.scipy.org/"&gt;Scipy&lt;/a&gt; has already &lt;a href="http://docs.scipy.org/doc/scipy/reference/interpolate.html"&gt;optimized approximation algorithms&lt;/a&gt;, so let's use that package instead. Let's see what a linear interpolation of $\sin(x)$ would look like.&lt;/p&gt;
+&lt;p&gt;But before we start, there is one issue I want to highlight. Notice that our state space &lt;span class="math"&gt;\(X\)&lt;/span&gt; is not assumed to be finite, and clearly the fact that our functions are continuous imply that we cannot be in a finite problem. So how do we represent such an infinite object in a computer, which only has finite memory? The solution is to take an approximation to the function, what Stachurski (2009) calls a fitted function. There are various methods to approximate functions (see Judd (1998) for an excellent presentation). The simplest method is a linear interpolation, which is what we will use here. &lt;/p&gt;
+&lt;p&gt;The idea behind linear interpolation is quite simple. Assume we want to approximate the function &lt;span class="math"&gt;\(V: X\to X\)&lt;/span&gt;, &lt;span class="math"&gt;\(X\subseteq\mathbb{R}\)&lt;/span&gt;. The only thing we need is a finite set &lt;span class="math"&gt;\(\{x_i\}_{i=0}^N\subseteq X\)&lt;/span&gt; for which we compute the value under &lt;span class="math"&gt;\(V\)&lt;/span&gt;, i.e. we create the finite set of values &lt;span class="math"&gt;\(\{V_i=V(x_i)\}_{i=0}^N\)&lt;/span&gt;. Then our approximate function &lt;span class="math"&gt;\(V\)&lt;/span&gt;, &lt;span class="math"&gt;\(\hat V\)&lt;/span&gt;, will be defined as&lt;/p&gt;
+&lt;div class="math"&gt;$$\hat V(x)=V_{i-1}+\frac{V_i-V_{i-1}}{x_i-x_{i-1}}(x-x_{i-1}) \quad\text{ if } x_{i-1}\le x &amp;lt; x_i.$$&lt;/div&gt;
+&lt;p&gt;In principle we could construct our own interpolation function, but &lt;a href="http://www.scipy.org/"&gt;Scipy&lt;/a&gt; has already &lt;a href="http://docs.scipy.org/doc/scipy/reference/interpolate.html"&gt;optimized approximation algorithms&lt;/a&gt;, so let's use that package instead. Let's see what a linear interpolation of &lt;span class="math"&gt;\(\sin(x)\)&lt;/span&gt; would look like.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;__future__&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;division&lt;/span&gt;
 &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;pylab&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;import&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;all&lt;/span&gt;
 &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="n"&gt;matplotlib&lt;/span&gt; &lt;span class="n"&gt;inline&lt;/span&gt;
@@ -1919,20 +1919,20 @@ $$\arg\min\limits _{y\in [\underline x,\bar x]}\left\{ U(x,y)+\beta V(y)\right\}
 
 
 &lt;h3&gt;Optimal Growth&lt;/h3&gt;
-&lt;p&gt;Let's start by computing the solution to an optimal growth problem, in which a social planner seeks to find paths ${c_t,k_t}$ such that&lt;/p&gt;
-&lt;p&gt;\begin{align}
-\max_{{c_t,k_t}}&amp;amp;\sum_{t=0}^{\infty}\beta^{t}u(c_{t})\[.2cm]
-\text{s.t.}&amp;amp;k_{t+1}\leq f(k_{t})+(1-\delta)k_{t}-c_{t}\[.2cm]
+&lt;p&gt;Let's start by computing the solution to an optimal growth problem, in which a social planner seeks to find paths &lt;span class="math"&gt;\(\{c_t,k_t\}\)&lt;/span&gt; such that&lt;/p&gt;
+&lt;div class="math"&gt;\begin{align}
+\max_{\{c_t,k_t\}}&amp;amp;\sum_{t=0}^{\infty}\beta^{t}u(c_{t})\\[.2cm]
+\text{s.t.}&amp;amp;k_{t+1}\leq f(k_{t})+(1-\delta)k_{t}-c_{t}\\[.2cm]
 c_{t}\geq0,&amp;amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
-\end{align}&lt;/p&gt;
-&lt;p&gt;As usual we assume that our utility function $u(\cdot)$ and production function $f(\cdot)$ are Neoclassical. Under these conditions we have seen that our problem satisfies the conditions of our previous theorem and thus we &lt;em&gt;know&lt;/em&gt; a unique solution exists.&lt;/p&gt;
+\end{align}&lt;/div&gt;
+&lt;p&gt;As usual we assume that our utility function &lt;span class="math"&gt;\(u(\cdot)\)&lt;/span&gt; and production function &lt;span class="math"&gt;\(f(\cdot)\)&lt;/span&gt; are Neoclassical. Under these conditions we have seen that our problem satisfies the conditions of our previous theorem and thus we &lt;em&gt;know&lt;/em&gt; a unique solution exists.&lt;/p&gt;
 &lt;h4&gt;An example with analytical solution&lt;/h4&gt;
-&lt;p&gt;Let's assume that $u(c)=\ln(c)$, $f(k)=k^\alpha$, and $\delta=1$. For this case we have seen that the solution implies&lt;/p&gt;
-&lt;p&gt;\begin{align}
-&amp;amp;\text{Value Function: } &amp;amp;  V(k)=&amp;amp;\frac{\ln(1-\alpha\beta)}{1-\beta}+\frac{\alpha\beta\ln(\alpha\beta)}{(1-\alpha\beta)(1-\beta)}+\frac{\alpha}{1-\alpha\beta}\ln(k)\[.2cm]
-&amp;amp;\text{Optimal Policy: } &amp;amp; \pi\left(k\right)=&amp;amp;\beta\alpha k^{\alpha} \[.2cm]
-&amp;amp;\text{Optimal Consumption Function: } &amp;amp; c=&amp;amp;\left(1-\beta\alpha\right)k^{\alpha}\[.2cm]
-\end{align}&lt;/p&gt;
+&lt;p&gt;Let's assume that &lt;span class="math"&gt;\(u(c)=\ln(c)\)&lt;/span&gt;, &lt;span class="math"&gt;\(f(k)=k^\alpha\)&lt;/span&gt;, and &lt;span class="math"&gt;\(\delta=1\)&lt;/span&gt;. For this case we have seen that the solution implies&lt;/p&gt;
+&lt;div class="math"&gt;\begin{align}
+&amp;amp;\text{Value Function: } &amp;amp;  V(k)=&amp;amp;\frac{\ln(1-\alpha\beta)}{1-\beta}+\frac{\alpha\beta\ln(\alpha\beta)}{(1-\alpha\beta)(1-\beta)}+\frac{\alpha}{1-\alpha\beta}\ln(k)\\[.2cm]
+&amp;amp;\text{Optimal Policy: } &amp;amp; \pi\left(k\right)=&amp;amp;\beta\alpha k^{\alpha} \\[.2cm]
+&amp;amp;\text{Optimal Consumption Function: } &amp;amp; c=&amp;amp;\left(1-\beta\alpha\right)k^{\alpha}\\[.2cm]
+\end{align}&lt;/div&gt;
 &lt;p&gt;We will use these to compare the solution found by iteration of the Value function described above. Copy the Python functions you had defined in the previous notebook into the cell below and define Python functions for the actual optimal solutions given above.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="nb"&gt;file&lt;/span&gt; &lt;span class="n"&gt;optgrowthfuncs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;U&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;sigma&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -2020,7 +2020,7 @@ c_{t}\geq0,&amp;amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Here we have created a grid on $[gridmin,gridmax]$ that has a number of points given by &lt;code&gt;gridsize&lt;/code&gt;. Since we know that the Value functions is stricly concave, our grid has more points closer to zero than farther away&lt;/p&gt;
+&lt;p&gt;Here we have created a grid on &lt;span class="math"&gt;\([gridmin,gridmax]\)&lt;/span&gt; that has a number of points given by &lt;code&gt;gridsize&lt;/code&gt;. Since we know that the Value functions is stricly concave, our grid has more points closer to zero than farther away&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hist&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;bins&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xlabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;State Space&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ylabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Number of Points&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -2032,8 +2032,8 @@ c_{t}\geq0,&amp;amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Now we need a function, which for given $V_0$ solves &lt;/p&gt;
-&lt;p&gt;$$\sup\limits _{y\in G(x)}\left{ U(x,y)+\beta V(y)\right}.$$&lt;/p&gt;
+&lt;p&gt;Now we need a function, which for given &lt;span class="math"&gt;\(V_0\)&lt;/span&gt; solves &lt;/p&gt;
+&lt;div class="math"&gt;$$\sup\limits _{y\in G(x)}\left\{ U(x,y)+\beta V(y)\right\}.$$&lt;/div&gt;
 &lt;p&gt;Let's use one of Scipy's optimizing routines&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scipy.optimize&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;fminbound&lt;/span&gt;
 &lt;span class="n"&gt;fminbound&lt;/span&gt;&lt;span class="err"&gt;?&lt;/span&gt;
@@ -2041,7 +2041,7 @@ c_{t}\geq0,&amp;amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 
 
 &lt;p&gt;Since &lt;code&gt;fminbound&lt;/code&gt; returns &lt;/p&gt;
-&lt;p&gt;$$\arg\min\limits _{y\in [\underline x,\bar x]}\left{ U(x,y)+\beta V(y)\right}$$&lt;/p&gt;
+&lt;div class="math"&gt;$$\arg\min\limits _{y\in [\underline x,\bar x]}\left\{ U(x,y)+\beta V(y)\right\}$$&lt;/div&gt;
 &lt;p&gt;we have to either replace our objective function for its negative or, better yet, define a function that uses &lt;code&gt;fminbound&lt;/code&gt; and returns the maximum and the maximizer&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Maximize function V on interval [a,b]&lt;/span&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;maximum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;V&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -2091,7 +2091,7 @@ c_{t}\geq0,&amp;amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Given a linear interpolation of our guess for the Value function, $V_0=w$, the first function returns a &lt;code&gt;LinInterp&lt;/code&gt; object, which is the linear interpolation of the function generated by the Bellman Operator on the finite set of points on the grid. The second function returns what Stachurski (2009) calls a &lt;em&gt;w-greedy&lt;/em&gt; policy, i.e. the function that maximizes the RHS of the Bellman Operator.&lt;/p&gt;
+&lt;p&gt;Given a linear interpolation of our guess for the Value function, &lt;span class="math"&gt;\(V_0=w\)&lt;/span&gt;, the first function returns a &lt;code&gt;LinInterp&lt;/code&gt; object, which is the linear interpolation of the function generated by the Bellman Operator on the finite set of points on the grid. The second function returns what Stachurski (2009) calls a &lt;em&gt;w-greedy&lt;/em&gt; policy, i.e. the function that maximizes the RHS of the Bellman Operator.&lt;/p&gt;
 &lt;p&gt;Now we are ready to work on the iteration&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Parameters for the optimization procedures&lt;/span&gt;
 &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
@@ -2101,7 +2101,7 @@ c_{t}\geq0,&amp;amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Our initial guess $V_0$&lt;/p&gt;
+&lt;p&gt;Our initial guess &lt;span class="math"&gt;\(V_0\)&lt;/span&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;V0&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;LinInterp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;U&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;V0&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;V&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
@@ -2169,7 +2169,64 @@ c_{t}\geq0,&amp;amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 &lt;ol&gt;
 &lt;li&gt;Use the &lt;code&gt;policy&lt;/code&gt; function to compute the optimal policy. Compare it to the actual one&lt;/li&gt;
 &lt;li&gt;Do the same for the consumption function. Find the savings rate and plot it.&lt;/li&gt;
-&lt;li&gt;Construct the paths of consumption and capital starting from $k_0=.1$. Show the time series and the paths in the consumption-capital space&lt;/li&gt;
+&lt;li&gt;Construct the paths of consumption and capital starting from &lt;span class="math"&gt;\(k_0=.1\)&lt;/span&gt;. Show the time series and the paths in the consumption-capital space&lt;/li&gt;
 &lt;li&gt;Estimate the level of steady state capital and consumption. Show graphically that it is lower than the &lt;em&gt;Golden Rule Level&lt;/em&gt;.&lt;/li&gt;
-&lt;li&gt;repeat the exercise with other values of $\alpha,\beta,\delta,\sigma,k_0$. Can you write a function or class such that it will generate the whole analysis for given values of the parameters and functions. Can you generalize it in order to analyze the effects of changing the utility or production functions?&lt;/li&gt;
-&lt;/ol&gt;</content><category term="Macroeconomics"></category><category term="IPython"></category></entry></feed>
+&lt;li&gt;repeat the exercise with other values of &lt;span class="math"&gt;\(\alpha,\beta,\delta,\sigma,k_0\)&lt;/span&gt;. Can you write a function or class such that it will generate the whole analysis for given values of the parameters and functions. Can you generalize it in order to analyze the effects of changing the utility or production functions?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' &amp;&amp; location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js','color.js','mhchem.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="Macroeconomics"></category><category term="IPython"></category></entry></feed>

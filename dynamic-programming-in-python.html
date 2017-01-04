@@ -14,13 +14,13 @@
 
         <meta name="author" content="Ömer Özak" />
         <meta name="keywords" content="Macroeconomics,IPython" />
-        <meta name="description" content="Introduction to Dynamic Programming We have studied the theory of dynamic programming in discrete time under certainty. Let&#39;s review what we know so far, so that we can start thinking about how to take to the computer. The Problem We want to find a sequence ${x_t}_{t=0}^\infty …" />
+        <meta name="description" content="Introduction to Dynamic Programming We have studied the theory of dynamic programming in discrete time under certainty. Let&#39;s review what we know so far, so that we can start thinking about how to take to the computer. The Problem We want to find a sequence \(\{x_t\}_{t=0}^\infty …" />
 
         <meta property="og:site_name" content="Macroeconomics II (Econ-6395)" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Dynamic Programming in Python"/>
         <meta property="og:url" content="https://macroeconomics.github.io/dynamic-programming-in-python.html"/>
-        <meta property="og:description" content="Introduction to Dynamic Programming We have studied the theory of dynamic programming in discrete time under certainty. Let&#39;s review what we know so far, so that we can start thinking about how to take to the computer. The Problem We want to find a sequence ${x_t}_{t=0}^\infty …"/>
+        <meta property="og:description" content="Introduction to Dynamic Programming We have studied the theory of dynamic programming in discrete time under certainty. Let&#39;s review what we know so far, so that we can start thinking about how to take to the computer. The Problem We want to find a sequence \(\{x_t\}_{t=0}^\infty …"/>
         <meta property="article:published_time" content="2016-12-29" />
             <meta property="article:section" content="Ph.D." />
             <meta property="article:tag" content="Macroeconomics" />
@@ -111,52 +111,52 @@ Macroeconomics II (Econ-6395)            </a>
                 <h1>Introduction to Dynamic Programming</h1>
 <p>We have studied the theory of dynamic programming in discrete time under certainty. Let's review what we know so far, so that we can start thinking about how to take to the computer.</p>
 <h2>The Problem</h2>
-<p>We want to find a sequence ${x_t}_{t=0}^\infty$ and a function $V^*:X\to\mathbb{R}$ such that </p>
-<p>$$V^{\ast}\left(x_{0}\right)=\sup\limits <em t>{\left{ x</em>\right} <em t="0">{t=0}^{\infty}}\sum\limits </em>^{\infty}\beta^{t}U(x_{t},x_{t+1})$$ </p>
-<p>subject to $x_{t+1}\in G(x_{t})\subseteq X\subseteq\mathbb{R}^K$, for all $t\geq0$ and $x_0\in\mathbb{R}$ given. We assume $\beta\in(0,1)$.</p>
+<p>We want to find a sequence <span class="math">\(\{x_t\}_{t=0}^\infty\)</span> and a function <span class="math">\(V^*:X\to\mathbb{R}\)</span> such that </p>
+<div class="math">$$V^{\ast}\left(x_{0}\right)=\sup\limits _{\left\{ x_{t}\right\} _{t=0}^{\infty}}\sum\limits _{t=0}^{\infty}\beta^{t}U(x_{t},x_{t+1})$$</div>
+<p>subject to <span class="math">\(x_{t+1}\in G(x_{t})\subseteq X\subseteq\mathbb{R}^K\)</span>, for all <span class="math">\(t\geq0\)</span> and <span class="math">\(x_0\in\mathbb{R}\)</span> given. We assume <span class="math">\(\beta\in(0,1)\)</span>.</p>
 <p>We have seen that we can analyze this problem by solving instead the related problem </p>
-<p>$$V(x)=\sup\limits _{y\in G(x)}\left{ U(x,y)+\beta V(y)\right} ,\text{ for all }x\in X.$$</p>
+<div class="math">$$V(x)=\sup\limits _{y\in G(x)}\left\{ U(x,y)+\beta V(y)\right\} ,\text{ for all }x\in X.$$</div>
 <h2>Basic Results</h2>
 <h3>Assumptions</h3>
 <ol>
 <li>
-<p>$G\left(x\right)$  is nonempty for all $x\in X$ ; and for all $x_{0}\in X$  and $\mathbf{x}\in \Phi (x_{0})$, $\lim\nolimits_{n\rightarrow\infty}\sum_{t=0}^{n}\beta^{t}U(x_{t},x_{t+1})$ exists and is finite.</p>
+<p><span class="math">\(G\left(x\right)\)</span>  is nonempty for all <span class="math">\(x\in X\)</span> ; and for all <span class="math">\(x_{0}\in X\)</span>  and <span class="math">\(\mathbf{x}\in \Phi (x_{0})\)</span>, <span class="math">\(\lim\nolimits_{n\rightarrow\infty}\sum_{t=0}^{n}\beta^{t}U(x_{t},x_{t+1})\)</span> exists and is finite.</p>
 </li>
 <li>
-<p>$X$  is a compact subset of $\mathbb{R}^{K}$, $G$ is nonempty, compact-valued and continuous. Moreover, $U:\mathbf{X}<em G>{G}\rightarrow\mathbb{R}$  is continuous, where $\mathbf{X}</em>=\left{ (x,y)\in X\times X:y\in G(x)\right}$</p>
+<p><span class="math">\(X\)</span>  is a compact subset of <span class="math">\(\mathbb{R}^{K}\)</span>, <span class="math">\(G\)</span> is nonempty, compact-valued and continuous. Moreover, <span class="math">\(U:\mathbf{X}_{G}\rightarrow\mathbb{R}\)</span>  is continuous, where <span class="math">\(\mathbf{X}_{G}=\left\{ (x,y)\in X\times X:y\in G(x)\right\}\)</span></p>
 </li>
 <li>
-<p>$U$ is strictly concave and $G$  is convex</p>
+<p><span class="math">\(U\)</span> is strictly concave and <span class="math">\(G\)</span>  is convex</p>
 </li>
 <li>
-<p>For each $y\in X$, $U(\cdot,y)$  is strictly increasing in each of its first $K$  arguments, and $G$  is monotone in the sense that $x\leq x^{\prime}$  implies $G(x)\subset G(x^{\prime})$.</p>
+<p>For each <span class="math">\(y\in X\)</span>, <span class="math">\(U(\cdot,y)\)</span>  is strictly increasing in each of its first <span class="math">\(K\)</span>  arguments, and <span class="math">\(G\)</span>  is monotone in the sense that <span class="math">\(x\leq x^{\prime}\)</span>  implies <span class="math">\(G(x)\subset G(x^{\prime})\)</span>.</p>
 </li>
 <li>
-<p>$U$  is continuously differentiable on the interior of its domain $\mathbf{X}_{G}$.</p>
+<p><span class="math">\(U\)</span>  is continuously differentiable on the interior of its domain <span class="math">\(\mathbf{X}_{G}\)</span>.</p>
 </li>
 <li>
-<p>Let $\Phi (x_{t})={{x_{s}}<em s_1="s+1">{s=t}^{\infty}:x</em>\in G(x_{s})\text{, for }s=t,t+1,...}$ and assume that $\lim_{t\rightarrow\infty}\beta^{t}V\left(x_{t}\right)=0$  for all $\left(x,x_{1},x_{2},...\right)\in \Phi (x)$.</p>
+<p>Let <span class="math">\(\Phi (x_{t})=\{\{x_{s}\}_{s=t}^{\infty}:x_{s+1}\in G(x_{s})\text{, for }s=t,t+1,...\}\)</span> and assume that <span class="math">\(\lim_{t\rightarrow\infty}\beta^{t}V\left(x_{t}\right)=0\)</span>  for all <span class="math">\(\left(x,x_{1},x_{2},...\right)\in \Phi (x)\)</span>.</p>
 </li>
 </ol>
 <p>If all of these conditions are satisfied, then we have the following</p>
 <h3>Theorem</h3>
-<p><em>There exists a unique (value) function $V^</em>(x_0)=V(x_0)$, which is continuous, strictly increasing, strictly concave, and differentiable. Also, there exists a unique path ${x^<em><em t="0">t}</em>^\infty$, which starting from the given $x_0$ attains the value $V^</em>(x_0)$. The path can be found through a unique continuous policy function $\pi: X\to X$ such that $x^<em>_{t+1}=\pi(x^</em>_t)$. *</p>
+<p>*There exists a unique (value) function <span class="math">\(V^*(x_0)=V(x_0)\)</span>, which is continuous, strictly increasing, strictly concave, and differentiable. Also, there exists a unique path <span class="math">\(\{x^*_t\}_{t=0}^\infty\)</span>, which starting from the given <span class="math">\(x_0\)</span> attains the value <span class="math">\(V^*(x_0)\)</span>. The path can be found through a unique continuous policy function <span class="math">\(\pi: X\to X\)</span> such that <span class="math">\(x^*_{t+1}=\pi(x^*_t)\)</span>. *</p>
 <h2>Taking it to the computer</h2>
 <p>Ok. Now that we know the conditions for the existence and uniqueness (plus other characteristics) of our problem, how do we go about solving it?</p>
 <p>The idea is going to be simple and is based on what we saw when we proved the contraction mapping theorem and the proof of the previous theorem (Yes I know...we split this in various steps and intermediate results, which might have confused you). </p>
-<p>Remember that our Bellman Operator $T: C(X)\to C(X)$ defined as </p>
-<p>$$T(V(x))\equiv\sup\limits _{y\in G(x)}\left{ U(x,y)+\beta V(y)\right}$$</p>
-<p>assigns a continuous, strictly increasing, strictly concave function $T(V)$ to each continuous, increasing, and concave function $V$ defined on $X$. Since $T(V)$ is a contraction mapping, we know that if $V_0$ is any initial continuous, increasing, and concave function defined on $X$, then $T^n(V_0)\to V^*$. This is precisely what we are going to do using the computer (well we will also do it by hand for a couple of examples).</p>
+<p>Remember that our Bellman Operator <span class="math">\(T: C(X)\to C(X)\)</span> defined as </p>
+<div class="math">$$T(V(x))\equiv\sup\limits _{y\in G(x)}\left\{ U(x,y)+\beta V(y)\right\}$$</div>
+<p>assigns a continuous, strictly increasing, strictly concave function <span class="math">\(T(V)\)</span> to each continuous, increasing, and concave function <span class="math">\(V\)</span> defined on <span class="math">\(X\)</span>. Since <span class="math">\(T(V)\)</span> is a contraction mapping, we know that if <span class="math">\(V_0\)</span> is any initial continuous, increasing, and concave function defined on <span class="math">\(X\)</span>, then <span class="math">\(T^n(V_0)\to V^*\)</span>. This is precisely what we are going to do using the computer (well we will also do it by hand for a couple of examples).</p>
 <h3>A first example</h3>
 <p>Assume we want to solve the following finite dimensional problem. </p>
-<p>An apple farmer wants to maximize her discounted sum of utilities from consuming special non-peroshable apples. She owns only one tree which each period produces $y_t\in{0,1,\ldots,ymax}={y^i}_{i=0}^N$ apples, where $y_t=y^i$ with probability $p^i$. Each period she has to decide how many apples to pick and consume. If </p>
-<p>two choices, it can leave the market and make zero profits that period or stay and get a profit $\pi$. If the firm stays in the market it must take the same decision next period. If it exits in one period it can never return.</p>
+<p>An apple farmer wants to maximize her discounted sum of utilities from consuming special non-peroshable apples. She owns only one tree which each period produces <span class="math">\(y_t\in\{0,1,\ldots,ymax\}=\{y^i\}_{i=0}^N\)</span> apples, where <span class="math">\(y_t=y^i\)</span> with probability <span class="math">\(p^i\)</span>. Each period she has to decide how many apples to pick and consume. If </p>
+<p>two choices, it can leave the market and make zero profits that period or stay and get a profit <span class="math">\(\pi\)</span>. If the firm stays in the market it must take the same decision next period. If it exits in one period it can never return.</p>
 <h3>Value function iteration</h3>
 <p>So, now that we have a strategy to tackle the problem, and you have learned some basic Python at <a href="http://codeacademy.com">Code Academy</a> and IPython in our other <a href="https://github.com/ozak/CompEcon/blob/master/notebooks/IntroPython.ipynb">notebook</a>, we are ready to write some code and do some dynamic economic analysis.</p>
-<p>But before we start, there is one issue I want to highlight. Notice that our state space $X$ is not assumed to be finite, and clearly the fact that our functions are continuous imply that we cannot be in a finite problem. So how do we represent such an infinite object in a computer, which only has finite memory? The solution is to take an approximation to the function, what Stachurski (2009) calls a fitted function. There are various methods to approximate functions (see Judd (1998) for an excellent presentation). The simplest method is a linear interpolation, which is what we will use here. </p>
-<p>The idea behind linear interpolation is quite simple. Assume we want to approximate the function $V: X\to X$, $X\subseteq\mathbb{R}$. The only thing we need is a finite set ${x_i}<em i="0">{i=0}^N\subseteq X$ for which we compute the value under $V$, i.e. we create the finite set of values ${V_i=V(x_i)}</em>^N$. Then our approximate function $V$, $\hat V$, will be defined as</p>
-<p>$$\hat V(x)=V_{i-1}+\frac{V_i-V_{i-1}}{x_i-x_{i-1}}(x-x_{i-1}) \quad\text{ if } x_{i-1}\le x &lt; x_i.$$</p>
-<p>In principle we could construct our own interpolation function, but <a href="http://www.scipy.org/">Scipy</a> has already <a href="http://docs.scipy.org/doc/scipy/reference/interpolate.html">optimized approximation algorithms</a>, so let's use that package instead. Let's see what a linear interpolation of $\sin(x)$ would look like.</p>
+<p>But before we start, there is one issue I want to highlight. Notice that our state space <span class="math">\(X\)</span> is not assumed to be finite, and clearly the fact that our functions are continuous imply that we cannot be in a finite problem. So how do we represent such an infinite object in a computer, which only has finite memory? The solution is to take an approximation to the function, what Stachurski (2009) calls a fitted function. There are various methods to approximate functions (see Judd (1998) for an excellent presentation). The simplest method is a linear interpolation, which is what we will use here. </p>
+<p>The idea behind linear interpolation is quite simple. Assume we want to approximate the function <span class="math">\(V: X\to X\)</span>, <span class="math">\(X\subseteq\mathbb{R}\)</span>. The only thing we need is a finite set <span class="math">\(\{x_i\}_{i=0}^N\subseteq X\)</span> for which we compute the value under <span class="math">\(V\)</span>, i.e. we create the finite set of values <span class="math">\(\{V_i=V(x_i)\}_{i=0}^N\)</span>. Then our approximate function <span class="math">\(V\)</span>, <span class="math">\(\hat V\)</span>, will be defined as</p>
+<div class="math">$$\hat V(x)=V_{i-1}+\frac{V_i-V_{i-1}}{x_i-x_{i-1}}(x-x_{i-1}) \quad\text{ if } x_{i-1}\le x &lt; x_i.$$</div>
+<p>In principle we could construct our own interpolation function, but <a href="http://www.scipy.org/">Scipy</a> has already <a href="http://docs.scipy.org/doc/scipy/reference/interpolate.html">optimized approximation algorithms</a>, so let's use that package instead. Let's see what a linear interpolation of <span class="math">\(\sin(x)\)</span> would look like.</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="o">%</span><span class="n">pylab</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">import</span><span class="o">-</span><span class="nb">all</span>
 <span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
@@ -220,20 +220,20 @@ Macroeconomics II (Econ-6395)            </a>
 
 
 <h3>Optimal Growth</h3>
-<p>Let's start by computing the solution to an optimal growth problem, in which a social planner seeks to find paths ${c_t,k_t}$ such that</p>
-<p>\begin{align}
-\max_{{c_t,k_t}}&amp;\sum_{t=0}^{\infty}\beta^{t}u(c_{t})\[.2cm]
-\text{s.t.}&amp;k_{t+1}\leq f(k_{t})+(1-\delta)k_{t}-c_{t}\[.2cm]
+<p>Let's start by computing the solution to an optimal growth problem, in which a social planner seeks to find paths <span class="math">\(\{c_t,k_t\}\)</span> such that</p>
+<div class="math">\begin{align}
+\max_{\{c_t,k_t\}}&amp;\sum_{t=0}^{\infty}\beta^{t}u(c_{t})\\[.2cm]
+\text{s.t.}&amp;k_{t+1}\leq f(k_{t})+(1-\delta)k_{t}-c_{t}\\[.2cm]
 c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
-\end{align}</p>
-<p>As usual we assume that our utility function $u(\cdot)$ and production function $f(\cdot)$ are Neoclassical. Under these conditions we have seen that our problem satisfies the conditions of our previous theorem and thus we <em>know</em> a unique solution exists.</p>
+\end{align}</div>
+<p>As usual we assume that our utility function <span class="math">\(u(\cdot)\)</span> and production function <span class="math">\(f(\cdot)\)</span> are Neoclassical. Under these conditions we have seen that our problem satisfies the conditions of our previous theorem and thus we <em>know</em> a unique solution exists.</p>
 <h4>An example with analytical solution</h4>
-<p>Let's assume that $u(c)=\ln(c)$, $f(k)=k^\alpha$, and $\delta=1$. For this case we have seen that the solution implies</p>
-<p>\begin{align}
-&amp;\text{Value Function: } &amp;  V(k)=&amp;\frac{\ln(1-\alpha\beta)}{1-\beta}+\frac{\alpha\beta\ln(\alpha\beta)}{(1-\alpha\beta)(1-\beta)}+\frac{\alpha}{1-\alpha\beta}\ln(k)\[.2cm]
-&amp;\text{Optimal Policy: } &amp; \pi\left(k\right)=&amp;\beta\alpha k^{\alpha} \[.2cm]
-&amp;\text{Optimal Consumption Function: } &amp; c=&amp;\left(1-\beta\alpha\right)k^{\alpha}\[.2cm]
-\end{align}</p>
+<p>Let's assume that <span class="math">\(u(c)=\ln(c)\)</span>, <span class="math">\(f(k)=k^\alpha\)</span>, and <span class="math">\(\delta=1\)</span>. For this case we have seen that the solution implies</p>
+<div class="math">\begin{align}
+&amp;\text{Value Function: } &amp;  V(k)=&amp;\frac{\ln(1-\alpha\beta)}{1-\beta}+\frac{\alpha\beta\ln(\alpha\beta)}{(1-\alpha\beta)(1-\beta)}+\frac{\alpha}{1-\alpha\beta}\ln(k)\\[.2cm]
+&amp;\text{Optimal Policy: } &amp; \pi\left(k\right)=&amp;\beta\alpha k^{\alpha} \\[.2cm]
+&amp;\text{Optimal Consumption Function: } &amp; c=&amp;\left(1-\beta\alpha\right)k^{\alpha}\\[.2cm]
+\end{align}</div>
 <p>We will use these to compare the solution found by iteration of the Value function described above. Copy the Python functions you had defined in the previous notebook into the cell below and define Python functions for the actual optimal solutions given above.</p>
 <div class="highlight"><pre><span></span><span class="o">%%</span><span class="nb">file</span> <span class="n">optgrowthfuncs</span><span class="o">.</span><span class="n">py</span>
 <span class="k">def</span> <span class="nf">U</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -321,7 +321,7 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 </pre></div>
 
 
-<p>Here we have created a grid on $[gridmin,gridmax]$ that has a number of points given by <code>gridsize</code>. Since we know that the Value functions is stricly concave, our grid has more points closer to zero than farther away</p>
+<p>Here we have created a grid on <span class="math">\([gridmin,gridmax]\)</span> that has a number of points given by <code>gridsize</code>. Since we know that the Value functions is stricly concave, our grid has more points closer to zero than farther away</p>
 <div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;State Space&#39;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Points&#39;</span><span class="p">);</span>
@@ -333,8 +333,8 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 </pre></div>
 
 
-<p>Now we need a function, which for given $V_0$ solves </p>
-<p>$$\sup\limits _{y\in G(x)}\left{ U(x,y)+\beta V(y)\right}.$$</p>
+<p>Now we need a function, which for given <span class="math">\(V_0\)</span> solves </p>
+<div class="math">$$\sup\limits _{y\in G(x)}\left\{ U(x,y)+\beta V(y)\right\}.$$</div>
 <p>Let's use one of Scipy's optimizing routines</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fminbound</span>
 <span class="n">fminbound</span><span class="err">?</span>
@@ -342,7 +342,7 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 
 
 <p>Since <code>fminbound</code> returns </p>
-<p>$$\arg\min\limits _{y\in [\underline x,\bar x]}\left{ U(x,y)+\beta V(y)\right}$$</p>
+<div class="math">$$\arg\min\limits _{y\in [\underline x,\bar x]}\left\{ U(x,y)+\beta V(y)\right\}$$</div>
 <p>we have to either replace our objective function for its negative or, better yet, define a function that uses <code>fminbound</code> and returns the maximum and the maximizer</p>
 <div class="highlight"><pre><span></span><span class="c1"># Maximize function V on interval [a,b]</span>
 <span class="k">def</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -392,7 +392,7 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 </pre></div>
 
 
-<p>Given a linear interpolation of our guess for the Value function, $V_0=w$, the first function returns a <code>LinInterp</code> object, which is the linear interpolation of the function generated by the Bellman Operator on the finite set of points on the grid. The second function returns what Stachurski (2009) calls a <em>w-greedy</em> policy, i.e. the function that maximizes the RHS of the Bellman Operator.</p>
+<p>Given a linear interpolation of our guess for the Value function, <span class="math">\(V_0=w\)</span>, the first function returns a <code>LinInterp</code> object, which is the linear interpolation of the function generated by the Bellman Operator on the finite set of points on the grid. The second function returns what Stachurski (2009) calls a <em>w-greedy</em> policy, i.e. the function that maximizes the RHS of the Bellman Operator.</p>
 <p>Now we are ready to work on the iteration</p>
 <div class="highlight"><pre><span></span><span class="c1"># Parameters for the optimization procedures</span>
 <span class="n">count</span><span class="o">=</span><span class="mi">0</span>
@@ -402,7 +402,7 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 </pre></div>
 
 
-<p>Our initial guess $V_0$</p>
+<p>Our initial guess <span class="math">\(V_0\)</span></p>
 <div class="highlight"><pre><span></span><span class="n">V0</span><span class="o">=</span><span class="n">LinInterp</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">U</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">));</span>
@@ -470,10 +470,67 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 <ol>
 <li>Use the <code>policy</code> function to compute the optimal policy. Compare it to the actual one</li>
 <li>Do the same for the consumption function. Find the savings rate and plot it.</li>
-<li>Construct the paths of consumption and capital starting from $k_0=.1$. Show the time series and the paths in the consumption-capital space</li>
+<li>Construct the paths of consumption and capital starting from <span class="math">\(k_0=.1\)</span>. Show the time series and the paths in the consumption-capital space</li>
 <li>Estimate the level of steady state capital and consumption. Show graphically that it is lower than the <em>Golden Rule Level</em>.</li>
-<li>repeat the exercise with other values of $\alpha,\beta,\delta,\sigma,k_0$. Can you write a function or class such that it will generate the whole analysis for given values of the parameters and functions. Can you generalize it in order to analyze the effects of changing the utility or production functions?</li>
+<li>repeat the exercise with other values of <span class="math">\(\alpha,\beta,\delta,\sigma,k_0\)</span>. Can you write a function or class such that it will generate the whole analysis for given values of the parameters and functions. Can you generalize it in order to analyze the effects of changing the utility or production functions?</li>
 </ol>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js','color.js','mhchem.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             </div>
             <!-- /.entry-content -->
     <hr />
