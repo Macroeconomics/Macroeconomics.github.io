@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Dynamic Programming in Python - Macroeconomics II (Econ-6395)</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link href="./images/favicomatic/favicon.ico" rel="icon">
+
+<link rel="canonical" href="./dynamic-programming-in-python.html">
+
+        <meta name="author" content="Ömer Özak" />
+        <meta name="keywords" content="Macroeconomics,IPython" />
+        <meta name="description" content="Introduction to Dynamic Programming We have studied the theory of dynamic programming in discrete time under certainty. Let&#39;s review what we know so far, so that we can start thinking about how to take to the computer. The Problem We want to find a sequence ${x_t}_{t=0}^\infty …" />
+
+        <meta property="og:site_name" content="Macroeconomics II (Econ-6395)" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Dynamic Programming in Python"/>
+        <meta property="og:url" content="./dynamic-programming-in-python.html"/>
+        <meta property="og:description" content="Introduction to Dynamic Programming We have studied the theory of dynamic programming in discrete time under certainty. Let&#39;s review what we know so far, so that we can start thinking about how to take to the computer. The Problem We want to find a sequence ${x_t}_{t=0}^\infty …"/>
+        <meta property="article:published_time" content="2016-12-29" />
+            <meta property="article:section" content="Ph.D." />
+            <meta property="article:tag" content="Macroeconomics" />
+            <meta property="article:tag" content="IPython" />
+            <meta property="article:author" content="Ömer Özak" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.slate.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Macroeconomics II (Econ-6395)            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/pages/Syllabus.html">Syllabus</a></li>
+                    <li><a href="/pages/Lecture Notes.html">Lecture Notes</a></li>
+                    <li><a href="/pages/Practice Material.html">Practice Material</a></li>
+                    <li><a href="/pages/CV.html">CV</a></li>
+                    <li><a href="http://www.google.com/recaptcha/mailhide/d?6LfmLBAUAAAAADdznVp2XJ1GUaPXKYV56-VSIn5E">Email</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./dynamic-programming-in-python.html"
+                       rel="bookmark"
+                       title="Permalink to Dynamic Programming in Python">
+                        Dynamic Programming in Python
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2016-12-29T10:20:00-06:00"> Thu 29 December 2016</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="./tag/macroeconomics.html">Macroeconomics</a>
+        /
+	<a href="./tag/ipython.html">IPython</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <h1>Introduction to Dynamic Programming</h1>
+<p>We have studied the theory of dynamic programming in discrete time under certainty. Let's review what we know so far, so that we can start thinking about how to take to the computer.</p>
+<h2>The Problem</h2>
+<p>We want to find a sequence ${x_t}_{t=0}^\infty$ and a function $V^*:X\to\mathbb{R}$ such that </p>
+<p>$$V^{\ast}\left(x_{0}\right)=\sup\limits <em t>{\left{ x</em>\right} <em t="0">{t=0}^{\infty}}\sum\limits </em>^{\infty}\beta^{t}U(x_{t},x_{t+1})$$ </p>
+<p>subject to $x_{t+1}\in G(x_{t})\subseteq X\subseteq\mathbb{R}^K$, for all $t\geq0$ and $x_0\in\mathbb{R}$ given. We assume $\beta\in(0,1)$.</p>
+<p>We have seen that we can analyze this problem by solving instead the related problem </p>
+<p>$$V(x)=\sup\limits _{y\in G(x)}\left{ U(x,y)+\beta V(y)\right} ,\text{ for all }x\in X.$$</p>
+<h2>Basic Results</h2>
+<h3>Assumptions</h3>
+<ol>
+<li>
+<p>$G\left(x\right)$  is nonempty for all $x\in X$ ; and for all $x_{0}\in X$  and $\mathbf{x}\in \Phi (x_{0})$, $\lim\nolimits_{n\rightarrow\infty}\sum_{t=0}^{n}\beta^{t}U(x_{t},x_{t+1})$ exists and is finite.</p>
+</li>
+<li>
+<p>$X$  is a compact subset of $\mathbb{R}^{K}$, $G$ is nonempty, compact-valued and continuous. Moreover, $U:\mathbf{X}<em G>{G}\rightarrow\mathbb{R}$  is continuous, where $\mathbf{X}</em>=\left{ (x,y)\in X\times X:y\in G(x)\right}$</p>
+</li>
+<li>
+<p>$U$ is strictly concave and $G$  is convex</p>
+</li>
+<li>
+<p>For each $y\in X$, $U(\cdot,y)$  is strictly increasing in each of its first $K$  arguments, and $G$  is monotone in the sense that $x\leq x^{\prime}$  implies $G(x)\subset G(x^{\prime})$.</p>
+</li>
+<li>
+<p>$U$  is continuously differentiable on the interior of its domain $\mathbf{X}_{G}$.</p>
+</li>
+<li>
+<p>Let $\Phi (x_{t})={{x_{s}}<em s_1="s+1">{s=t}^{\infty}:x</em>\in G(x_{s})\text{, for }s=t,t+1,...}$ and assume that $\lim_{t\rightarrow\infty}\beta^{t}V\left(x_{t}\right)=0$  for all $\left(x,x_{1},x_{2},...\right)\in \Phi (x)$.</p>
+</li>
+</ol>
+<p>If all of these conditions are satisfied, then we have the following</p>
+<h3>Theorem</h3>
+<p><em>There exists a unique (value) function $V^</em>(x_0)=V(x_0)$, which is continuous, strictly increasing, strictly concave, and differentiable. Also, there exists a unique path ${x^<em><em t="0">t}</em>^\infty$, which starting from the given $x_0$ attains the value $V^</em>(x_0)$. The path can be found through a unique continuous policy function $\pi: X\to X$ such that $x^<em>_{t+1}=\pi(x^</em>_t)$. *</p>
+<h2>Taking it to the computer</h2>
+<p>Ok. Now that we know the conditions for the existence and uniqueness (plus other characteristics) of our problem, how do we go about solving it?</p>
+<p>The idea is going to be simple and is based on what we saw when we proved the contraction mapping theorem and the proof of the previous theorem (Yes I know...we split this in various steps and intermediate results, which might have confused you). </p>
+<p>Remember that our Bellman Operator $T: C(X)\to C(X)$ defined as </p>
+<p>$$T(V(x))\equiv\sup\limits _{y\in G(x)}\left{ U(x,y)+\beta V(y)\right}$$</p>
+<p>assigns a continuous, strictly increasing, strictly concave function $T(V)$ to each continuous, increasing, and concave function $V$ defined on $X$. Since $T(V)$ is a contraction mapping, we know that if $V_0$ is any initial continuous, increasing, and concave function defined on $X$, then $T^n(V_0)\to V^*$. This is precisely what we are going to do using the computer (well we will also do it by hand for a couple of examples).</p>
+<h3>A first example</h3>
+<p>Assume we want to solve the following finite dimensional problem. </p>
+<p>An apple farmer wants to maximize her discounted sum of utilities from consuming special non-peroshable apples. She owns only one tree which each period produces $y_t\in{0,1,\ldots,ymax}={y^i}_{i=0}^N$ apples, where $y_t=y^i$ with probability $p^i$. Each period she has to decide how many apples to pick and consume. If </p>
+<p>two choices, it can leave the market and make zero profits that period or stay and get a profit $\pi$. If the firm stays in the market it must take the same decision next period. If it exits in one period it can never return.</p>
+<h3>Value function iteration</h3>
+<p>So, now that we have a strategy to tackle the problem, and you have learned some basic Python at <a href="http://codeacademy.com">Code Academy</a> and IPython in our other <a href="https://github.com/ozak/CompEcon/blob/master/notebooks/IntroPython.ipynb">notebook</a>, we are ready to write some code and do some dynamic economic analysis.</p>
+<p>But before we start, there is one issue I want to highlight. Notice that our state space $X$ is not assumed to be finite, and clearly the fact that our functions are continuous imply that we cannot be in a finite problem. So how do we represent such an infinite object in a computer, which only has finite memory? The solution is to take an approximation to the function, what Stachurski (2009) calls a fitted function. There are various methods to approximate functions (see Judd (1998) for an excellent presentation). The simplest method is a linear interpolation, which is what we will use here. </p>
+<p>The idea behind linear interpolation is quite simple. Assume we want to approximate the function $V: X\to X$, $X\subseteq\mathbb{R}$. The only thing we need is a finite set ${x_i}<em i="0">{i=0}^N\subseteq X$ for which we compute the value under $V$, i.e. we create the finite set of values ${V_i=V(x_i)}</em>^N$. Then our approximate function $V$, $\hat V$, will be defined as</p>
+<p>$$\hat V(x)=V_{i-1}+\frac{V_i-V_{i-1}}{x_i-x_{i-1}}(x-x_{i-1}) \quad\text{ if } x_{i-1}\le x &lt; x_i.$$</p>
+<p>In principle we could construct our own interpolation function, but <a href="http://www.scipy.org/">Scipy</a> has already <a href="http://docs.scipy.org/doc/scipy/reference/interpolate.html">optimized approximation algorithms</a>, so let's use that package instead. Let's see what a linear interpolation of $\sin(x)$ would look like.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="o">%</span><span class="n">pylab</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">import</span><span class="o">-</span><span class="nb">all</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interp</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">interp</span><span class="err">?</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual Function&#39;</span><span class="p">)</span>
+<span class="k">for</span>  <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">xp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">yp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xp</span><span class="p">)</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xp</span><span class="p">,</span><span class="n">yp</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolation &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Error with up to &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; points in interpolation&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Clearly the more points we have the better our approximation. But, more points means more computations and more time to get those approximations. Since we will be iterating over approximations, we might not want to use too many points, but be smart about the choice of points or we might want to use less points for a start and then increase the number of points once we have a good candidate solution to our fixed point problem.</p>
+<p>In order to make it easy to define interpolated functions, we define a new class of Python object</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LinInterp</span><span class="p">:</span>
+    <span class="s2">&quot;Provides linear interpolation in one dimension.&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parameters: X and Y are sequences or arrays</span>
+<span class="sd">        containing the (x,y) interpolation points.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Parameters: z is a number, sequence or array.</span>
+<span class="sd">        This method makes an instance f of LinInterp callable,</span>
+<span class="sd">        so f(z) returns the interpolation value(s) at z.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">interp</span> <span class="p">([</span><span class="n">z</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">interp</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+</pre></div>
+
+
+<p>We can now define our interpolated sinus function as follows</p>
+<div class="highlight"><pre><span></span><span class="n">xp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">yp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xp</span><span class="p">)</span>
+<span class="n">oursin</span> <span class="o">=</span> <span class="n">LinInterp</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">yp</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">oursin</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+</pre></div>
+
+
+<h3>Optimal Growth</h3>
+<p>Let's start by computing the solution to an optimal growth problem, in which a social planner seeks to find paths ${c_t,k_t}$ such that</p>
+<p>\begin{align}
+\max_{{c_t,k_t}}&amp;\sum_{t=0}^{\infty}\beta^{t}u(c_{t})\[.2cm]
+\text{s.t.}&amp;k_{t+1}\leq f(k_{t})+(1-\delta)k_{t}-c_{t}\[.2cm]
+c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
+\end{align}</p>
+<p>As usual we assume that our utility function $u(\cdot)$ and production function $f(\cdot)$ are Neoclassical. Under these conditions we have seen that our problem satisfies the conditions of our previous theorem and thus we <em>know</em> a unique solution exists.</p>
+<h4>An example with analytical solution</h4>
+<p>Let's assume that $u(c)=\ln(c)$, $f(k)=k^\alpha$, and $\delta=1$. For this case we have seen that the solution implies</p>
+<p>\begin{align}
+&amp;\text{Value Function: } &amp;  V(k)=&amp;\frac{\ln(1-\alpha\beta)}{1-\beta}+\frac{\alpha\beta\ln(\alpha\beta)}{(1-\alpha\beta)(1-\beta)}+\frac{\alpha}{1-\alpha\beta}\ln(k)\[.2cm]
+&amp;\text{Optimal Policy: } &amp; \pi\left(k\right)=&amp;\beta\alpha k^{\alpha} \[.2cm]
+&amp;\text{Optimal Consumption Function: } &amp; c=&amp;\left(1-\beta\alpha\right)k^{\alpha}\[.2cm]
+\end{align}</p>
+<p>We will use these to compare the solution found by iteration of the Value function described above. Copy the Python functions you had defined in the previous notebook into the cell below and define Python functions for the actual optimal solutions given above.</p>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="nb">file</span> <span class="n">optgrowthfuncs</span><span class="o">.</span><span class="n">py</span>
+<span class="k">def</span> <span class="nf">U</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;This function returns the value of utility when the CRRA</span>
+<span class="sd">    coefficient is sigma. I.e. </span>
+<span class="sd">    u(c,sigma)=(c**(1-sigma)-1)/(1-sigma) if sigma!=1 </span>
+<span class="sd">    and </span>
+<span class="sd">    u(c,sigma)=ln(c) if sigma==1</span>
+<span class="sd">    Usage: u(c,sigma)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">sigma</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">u</span>
+
+<span class="k">def</span> <span class="nf">F</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span><span class="n">A</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Cobb-Douglas production function</span>
+<span class="sd">    F(K,L)=K^alpha L^(1-alpha)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">K</span><span class="o">**</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">L</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">Va</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span><span class="n">beta</span><span class="o">=.</span><span class="mi">9</span><span class="p">):</span>
+    <span class="n">ab</span><span class="o">=</span><span class="n">alpha</span><span class="o">*</span><span class="n">beta</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ab</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">beta</span><span class="p">)</span><span class="o">+</span><span class="n">ab</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ab</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">beta</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ab</span><span class="p">))</span><span class="o">+</span><span class="n">alpha</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ab</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">opk</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span><span class="n">beta</span><span class="o">=.</span><span class="mi">9</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">alpha</span><span class="o">*</span><span class="n">beta</span><span class="o">*</span><span class="n">k</span><span class="o">**</span><span class="n">alpha</span>
+
+<span class="k">def</span> <span class="nf">opc</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span><span class="n">beta</span><span class="o">=.</span><span class="mi">9</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="n">beta</span><span class="p">)</span><span class="o">*</span><span class="n">k</span><span class="o">**</span><span class="n">alpha</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load</span> <span class="n">optgrowthfuncs</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">U</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;This function returns the value of utility when the CRRA</span>
+<span class="sd">    coefficient is sigma. I.e. </span>
+<span class="sd">    u(c,sigma)=(c**(1-sigma)-1)/(1-sigma) if sigma!=1 </span>
+<span class="sd">    and </span>
+<span class="sd">    u(c,sigma)=ln(c) if sigma==1</span>
+<span class="sd">    Usage: u(c,sigma)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">sigma</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">u</span>
+
+<span class="k">def</span> <span class="nf">F</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span><span class="n">A</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Cobb-Douglas production function</span>
+<span class="sd">    F(K,L)=K^alpha L^(1-alpha)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">K</span><span class="o">**</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">L</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">Va</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span><span class="n">beta</span><span class="o">=.</span><span class="mi">9</span><span class="p">):</span>
+    <span class="n">ab</span><span class="o">=</span><span class="n">alpha</span><span class="o">*</span><span class="n">beta</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ab</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">beta</span><span class="p">)</span><span class="o">+</span><span class="n">ab</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ab</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">beta</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ab</span><span class="p">))</span><span class="o">+</span><span class="n">alpha</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ab</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">opk</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span><span class="n">beta</span><span class="o">=.</span><span class="mi">9</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">alpha</span><span class="o">*</span><span class="n">beta</span><span class="o">*</span><span class="n">k</span><span class="o">**</span><span class="n">alpha</span>
+
+<span class="k">def</span> <span class="nf">opc</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span><span class="n">beta</span><span class="o">=.</span><span class="mi">9</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="n">beta</span><span class="p">)</span><span class="o">*</span><span class="n">k</span><span class="o">**</span><span class="n">alpha</span>
+</pre></div>
+
+
+<p>Let's fix the value of the fundamental parameters so we can realize computations</p>
+<div class="highlight"><pre><span></span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span>
+<span class="n">beta</span><span class="o">=.</span><span class="mi">9</span>
+<span class="n">sigma</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">delta</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+
+
+<p>Now let's focus on the Value function iteration:</p>
+<div class="highlight"><pre><span></span><span class="c1"># Grid of values for state variable over which function will be approximated</span>
+<span class="n">gridmin</span><span class="p">,</span> <span class="n">gridmax</span><span class="p">,</span> <span class="n">gridsize</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">300</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">gridmin</span><span class="p">,</span> <span class="n">gridmax</span><span class="o">**</span><span class="mf">1e-1</span><span class="p">,</span> <span class="n">gridsize</span><span class="p">)</span><span class="o">**</span><span class="mi">10</span>
+</pre></div>
+
+
+<p>Here we have created a grid on $[gridmin,gridmax]$ that has a number of points given by <code>gridsize</code>. Since we know that the Value functions is stricly concave, our grid has more points closer to zero than farther away</p>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;State Space&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Points&#39;</span><span class="p">);</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="s1">&#39;r.&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;State Space Grid&#39;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Now we need a function, which for given $V_0$ solves </p>
+<p>$$\sup\limits _{y\in G(x)}\left{ U(x,y)+\beta V(y)\right}.$$</p>
+<p>Let's use one of Scipy's optimizing routines</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fminbound</span>
+<span class="n">fminbound</span><span class="err">?</span>
+</pre></div>
+
+
+<p>Since <code>fminbound</code> returns </p>
+<p>$$\arg\min\limits _{y\in [\underline x,\bar x]}\left{ U(x,y)+\beta V(y)\right}$$</p>
+<p>we have to either replace our objective function for its negative or, better yet, define a function that uses <code>fminbound</code> and returns the maximum and the maximizer</p>
+<div class="highlight"><pre><span></span><span class="c1"># Maximize function V on interval [a,b]</span>
+<span class="k">def</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="n">fminbound</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">V</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)))</span>
+<span class="c1"># Return Maximizer of function V on interval [a,b]</span>
+<span class="k">def</span> <span class="nf">maximizer</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">fminbound</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">V</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+</pre></div>
+
+
+<h4>Note</h4>
+<p>We could have included other parameters to pass to our <code>maximizer</code> and <code>maximum</code> functions, e.g. to allow us to manipulate the options of <code>fminbound</code></p>
+<h4>The Bellman Operator</h4>
+<div class="highlight"><pre><span></span><span class="c1"># The following two functions are used to find the optimal policy and value functions using value function iteration</span>
+<span class="c1"># Bellman Operator</span>
+<span class="k">def</span> <span class="nf">bellman</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The approximate Bellman operator.</span>
+<span class="sd">    Parameters: w is a LinInterp object (i.e., a </span>
+<span class="sd">    callable object which acts pointwise on arrays).</span>
+<span class="sd">    Returns: An instance of LinInterp that represents the optimal operator.</span>
+<span class="sd">    w is a function defined on the state space.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">:</span>
+        <span class="n">kmax</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">kp</span><span class="p">:</span> <span class="n">U</span><span class="p">(</span><span class="n">kmax</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span> <span class="o">-</span> <span class="n">kp</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">w</span><span class="p">(</span><span class="n">kp</span><span class="p">)</span>
+        <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">maximum</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">kmax</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">LinInterp</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">vals</span><span class="p">)</span>
+
+<span class="c1"># Optimal policy</span>
+<span class="k">def</span> <span class="nf">policy</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    For each function w, policy(w) returns the function that maximizes the </span>
+<span class="sd">    RHS of the Bellman operator.</span>
+<span class="sd">    Replace w for the Value function to get optimal policy.</span>
+<span class="sd">    The approximate optimal policy operator w-greedy (See Stachurski (2009)). </span>
+<span class="sd">    Parameters: w is a LinInterp object (i.e., a </span>
+<span class="sd">    callable object which acts pointwise on arrays).</span>
+<span class="sd">    Returns: An instance of LinInterp that captures the optimal policy.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">:</span>
+        <span class="n">kmax</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">kp</span><span class="p">:</span> <span class="n">U</span><span class="p">(</span><span class="n">kmax</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span> <span class="o">-</span> <span class="n">kp</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span> <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">w</span><span class="p">(</span><span class="n">kp</span><span class="p">)</span>
+        <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">maximizer</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">kmax</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">LinInterp</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">vals</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Given a linear interpolation of our guess for the Value function, $V_0=w$, the first function returns a <code>LinInterp</code> object, which is the linear interpolation of the function generated by the Bellman Operator on the finite set of points on the grid. The second function returns what Stachurski (2009) calls a <em>w-greedy</em> policy, i.e. the function that maximizes the RHS of the Bellman Operator.</p>
+<p>Now we are ready to work on the iteration</p>
+<div class="highlight"><pre><span></span><span class="c1"># Parameters for the optimization procedures</span>
+<span class="n">count</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span>
+<span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span>
+<span class="k">print</span> <span class="s1">&#39;tol=</span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">tol</span>
+</pre></div>
+
+
+<p>Our initial guess $V_0$</p>
+<div class="highlight"><pre><span></span><span class="n">V0</span><span class="o">=</span><span class="n">LinInterp</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">U</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">Va</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span>
+</pre></div>
+
+
+<p>After one interation</p>
+<div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">));</span>
+<span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+<span class="n">V0</span><span class="o">=</span><span class="n">bellman</span><span class="p">(</span><span class="n">V0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">Va</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+
+
+<p>Doing it by hand is too slow..let's automate this process</p>
+<div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">grid</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">Va</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">);</span>
+
+<span class="n">count</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">maxiter</span><span class="o">=</span><span class="mi">200</span>
+<span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span>
+<span class="k">while</span> <span class="n">count</span><span class="o">&lt;</span><span class="n">maxiter</span><span class="p">:</span>
+    <span class="n">V1</span><span class="o">=</span><span class="n">bellman</span><span class="p">(</span><span class="n">V0</span><span class="p">)</span>
+    <span class="n">err</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">V1</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">V0</span><span class="p">(</span><span class="n">grid</span><span class="p">))))</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">count</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V1</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">(</span><span class="n">count</span> <span class="o">/</span> <span class="n">maxiter</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">);</span>
+        <span class="c1">#print &#39;%d %2.10f &#39; % (count,err)</span>
+    <span class="n">V0</span><span class="o">=</span><span class="n">V1</span>
+    <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">err</span><span class="o">&lt;</span><span class="n">tol</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">count</span>
+        <span class="k">break</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V1</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Estimated&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">();</span>
+</pre></div>
+
+
+<p>Does it look like we converged? Let's compare our estimated Value function <code>V1</code> and the actual function <code>Va</code> and compute the error at each point.</p>
+<div class="highlight"><pre><span></span><span class="k">print</span> <span class="n">err</span>
+<span class="n">err</span><span class="o">=</span><span class="n">Va</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="o">-</span><span class="n">V1</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">err</span><span class="p">);</span>
+<span class="k">print</span> <span class="n">err</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">-</span><span class="n">err</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">grid</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">Va</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V1</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="o">+</span><span class="n">err</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Estimated&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+
+
+<h4>Exercise</h4>
+<ol>
+<li>Use the <code>policy</code> function to compute the optimal policy. Compare it to the actual one</li>
+<li>Do the same for the consumption function. Find the savings rate and plot it.</li>
+<li>Construct the paths of consumption and capital starting from $k_0=.1$. Show the time series and the paths in the consumption-capital space</li>
+<li>Estimate the level of steady state capital and consumption. Show graphically that it is lower than the <em>Golden Rule Level</em>.</li>
+<li>repeat the exercise with other values of $\alpha,\beta,\delta,\sigma,k_0$. Can you write a function or class such that it will generate the whole analysis for given values of the parameters and functions. Can you generalize it in order to analyze the effects of changing the utility or production functions?</li>
+</ol>
+            </div>
+            <!-- /.entry-content -->
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="https://github.com/Macroeconomics"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://linkedin.com/in/omerozak"><i class="fa fa-linkedin-square fa-lg"></i> Linkedin</a></li>
+                <li class="list-group-item"><a href="https://www.researchgate.net/profile/Oemer_Oezak"><i class="fa fa-researchgate-square fa-lg"></i> Researchgate</a></li>
+              </ul>
+            </li>
+
+    <li class="list-group-item"><h4><i class="fa fa-external-link fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://omerozak.com/" target="_blank">
+                Ömer Özak
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.smu.edu/economics" target="_blank">
+                Dept. Economics
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.smu.edu/" target="_blank">
+                SMU
+            </a>
+        </li>
+      </ul>
+    </li>
+
+
+
+            <li class="list-group-item"><a href="./"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="./tag/macroeconomics.html">
+                            Macroeconomics
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="./tag/ipython.html">
+                            IPython
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="./tag/notebooks.html">
+                            Notebooks
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+        <div id="gh_repos">
+            <p class="list-group-item">Status updating...</p>
+        </div>
+            <a href="https://github.com/Macroeconomics">@Macroeconomics</a> on GitHub
+    </li>
+    </ul>
+</section>            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2016 Ömer Özak
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+    <!-- GitHub JS -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (!window.jXHR) {
+                var jxhr = document.createElement('script');
+                jxhr.type = 'text/javascript';
+                jxhr.src = './theme/js/jXHR.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(jxhr, s);
+            }
+
+            github.showRepos({
+                user: 'Macroeconomics',
+                count: 2,
+                skip_forks: false,
+                target: '#gh_repos'
+            });
+        });
+    </script>
+    <script src="./theme/js/github.js" type="text/javascript"></script>
+    <!-- End GitHub JS Code -->
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-586c25633fd6ba9b"></script>
+</body>
+</html>
