@@ -5,6 +5,7 @@ import os
 
 # Me
 AUTHOR = u'Ömer Özak'
+AUTHORS = u'Ömer Özak'
 SITENAME = u'Macroeconomics II (Econ-6395)'
 SITEURL = ''
 FAVICON = 'images/favicomatic/favicon.ico'
@@ -55,8 +56,12 @@ RELATIVE_URLS = True
 
 ####################################################
 # Additions 
-STATIC_PATHS = ['images', 'downloads', 'notebooks', 'pdf',
+STATIC_PATHS = ['images', 'downloads', 'notebooks', 'pdf', 'extra/main.css',
+                'extra/font-awesome'
                 'downloads/files','downloads/code', '/images/favicon.ico']
+EXTRA_PATH_METADATA = {
+    'extra/main.css': {'path': 'theme/css/main.css'},
+}
 
 READERS = {'html': None}
 
@@ -66,6 +71,7 @@ NOTEBOOK_DIR = 'downloads/notebooks'
 
 # Technical stuff
 # THEME
+#THEME = '../pelican-themes/chameleon'
 THEME = '../pelican-themes/pelican-bootstrap3'
 #THEME = '../pelican-themes/bootstrap2'
 #JINJA_EXTENSIONS = ['jinja2.ext.i18n']
@@ -79,7 +85,7 @@ PLUGINS = ['render_math', 'ipynb.markup', 'i18n_subsites',
            'summary', 'liquid_tags.img', 'liquid_tags.video',
            'liquid_tags.youtube', 'tag_cloud', 'pelican_javascript',
            'ipynb.markup', 'liquid_tags.include_code', 'pelican-ipynb.liquid',
-           'liquid_tags.literal',]#'pelicanfly']
+           'liquid_tags.literal', 'pelicanfly']
 macros = ['/home/user/latex-macros.tex']
 
 # MATH_JAX
@@ -94,7 +100,16 @@ PYGMENTS_STYLE='default'
 #BOOTSTRAP_THEME='simplex'
 #BOOTSTRAP_THEME='yeti'
 #BOOTSTRAP_THEME='superhero' #nice but, background doesn't work well with code as is
-BOOTSTRAP_THEME='cosmo' #used for T&P through 2016
+#BOOTSTRAP_THEME='cosmo' #used for T&P through 2016
+BOOTSTRAP_THEME='slate'
+
+# using Bootswatch Flatly
+BS3_THEME = 'http://bootswatch.com/slate/bootstrap.min.css'
+BS3_THEME_NAME = 'Slate'
+BS3_THEME_HOMEPAGE = 'http://bootswatch.com/slate/'
+BS3_URL = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'
+BS3_JS  = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js'
+
 '''
 BOOTSTRAP_THEME='flatly' #looks good, some color
 #BOOTSTRAP_THEME='journal' #also looks good, more B&W
