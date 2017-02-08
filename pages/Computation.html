@@ -75,6 +75,31 @@ Macroeconomics II (Econ-6395)            </a>
         
         <div class="entry-content">
             <p>We will be using (I)Python as our programming language. In order to use some of the material available on this website and to share your material with others you should create a <a href="http://github.com/"><i class="fa fa-github fa-1x"></i>GitHub</a> account for yourself. This will be useful to you in the future to keep track of changes when you are writing papers. I also recommend creating a <a href="https://bitbucket.org/"><i class="fa fa-bitbucket fa-1x"></i>Bitbucket</a> account, which has similar functionality, but allows you to have unlimited private repositories for personal use. Additionally, I suggest you read <a href="https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf">Gentzkow &amp; Shapiro's <em>Code and Data for the Social Sciences: A Practitioner’s Guide</em></a> to familiarize yourself with good practices in coding and statistical analysis. We will cover additional topics in class.</p>
+<h1>Installing (I)Python &amp; Jupyter</h1>
+<p>The easiest and most convenient way to install a working version of IPython with all the required packages and tools is using <a href="https://www.continuum.io/downloads">Continuum's Anaconda Distribution</a>. You can install following the instructions in that website, or if you can just run <a href="../notebooks/CondaInstall.sh">this script</a>. After installing the latest version of Anaconda, add the <code>Anaconda/bin</code> directory to your <code>PATH</code> variable. Then download the following scripts (<a href="../notebooks/GeoPython2env.yml">GeoPythonenv2</a>, <a href="../notebooks/GeoPython3env.yml">GeoPythonenv3</a>) and execute</p>
+<div class="highlight"><pre><span></span>conda update conda
+conda-env create -f GeoPython2env.yml
+conda-env create -f GeoPython3env.yml
+</pre></div>
+
+
+<p>This will create two environments with all the packages you will require for this course (and more!). To start using one of the <code>Python 2.7</code> environment you will need to exectute the following command</p>
+<div class="highlight"><pre><span></span>source activate GeoPython2env
+</pre></div>
+
+
+<p>and for <code>Python 3.x</code></p>
+<div class="highlight"><pre><span></span>source activate GeoPython3env
+</pre></div>
+
+
+<p>I would suggest using <code>Python 3.x</code>, since it is the latest and most uptodate version.</p>
+<h2>Parallel Computing</h2>
+<p>One of the advantages of <code>Jupyter Notebooks</code> is that they allow you to work (very easily) with multiple processors using <code>ipyparallel</code>. Once you have <code>ipyparallel</code> installed (automatically done for you with the scritps above), you will need to execute the following code once</p>
+<div class="highlight"><pre><span></span>ipcluster nbextension enable
+</pre></div>
+
+
 <h1>Notebooks</h1>
 <ul>
 <li>Notebook 1: <a href="/IntroPython.html">Introduction</a></li>
@@ -126,11 +151,6 @@ Macroeconomics II (Econ-6395)            </a>
             <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/ipython.html">
-                            IPython
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
                         <a href="https://macroeconomics.github.io/tag/notebooks.html">
                             Notebooks
                         </a>
@@ -138,6 +158,11 @@ Macroeconomics II (Econ-6395)            </a>
                     <li class="list-group-item tag-1">
                         <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
                             Macroeconomics
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="https://macroeconomics.github.io/tag/ipython.html">
+                            IPython
                         </a>
                     </li>
                 </ul>

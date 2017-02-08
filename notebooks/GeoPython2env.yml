@@ -1,0 +1,126 @@
+# List of packages to be installed and ensured are compatible with each other
+# ======================================================
+# Author:  Ömer Özak, 2016 (ozak at smu.edu)
+# Website: http://omerozak.com
+# GitHub:  https://github.com/ozak/
+# ======================================================
+# Run `conda-env create -f GeoPython2env.yml`
+name: GeoPython2env
+channels:
+  - conda-forge
+  - mro
+  - r
+#  - defaults
+#  - anaconda
+#  - pypi
+#  - auto
+#  - asmeurer
+#  - rustychris
+#  - dougal
+#  - IOOS
+#  - ericmjl
+dependencies:
+  - python=2.7
+  - pip
+  - cython
+  - matplotlib
+  - pandas
+  - scipy
+  - fiona
+  - basemap
+  - pillow
+  - geopandas
+  - ipython
+  - ipywidgets
+  - ipyparallel
+  - jupyter
+  - gdal>=2.1.2
+  - libspatialite
+  - affine
+  - geopy
+  - geos
+  - proj4
+  - pyproj
+  - numpy>=1.11
+  - anaconda
+  - anaconda-client
+  - r
+  - r-essentials
+  - rasterio
+  - beautiful-soup
+  - beautifulsoup4
+  - blaze
+  - blaze-core
+  - backports
+  - bcolz
+  - blz
+  - casuarius
+  - cartopy
+  - click
+  - cligj
+  - certifi
+  - dateutil
+  - descartes
+  - dill
+  - docopt
+  - dynd-python
+  - enaml
+  - future
+  - futures
+  - llvm
+  - llvmpy
+  - mock
+  - mpi4py
+  - mpld3
+  - mplexporter
+  - mplleaflet
+  - numba
+  - numexpr
+  - pandas
+  - pandasql
+  - patsy
+  - pysal
+  - pymc3
+  - bokeh
+  - pytables
+  - pytest
+  - python-dateutil
+  - rtree
+  - runipy
+  - scikit-image
+  - scikit-learn
+  - scipy
+  - shapely
+  - sip
+  - six
+  - sqlparse
+  - statsmodels
+  - sympy
+  - theano
+  - rasterio
+  - seaborn
+  - rpy2
+  - pip:
+    - atom
+    - enable
+    - georasters
+    - rasterstats
+    - isounidecode
+    - tables
+    - wikipedia
+    - pelican
+    - typogrify
+    - pelicanfly
+
+#    - chaco
+
+#  - blessings
+##  - hmi
+##  - isounidecode
+#  - lcms
+##  - mpich2
+##  - pil
+##  - smear
+##  - system
+##  - tables
+
