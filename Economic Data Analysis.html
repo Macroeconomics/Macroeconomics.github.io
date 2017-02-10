@@ -13,16 +13,17 @@
 <link rel="canonical" href="https://macroeconomics.github.io/Economic Data Analysis.html">
 
         <meta name="author" content="Ömer Özak" />
-        <meta name="keywords" content="Macroeconomics,IPython,Notebooks" />
-        <meta name="description" content="" />
+        <meta name="keywords" content="Economic Growth,Macroeconomics,IPython,Notebooks" />
+        <meta name="description" content="Working with Economic data in Python¶ This notebook will introduce you to working with data in Python. You can use packages like Numpy to work with arrays, matrices, and such, and anipulate data (see my Introduction to Python). But given the needs of economists it is better to use Pandas. Pandas" />
 
         <meta property="og:site_name" content="Macroeconomics II (Econ-6395)" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Economic Data Analysis in Python"/>
         <meta property="og:url" content="https://macroeconomics.github.io/Economic Data Analysis.html"/>
-        <meta property="og:description" content=""/>
+        <meta property="og:description" content="Working with Economic data in Python¶ This notebook will introduce you to working with data in Python. You can use packages like Numpy to work with arrays, matrices, and such, and anipulate data (see my Introduction to Python). But given the needs of economists it is better to use Pandas. Pandas"/>
         <meta property="article:published_time" content="2016-12-29" />
             <meta property="article:section" content="Ph.D." />
+            <meta property="article:tag" content="Economic Growth" />
             <meta property="article:tag" content="Macroeconomics" />
             <meta property="article:tag" content="IPython" />
             <meta property="article:tag" content="Notebooks" />
@@ -104,6 +105,8 @@ Macroeconomics II (Econ-6395)            </a>
 
 
 <span class="label label-default">Tags</span>
+	<a href="https://macroeconomics.github.io/tag/economic-growth.html">Economic Growth</a>
+        /
 	<a href="https://macroeconomics.github.io/tag/macroeconomics.html">Macroeconomics</a>
         /
 	<a href="https://macroeconomics.github.io/tag/ipython.html">IPython</a>
@@ -113,39 +116,159 @@ Macroeconomics II (Econ-6395)            </a>
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Working-with-Economic-data-in-Python">Working with Economic data in Python<a class="anchor-link" href="#Working-with-Economic-data-in-Python">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This notebook will introduce you to working with data in <code>Python</code>. You can use packages like <code>Numpy</code> to work with arrays, matrices, and such, and anipulate data (see my <a href="./IntroPython.ipynb">Introduction to Python</a>). But given the needs of economists it is better to use <a href="http://pandas.pydata.org">Pandas</a>. <a href="http://pandas.pydata.org">Pandas</a> allows you to import and process data in many useful ways. It interacts greatly with <a href="http://pydata.org/downloads.html">other packages</a> that complement it making it a very powerful tool for data analysis.</p>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Let's import pandas</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="o">%</span><span class="k">pylab</span> --no-import-all
 <span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Using matplotlib backend: MacOSX
-Populating the interactive namespace from numpy and matplotlib
-</pre>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>With <a href="http://pandas.pydata.org">Pandas</a> you can</p>
+<ol>
+<li>Import many types of data, including<ul>
+<li>CSV files</li>
+<li>Tab or other types of delimited files </li>
+<li>Excel (xls, xlsx) files</li>
+<li>Stata files</li>
+</ul>
+</li>
+<li>Open files directly from a website</li>
+<li>Merge, select, join data</li>
+<li>Perform statistical analyses</li>
+<li>Create plots of your data</li>
+</ol>
+<p>and much more</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Examples">Examples<a class="anchor-link" href="#Examples">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's start by importing the data from the Penn World Tables</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">'http://www.rug.nl/ggdc/docs/pwt90.xlsx'</span><span class="p">,</span><span class="n">sheetname</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">dfpwt</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_stata</span><span class="p">(</span><span class="s1">'http://www.rug.nl/ggdc/docs/pwt90.dta'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The main object in <a href="http://pandas.pydata.org">Pandas</a> is a dataframe. 
+Here we have created two dataframes based on an Excel file and a Stata file.</p>
+<p><code>df</code> is a dataframe that contains the variable names and their definition, while <code>dfpwt</code> contains the data. Let's explore them.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span>
+</pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">'http://www.rug.nl/research/ggdc/data/pwt/v80/pwt80.xlsx'</span><span class="p">,</span><span class="n">sheetname</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">dfpwt</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">'http://www.rug.nl/research/ggdc/data/pwt/v80/pwt80.xlsx'</span><span class="p">,</span><span class="n">sheetname</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfpwt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, we can create new variables, transform and plot the data</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Computing-$\log$-Income-per-Capita">Computing $\log$ Income per Capita<a class="anchor-link" href="#Computing-$\log$-Income-per-Capita">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To compute the $log$ of income per capita (GDPpc), the first thing we need is to know the name of the column that contains the GDPpc data in the dataframe. To do this, let's find among the variables those whic in their description have the word <em>capita</em>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
 </pre></div>
 </div>
 </div>
@@ -153,303 +276,202 @@ Populating the interactive namespace from numpy and matplotlib
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Variable definition'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'capita'</span><span class="p">)</span><span class="o">!=-</span><span class="mi">1</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[4]:</div>
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div style="max-height:1000px;max-width:1500px;overflow:auto;">
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Variable name</th>
-<th>Variable definition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0 </th>
-<td>                             Identifier variables</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>1 </th>
-<td>                                      countrycode</td>
-<td>                         3-letter ISO country code</td>
-</tr>
-<tr>
-<th>2 </th>
-<td>                                          country</td>
-<td>                                      Country name</td>
-</tr>
-<tr>
-<th>3 </th>
-<td>                                    currency_unit</td>
-<td>                                     Currency unit</td>
-</tr>
-<tr>
-<th>4 </th>
-<td>                                             year</td>
-<td>                                              Year</td>
-</tr>
-<tr>
-<th>5 </th>
-<td>                                              NaN</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>6 </th>
-<td>       Real GDP, employment and population levels</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>7 </th>
-<td>                                            rgdpe</td>
-<td> Expenditure-side real GDP at chained PPPs (in ...</td>
-</tr>
-<tr>
-<th>8 </th>
-<td>                                            rgdpo</td>
-<td> Output-side real GDP at chained PPPs (in mil. ...</td>
-</tr>
-<tr>
-<th>9 </th>
-<td>                                              pop</td>
-<td>                          Population (in millions)</td>
-</tr>
-<tr>
-<th>10</th>
-<td>                                              emp</td>
-<td>           Number of persons engaged (in millions)</td>
-</tr>
-<tr>
-<th>11</th>
-<td>                                              avh</td>
-<td>    Average annual hours worked by persons engaged</td>
-</tr>
-<tr>
-<th>12</th>
-<td>                                               hc</td>
-<td> Index of human capital per person, based on ye...</td>
-</tr>
-<tr>
-<th>13</th>
-<td>                                              NaN</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>14</th>
-<td>               Current price GDP, capital and TFP</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>15</th>
-<td>                                            cgdpe</td>
-<td> Expenditure-side real GDP at current PPPs (in ...</td>
-</tr>
-<tr>
-<th>16</th>
-<td>                                            cgdpo</td>
-<td> Output-side real GDP at current PPPs (in mil. ...</td>
-</tr>
-<tr>
-<th>17</th>
-<td>                                               ck</td>
-<td>   Capital stock at current PPPs (in mil. 2005US$)</td>
-</tr>
-<tr>
-<th>18</th>
-<td>                                             ctfp</td>
-<td>                 TFP level at current PPPs (USA=1)</td>
-</tr>
-<tr>
-<th>19</th>
-<td>                                              NaN</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>20</th>
-<td>                National accounts-based variables</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>21</th>
-<td>                                           rgdpna</td>
-<td> Real GDP at constant 2005 national prices (in ...</td>
-</tr>
-<tr>
-<th>22</th>
-<td>                                             rkna</td>
-<td> Capital stock at constant 2005 national prices...</td>
-</tr>
-<tr>
-<th>23</th>
-<td>                                           rtfpna</td>
-<td>          TFP at constant national prices (2005=1)</td>
-</tr>
-<tr>
-<th>24</th>
-<td>                                            labsh</td>
-<td> Share of labour compensation in GDP at current...</td>
-</tr>
-<tr>
-<th>25</th>
-<td>                                              NaN</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>26</th>
-<td>              Exchange rates and GDP price levels</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>27</th>
-<td>                                               xr</td>
-<td> Exchange rate, national currency/USD (market+e...</td>
-</tr>
-<tr>
-<th>28</th>
-<td>                                          pl_gdpe</td>
-<td> Price level of CGDPe (PPP/XR), price level of ...</td>
-</tr>
-<tr>
-<th>29</th>
-<td>                                          pl_gdpo</td>
-<td> Price level of CGDPo (PPP/XR),  price level of...</td>
-</tr>
-<tr>
-<th>30</th>
-<td>                                              NaN</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>31</th>
-<td>                       Data information variables</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>32</th>
-<td>                                            i_cig</td>
-<td> 0/1/2: relative price data for consumption, in...</td>
-</tr>
-<tr>
-<th>33</th>
-<td>                                             i_xm</td>
-<td> 0/1/2: relative price data for exports and imp...</td>
-</tr>
-<tr>
-<th>34</th>
-<td>                                             i_xr</td>
-<td> 0/1: the exchange rate is market-based (0) or ...</td>
-</tr>
-<tr>
-<th>35</th>
-<td>                                        i_outlier</td>
-<td> 0/1: the observation on pl_gdpe or pl_gdpo is ...</td>
-</tr>
-<tr>
-<th>36</th>
-<td>                                          cor_exp</td>
-<td> Correlation between expenditure shares of the ...</td>
-</tr>
-<tr>
-<th>37</th>
-<td>                                          statcap</td>
-<td> Statistical capacity indicator (source: World ...</td>
-</tr>
-<tr>
-<th>38</th>
-<td>                                              NaN</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>39</th>
-<td>                                  Shares in CGDPo</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>40</th>
-<td>                                            csh_c</td>
-<td>    Share of household consumption at current PPPs</td>
-</tr>
-<tr>
-<th>41</th>
-<td>                                            csh_i</td>
-<td>  Share of gross capital formation at current PPPs</td>
-</tr>
-<tr>
-<th>42</th>
-<td>                                            csh_g</td>
-<td>   Share of government consumption at current PPPs</td>
-</tr>
-<tr>
-<th>43</th>
-<td>                                            csh_x</td>
-<td>      Share of merchandise exports at current PPPs</td>
-</tr>
-<tr>
-<th>44</th>
-<td>                                            csh_m</td>
-<td>      Share of merchandise imports at current PPPs</td>
-</tr>
-<tr>
-<th>45</th>
-<td>                                            csh_r</td>
-<td> Share of residual trade and GDP statistical di...</td>
-</tr>
-<tr>
-<th>46</th>
-<td>                                              NaN</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>47</th>
-<td> Price levels, expenditure categories and capital</td>
-<td>                                               NaN</td>
-</tr>
-<tr>
-<th>48</th>
-<td>                                             pl_c</td>
-<td> Price level of household consumption,  price l...</td>
-</tr>
-<tr>
-<th>49</th>
-<td>                                             pl_i</td>
-<td> Price level of capital formation,  price level...</td>
-</tr>
-<tr>
-<th>50</th>
-<td>                                             pl_g</td>
-<td> Price level of government consumption,  price ...</td>
-</tr>
-<tr>
-<th>51</th>
-<td>                                             pl_x</td>
-<td> Price level of exports, price level of USA GDP...</td>
-</tr>
-<tr>
-<th>52</th>
-<td>                                             pl_m</td>
-<td> Price level of imports, price level of USA GDP...</td>
-</tr>
-<tr>
-<th>53</th>
-<td>                                             pl_k</td>
-<td> Price level of the capital stock, price level ...</td>
-</tr>
-</tbody>
-</table>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, it seems the data does not contain that variable. But do not panic...we know how to compute it based on <em>GDP</em> and <em>Population</em>. Let's do it!</p>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Identify-the-name-of-the-variable-for-GDP">Identify the name of the variable for GDP<a class="anchor-link" href="#Identify-the-name-of-the-variable-for-GDP">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Variable definition'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'GDP'</span><span class="p">)</span><span class="o">!=-</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Identify-the-name-of-the-variable-for-population">Identify the name of the variable for population<a class="anchor-link" href="#Identify-the-name-of-the-variable-for-population">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Variable definition'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'population'</span><span class="p">)</span><span class="o">!=-</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Create-a-new-variable/column-with-Expenditure-side-real-GDPpc-at-chained-PPPs">Create a new variable/column with Expenditure-side real GDPpc at chained PPPs<a class="anchor-link" href="#Create-a-new-variable/column-with-Expenditure-side-real-GDPpc-at-chained-PPPs">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfpwt</span><span class="p">[</span><span class="s1">'rgdppce'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfpwt</span><span class="p">[</span><span class="s1">'rgdpe'</span><span class="p">]</span> <span class="o">/</span> <span class="n">dfpwt</span><span class="p">[</span><span class="s1">'pop'</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Create-a-plot-of-this-measure-of-GDP-vs-Population-for-all-countries-in-the-last-year-of-the-dataset">Create a plot of this measure of GDP vs Population for all countries in the last year of the dataset<a class="anchor-link" href="#Create-a-plot-of-this-measure-of-GDP-vs-Population-for-all-countries-in-the-last-year-of-the-dataset">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Let's figure out the last period</span>
+<span class="n">lastperiod</span> <span class="o">=</span> <span class="n">dfpwt</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">year</span>
+<span class="k">print</span><span class="p">(</span><span class="n">lastperiod</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Select data for last period</span>
+<span class="n">dflast</span> <span class="o">=</span> <span class="n">dfpwt</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dfpwt</span><span class="o">.</span><span class="n">year</span><span class="o">==</span><span class="n">lastperiod</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dflast</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">dflast</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">'pop'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'rgdpe'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'rgdppce'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'Reds'</span><span class="p">,</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Use-statistical-and-mathematical-functions-to-analyze-the-data">Use statistical and mathematical functions to analyze the data<a class="anchor-link" href="#Use-statistical-and-mathematical-functions-to-analyze-the-data">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Describe the data</span>
+<span class="n">dfpwt</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dflast</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dflast</span><span class="p">[[</span><span class="s1">'rgdpe'</span><span class="p">,</span> <span class="s1">'rgdppce'</span><span class="p">,</span> <span class="s1">'pop'</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Excercise:">Excercise:<a class="anchor-link" href="#Excercise:">¶</a></h3><ol>
+<li>Create GDPpc measures based on all other measures of GDP</li>
+<li>Compare these measures using plot, correlations, etc. </li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
 </div>
 </div>
 </div>
@@ -547,6 +569,11 @@ Populating the interactive namespace from numpy and matplotlib
                     <li class="list-group-item tag-1">
                         <a href="https://macroeconomics.github.io/tag/notebooks.html">
                             Notebooks
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="https://macroeconomics.github.io/tag/economic-growth.html">
+                            Economic Growth
                         </a>
                     </li>
                 </ul>
