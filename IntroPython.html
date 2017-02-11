@@ -458,7 +458,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="s1">'Hello World!'</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">'Hello World!'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -478,8 +478,8 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">b</span><span class="o">=</span><span class="mi">2</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">a</span><span class="o">+</span><span class="n">b</span>
 </pre></div>
 </div>
@@ -500,10 +500,10 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">d</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span>
-<span class="k">print</span> <span class="s1">'c=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">c</span>
-<span class="k">print</span> <span class="s1">'d=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">d</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">'c=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">c</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">'d=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">d</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -524,8 +524,8 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="s1">'a*c=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">)</span>
-<span class="k">print</span> <span class="s1">'b*d=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">d</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">'a*c=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">'b*d=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">d</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -697,10 +697,12 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ca</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="n">da</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="k">print</span> <span class="s1">'ca=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">ca</span>
-<span class="k">print</span> <span class="s1">'da=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">da</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">da</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">'c=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">c</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">'d=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">d</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">'ca=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">ca</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">'da=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">da</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -720,10 +722,10 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cm</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="n">dm</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="k">print</span> <span class="s1">'cm=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">cm</span>
-<span class="k">print</span> <span class="s1">'dm=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">dm</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">dm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">'cm=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">cm</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">'dm=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">dm</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -765,8 +767,18 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dm</span><span class="o">.</span>
-<span class="n">da</span><span class="o">.</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dm</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">da</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -787,6 +799,28 @@ import matplotlib as plt
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">cm</span><span class="o">*</span><span class="n">dm</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ca</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">da</span>
 </pre></div>
 </div>
 </div>
@@ -828,10 +862,10 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="k">print</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="k">print</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">cm</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -842,7 +876,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -853,9 +887,10 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x0</span><span class="o">=</span><span class="mi">0</span>
-<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">x0</span><span class="p">]</span>
-<span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">())</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">)]</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#np.random.seed(123456)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">]</span>
+<span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span> <span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">)]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'A simple random walk'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Period'</span><span class="p">)</span>
@@ -899,9 +934,9 @@ import matplotlib as plt
 <span class="sd">    Usage: u(c,sigma)</span>
 <span class="sd">    '''</span>
     <span class="k">if</span> <span class="n">sigma</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
-        <span class="n">u</span><span class="o">=</span><span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">u</span>
 </pre></div>
 </div>
@@ -922,10 +957,10 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">u1</span><span class="o">=</span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">u2</span><span class="o">=</span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">u3</span><span class="o">=</span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">u3</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">u1</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">'$\sigma=.5$'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">u2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">'$\sigma=1$'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">u3</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">'$\sigma=1.5$'</span><span class="p">)</span>
@@ -953,7 +988,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">'''This function returns the value of utility when the CRRA</span>
 <span class="sd">    coefficient is sigma. I.e. </span>
 <span class="sd">    u(c,sigma)=(c**(1-sigma)-1)/(1-sigma) if sigma!=1 </span>
@@ -962,9 +997,9 @@ import matplotlib as plt
 <span class="sd">    Usage: u(c,sigma=value), where sigma=1 is the default </span>
 <span class="sd">    '''</span>
     <span class="k">if</span> <span class="n">sigma</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
-        <span class="n">u</span><span class="o">=</span><span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">u</span>
 </pre></div>
 </div>
@@ -976,14 +1011,14 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">sigma1</span><span class="o">=.</span><span class="mi">25</span>
-<span class="n">sigma3</span><span class="o">=</span><span class="mf">1.25</span>
-<span class="n">u1</span><span class="o">=</span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="n">sigma1</span><span class="p">)</span>
-<span class="n">u2</span><span class="o">=</span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-<span class="n">u3</span><span class="o">=</span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="n">sigma3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">u1</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">'$\sigma='</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">sigma1</span><span class="p">)</span><span class="o">+</span><span class="s1">'$'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">u2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">'$\sigma=1$'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">u3</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">'$\sigma='</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">sigma3</span><span class="p">)</span><span class="o">+</span><span class="s1">'$'</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">sigma1</span> <span class="o">=</span> <span class="o">.</span><span class="mi">25</span>
+<span class="n">sigma3</span> <span class="o">=</span> <span class="mf">1.25</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma1</span><span class="p">)</span>
+<span class="n">u2</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">u3</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">'$\sigma='</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">sigma1</span><span class="p">)</span><span class="o">+</span><span class="s1">'$'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">'$\sigma=1$'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">u3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">'$\sigma='</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">sigma3</span><span class="p">)</span><span class="o">+</span><span class="s1">'$'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">'$c_t$'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">'$u(c_t)$'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'CRRA Utility function'</span><span class="p">)</span>
@@ -1017,7 +1052,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">squared</span><span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">squared</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
 <span class="n">squared</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1790,11 +1825,6 @@ First we merge the data using the pd.merge command, which allows us to merge two
             <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
-                            Macroeconomics
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
                         <a href="https://macroeconomics.github.io/tag/ipython.html">
                             IPython
                         </a>
@@ -1802,6 +1832,11 @@ First we merge the data using the pd.merge command, which allows us to merge two
                     <li class="list-group-item tag-1">
                         <a href="https://macroeconomics.github.io/tag/notebooks.html">
                             Notebooks
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
+                            Macroeconomics
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

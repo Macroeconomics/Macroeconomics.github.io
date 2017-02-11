@@ -76,7 +76,10 @@ Macroeconomics II (Econ-6395)            </a>
         <div class="entry-content">
             <p>We will be using (I)Python as our programming language. In order to use some of the material available on this website and to share your material with others you should create a <a href="http://github.com/"><i class="fa fa-github fa-1x"></i>GitHub</a> account for yourself. This will be useful to you in the future to keep track of changes when you are writing papers. I also recommend creating a <a href="https://bitbucket.org/"><i class="fa fa-bitbucket fa-1x"></i>Bitbucket</a> account, which has similar functionality, but allows you to have unlimited private repositories for personal use. Additionally, I suggest you read <a href="https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf">Gentzkow &amp; Shapiro's <em>Code and Data for the Social Sciences: A Practitioner’s Guide</em></a> to familiarize yourself with good practices in coding and statistical analysis. We will cover additional topics in class.</p>
 <h1>Installing (I)Python &amp; Jupyter</h1>
-<p>The easiest and most convenient way to install a working version of IPython with all the required packages and tools is using <a href="https://www.continuum.io/downloads">Continuum's Anaconda Distribution</a>. You can install following the instructions in that website, or if you can just run <a href="../notebooks/CondaInstall.sh">this script</a>. After installing the latest version of Anaconda, add the <code>Anaconda/bin</code> directory to your <code>PATH</code> variable. Then download the following scripts (<a href="../notebooks/GeoPython2env.yml">GeoPythonenv2</a>, <a href="../notebooks/GeoPython3env.yml">GeoPythonenv3</a>) and execute</p>
+<p>The easiest and most convenient way to install a working version of IPython with all the required packages and tools is using <a href="https://www.continuum.io/downloads">Continuum's Anaconda Distribution</a>. You can install following the instructions in that website, or if you can just run <a href="../notebooks/CondaInstall.sh">this script</a>. After installing the latest version of Anaconda, add the <code>Anaconda/bin</code> directory to your <code>PATH</code> variable. </p>
+<p>In Windows install <a href="https://www.microsoft.com/en-us/download/details.aspx?id=44266">Visual C++ 9.0</a>, <a href="https://msdn.microsoft.com/en-us/library/hh567368.aspx">Visual C++ 14</a> and <a href="https://www.microsoft.com/en-us/download/details.aspx?id=47259">Microsoft MPI6</a>. </p>
+<p>In OSX download and install XCode (from the Apple store) and command line tools (option within XCode or in a terminal execute <code>xcode-select --install</code>).</p>
+<p>Then download the following scripts (<a href="../notebooks/GeoPython2env.yml">GeoPython2env</a>, <a href="../notebooks/GeoPython3env.yml">GeoPython3env</a>) and execute</p>
 <div class="highlight"><pre><span></span>conda update conda
 conda-env create -f GeoPython2env.yml
 conda-env create -f GeoPython3env.yml
@@ -151,11 +154,6 @@ conda-env create -f GeoPython3env.yml
             <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
-                            Macroeconomics
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
                         <a href="https://macroeconomics.github.io/tag/ipython.html">
                             IPython
                         </a>
@@ -163,6 +161,11 @@ conda-env create -f GeoPython3env.yml
                     <li class="list-group-item tag-1">
                         <a href="https://macroeconomics.github.io/tag/notebooks.html">
                             Notebooks
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
+                            Macroeconomics
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
