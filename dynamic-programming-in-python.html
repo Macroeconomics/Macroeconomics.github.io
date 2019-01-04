@@ -14,13 +14,13 @@
 
         <meta name="author" content="Ömer Özak" />
         <meta name="keywords" content="Macroeconomics,IPython" />
-        <meta name="description" content="Introduction to Dynamic Programming We have studied the theory of dynamic programming in discrete time under certainty. Let&#39;s review what we know so far, so that we can start thinking about how to take to the computer. The Problem We want to find a sequence \(\{x_t\}_{t=0}^\infty …" />
+        <meta name="description" content="Introduction to Dynamic Programming We have studied the theory of dynamic programming in discrete time under certainty. Let&#39;s review what we know so far, so that we can start thinking about how to take to the computer. The Problem We want to find a sequence \(\{x_t\}_{t=0}^\infty …if (!document.getElementById(&#39;mathjaxscript_pelican_#%@#$@#&#39;)) { var align = &#34;center&#34;, indent = &#34;0em&#34;, linebreak = &#34;false&#34;; if (false) { align = (screen.width" />
 
         <meta property="og:site_name" content="Macroeconomics II (Econ-6395)" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Dynamic Programming in Python"/>
         <meta property="og:url" content="https://macroeconomics.github.io/dynamic-programming-in-python.html"/>
-        <meta property="og:description" content="Introduction to Dynamic Programming We have studied the theory of dynamic programming in discrete time under certainty. Let&#39;s review what we know so far, so that we can start thinking about how to take to the computer. The Problem We want to find a sequence \(\{x_t\}_{t=0}^\infty …"/>
+        <meta property="og:description" content="Introduction to Dynamic Programming We have studied the theory of dynamic programming in discrete time under certainty. Let&#39;s review what we know so far, so that we can start thinking about how to take to the computer. The Problem We want to find a sequence \(\{x_t\}_{t=0}^\infty …if (!document.getElementById(&#39;mathjaxscript_pelican_#%@#$@#&#39;)) { var align = &#34;center&#34;, indent = &#34;0em&#34;, linebreak = &#34;false&#34;; if (false) { align = (screen.width"/>
         <meta property="article:published_time" content="2016-12-29" />
             <meta property="article:section" content="Ph.D." />
             <meta property="article:tag" content="Macroeconomics" />
@@ -194,13 +194,13 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LinInterp</span><span class="p">:</span>
     <span class="s2">&quot;Provides linear interpolation in one dimension.&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Parameters: X and Y are sequences or arrays</span>
 <span class="sd">        containing the (x,y) interpolation points.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span>
 
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Parameters: z is a number, sequence or array.</span>
 <span class="sd">        This method makes an instance f of LinInterp callable,</span>
 <span class="sd">        so f(z) returns the interpolation value(s) at z.</span>
@@ -487,11 +487,9 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
     }
 
     var mathjaxscript = document.createElement('script');
-    var location_protocol = (false) ? 'https' : document.location.protocol;
-    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -584,6 +582,11 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
             <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
+                        <a href="https://macroeconomics.github.io/tag/notebooks.html">
+                            Notebooks
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
                         <a href="https://macroeconomics.github.io/tag/ipython.html">
                             IPython
                         </a>
@@ -591,11 +594,6 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
                     <li class="list-group-item tag-1">
                         <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
                             Macroeconomics
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/notebooks.html">
-                            Notebooks
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
