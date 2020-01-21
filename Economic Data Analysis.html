@@ -36,6 +36,7 @@
 
     <link href="https://macroeconomics.github.io/theme/css/pygments/default.css" rel="stylesheet">
     <link rel="stylesheet" href="https://macroeconomics.github.io/theme/css/style.css" type="text/css"/>
+        <link href="https://macroeconomics.github.io/static/custom.css" rel="stylesheet">
 
         <link href="https://macroeconomics.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Macroeconomics II (Econ-6395) ATOM Feed"/>
@@ -115,18 +116,15 @@ Macroeconomics II (Econ-6395)            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+                <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Working-with-Economic-data-in-Python">Working with Economic data in Python<a class="anchor-link" href="#Working-with-Economic-data-in-Python">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This notebook will introduce you to working with data in <code>Python</code>. You can use packages like <code>Numpy</code> to work with arrays, matrices, and such, and anipulate data (see my <a href="./IntroPython.ipynb">Introduction to Python</a>). But given the needs of economists it is better to use <a href="http://pandas.pydata.org">Pandas</a>. <a href="http://pandas.pydata.org">Pandas</a> allows you to import and process data in many useful ways. It interacts greatly with <a href="http://pydata.org/downloads.html">other packages</a> that complement it making it a very powerful tool for data analysis.</p>
 </div>
@@ -137,7 +135,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Let's import pandas</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="c1"># Let's import pandas</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="o">%</span><span class="k">pylab</span> --no-import-all
 <span class="o">%</span><span class="k">matplotlib</span> inline
@@ -149,8 +147,7 @@ Macroeconomics II (Econ-6395)            </a>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>With <a href="http://pandas.pydata.org">Pandas</a> you can</p>
 <ol>
@@ -171,16 +168,14 @@ Macroeconomics II (Econ-6395)            </a>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Examples">Examples<a class="anchor-link" href="#Examples">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's start by importing the data from the Penn World Tables</p>
 </div>
@@ -191,7 +186,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">'http://www.rug.nl/ggdc/docs/pwt90.xlsx'</span><span class="p">,</span><span class="n">sheetname</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">'http://www.rug.nl/ggdc/docs/pwt90.xlsx'</span><span class="p">,</span><span class="n">sheetname</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">dfpwt</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_stata</span><span class="p">(</span><span class="s1">'http://www.rug.nl/ggdc/docs/pwt90.dta'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -199,8 +194,7 @@ Macroeconomics II (Econ-6395)            </a>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The main object in <a href="http://pandas.pydata.org">Pandas</a> is a dataframe. 
 Here we have created two dataframes based on an Excel file and a Stata file.</p>
@@ -213,7 +207,7 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -224,31 +218,28 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfpwt</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dfpwt</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now, we can create new variables, transform and plot the data</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Computing-$\log$-Income-per-Capita">Computing $\log$ Income per Capita<a class="anchor-link" href="#Computing-$\log$-Income-per-Capita">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To compute the $log$ of income per capita (GDPpc), the first thing we need is to know the name of the column that contains the GDPpc data in the dataframe. To do this, let's find among the variables those whic in their description have the word <em>capita</em>.</p>
 </div>
@@ -259,7 +250,7 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
 </pre></div>
 </div>
 </div>
@@ -270,23 +261,21 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Variable definition'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'capita'</span><span class="p">)</span><span class="o">!=-</span><span class="mi">1</span><span class="p">)]</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Variable definition'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'capita'</span><span class="p">)</span><span class="o">!=-</span><span class="mi">1</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So, it seems the data does not contain that variable. But do not panic...we know how to compute it based on <em>GDP</em> and <em>Population</em>. Let's do it!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Identify-the-name-of-the-variable-for-GDP">Identify the name of the variable for GDP<a class="anchor-link" href="#Identify-the-name-of-the-variable-for-GDP">¶</a></h3>
 </div>
@@ -297,15 +286,14 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Variable definition'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'GDP'</span><span class="p">)</span><span class="o">!=-</span><span class="mi">1</span><span class="p">)]</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Variable definition'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'GDP'</span><span class="p">)</span><span class="o">!=-</span><span class="mi">1</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Identify-the-name-of-the-variable-for-population">Identify the name of the variable for population<a class="anchor-link" href="#Identify-the-name-of-the-variable-for-population">¶</a></h3>
 </div>
@@ -316,15 +304,14 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Variable definition'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'population'</span><span class="p">)</span><span class="o">!=-</span><span class="mi">1</span><span class="p">)]</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Variable definition'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">'population'</span><span class="p">)</span><span class="o">!=-</span><span class="mi">1</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Create-a-new-variable/column-with-Expenditure-side-real-GDPpc-at-chained-PPPs">Create a new variable/column with Expenditure-side real GDPpc at chained PPPs<a class="anchor-link" href="#Create-a-new-variable/column-with-Expenditure-side-real-GDPpc-at-chained-PPPs">¶</a></h3>
 </div>
@@ -335,15 +322,14 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfpwt</span><span class="p">[</span><span class="s1">'rgdppce'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfpwt</span><span class="p">[</span><span class="s1">'rgdpe'</span><span class="p">]</span> <span class="o">/</span> <span class="n">dfpwt</span><span class="p">[</span><span class="s1">'pop'</span><span class="p">]</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dfpwt</span><span class="p">[</span><span class="s1">'rgdppce'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfpwt</span><span class="p">[</span><span class="s1">'rgdpe'</span><span class="p">]</span> <span class="o">/</span> <span class="n">dfpwt</span><span class="p">[</span><span class="s1">'pop'</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Create-a-plot-of-this-measure-of-GDP-vs-Population-for-all-countries-in-the-last-year-of-the-dataset">Create a plot of this measure of GDP vs Population for all countries in the last year of the dataset<a class="anchor-link" href="#Create-a-plot-of-this-measure-of-GDP-vs-Population-for-all-countries-in-the-last-year-of-the-dataset">¶</a></h3>
 </div>
@@ -354,7 +340,7 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Let's figure out the last period</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="c1"># Let's figure out the last period</span>
 <span class="n">lastperiod</span> <span class="o">=</span> <span class="n">dfpwt</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">year</span>
 <span class="k">print</span><span class="p">(</span><span class="n">lastperiod</span><span class="p">)</span>
 </pre></div>
@@ -367,7 +353,7 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Select data for last period</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="c1"># Select data for last period</span>
 <span class="n">dflast</span> <span class="o">=</span> <span class="n">dfpwt</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dfpwt</span><span class="o">.</span><span class="n">year</span><span class="o">==</span><span class="n">lastperiod</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -379,7 +365,7 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dflast</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dflast</span>
 </pre></div>
 </div>
 </div>
@@ -390,15 +376,14 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">dflast</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">'pop'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'rgdpe'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'rgdppce'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'Reds'</span><span class="p">,</span> <span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">dflast</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">'pop'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">'rgdpe'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'rgdppce'</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'Reds'</span><span class="p">,</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Use-statistical-and-mathematical-functions-to-analyze-the-data">Use statistical and mathematical functions to analyze the data<a class="anchor-link" href="#Use-statistical-and-mathematical-functions-to-analyze-the-data">¶</a></h3>
 </div>
@@ -409,7 +394,7 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Describe the data</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="c1"># Describe the data</span>
 <span class="n">dfpwt</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -421,7 +406,7 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dflast</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dflast</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -432,20 +417,30 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dflast</span><span class="p">[[</span><span class="s1">'rgdpe'</span><span class="p">,</span> <span class="s1">'rgdppce'</span><span class="p">,</span> <span class="s1">'pop'</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dflast</span><span class="p">[[</span><span class="s1">'rgdpe'</span><span class="p">,</span> <span class="s1">'rgdppce'</span><span class="p">,</span> <span class="s1">'pop'</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Excercise:">Excercise:<a class="anchor-link" href="#Excercise:">¶</a></h3><ol>
 <li>Create GDPpc measures based on all other measures of GDP</li>
 <li>Compare these measures using plot, correlations, etc. </li>
 </ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -500,7 +495,8 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
     <ul class="list-group list-group-flush">
         <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
               <ul class="list-group" id="social">
-                <li class="list-group-item"><a href="https://github.com/Macroeconomics"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://github.com/econgrowth"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://twitter.com/OmerOzakEcon"><i class="fa fa-twitter-square fa-lg"></i> Twitter</a></li>
                 <li class="list-group-item"><a href="https://linkedin.com/in/omerozak"><i class="fa fa-linkedin-square fa-lg"></i> Linkedin</a></li>
                 <li class="list-group-item"><a href="https://www.researchgate.net/profile/Oemer_Oezak"><i class="fa fa-researchgate-square fa-lg"></i> Researchgate</a></li>
               </ul>
@@ -531,13 +527,13 @@ Here we have created two dataframes based on an Excel file and a Stata file.</p>
             <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
-                            Macroeconomics
+                        <a href="https://macroeconomics.github.io/tag/ipython.html">
+                            IPython
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/ipython.html">
-                            IPython
+                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
+                            Macroeconomics
                         </a>
                     </li>
                     <li class="list-group-item tag-1">

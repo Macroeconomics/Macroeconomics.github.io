@@ -35,6 +35,7 @@
 
     <link href="https://macroeconomics.github.io/theme/css/pygments/default.css" rel="stylesheet">
     <link rel="stylesheet" href="https://macroeconomics.github.io/theme/css/style.css" type="text/css"/>
+        <link href="https://macroeconomics.github.io/static/custom.css" rel="stylesheet">
 
         <link href="https://macroeconomics.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Macroeconomics II (Econ-6395) ATOM Feed"/>
@@ -112,42 +113,36 @@ Macroeconomics II (Econ-6395)            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+                <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Faster-Computations-with-Numba">Faster Computations with Numba<a class="anchor-link" href="#Faster-Computations-with-Numba">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Some-notes-mostly-for-myself">Some notes mostly for myself<a class="anchor-link" href="#Some-notes-mostly-for-myself">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Altough Python is fast compared to other high-level languages, it still is noat as fast as C, C++ or Fortran. Luckily, two open source projects <a href="http://numba.pydata.org/">Numba</a> and <a href="http://cython.org/">Cython</a> can be used to speed-up computations. <a href="http://numba.pydata.org/">Numba</a> is sponsored by the producer of <a href="https://store.continuum.io/cshop/anaconda/">Anaconda</a>, <a href="http://continuum.io/">Continuum Analytics</a>. Both projects allow you to convert your code to interpreted language so that it runs faster. Here I will use Numba, given its ease and Just-In-Time nature, although I still have to figure out how to save and use the compiled functions (pycc and static libraries it seems?). Cython on the other hand needs you to understand much more of C and Ctypes. But once you figure out a way to run your code and compile it, you have a library ready to use and import. See the code for the repository for my paper <a href="http://ozak.github.io/BoundedConsumption/">Optimal consumption under uncertainty, liquidity constraints, and bounded rationality</a> where I used Cython for the dynsysf.pyx function.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numba">Numba<a class="anchor-link" href="#Numba">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Numba is quite easy to use. Start by importing it</p>
 <pre><code>import numba as nb
@@ -162,8 +157,7 @@ Macroeconomics II (Econ-6395)            </a>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Examples:">Examples:<a class="anchor-link" href="#Examples:">¶</a></h4>
 </div>
@@ -174,7 +168,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [455]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span><span class="p">,</span> <span class="n">njit</span><span class="p">,</span> <span class="n">autojit</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span><span class="p">,</span> <span class="n">njit</span><span class="p">,</span> <span class="n">autojit</span>
 <span class="kn">import</span> <span class="nn">numba</span> <span class="kn">as</span> <span class="nn">nb</span>
 <span class="kn">import</span> <span class="nn">math</span>
 
@@ -215,7 +209,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Let's use Numba to compute a Cobb-Douglas function</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="c1"># Let's use Numba to compute a Cobb-Douglas function</span>
 <span class="nd">@jit</span>
 <span class="k">def</span> <span class="nf">CobbDouglas</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">K</span><span class="o">**</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">L</span><span class="o">**</span><span class="n">beta</span>
@@ -229,8 +223,7 @@ Macroeconomics II (Econ-6395)            </a>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's time it and compare with Numpy or simple Python</p>
 </div>
@@ -241,7 +234,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> A * K**alpha * L**beta
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> A * K**alpha * L**beta
 </pre></div>
 </div>
 </div>
@@ -252,15 +245,14 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K,L,A,alpha,beta)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K,L,A,alpha,beta)
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Well not fast enough...why?</p>
 </div>
@@ -271,15 +263,14 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">CobbDouglas</span><span class="o">.</span><span class="n">inspect_types</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">CobbDouglas</span><span class="o">.</span><span class="n">inspect_types</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>OK...it is correctly compiled and it is using Numba types and not PyObjects. So perhaps we cannot gain much in this simple computation...but that is ok. Let's try something a little more complex, computing a CobbDouglas for vectors K and L</p>
 </div>
@@ -290,7 +281,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Python function</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="c1"># Python function</span>
 <span class="k">def</span> <span class="nf">CobbDouglas</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">K</span><span class="o">**</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">L</span><span class="o">**</span><span class="n">beta</span>
 
@@ -306,7 +297,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">L</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -318,7 +309,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K,L,A,alpha,beta)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K,L,A,alpha,beta)
 </pre></div>
 </div>
 </div>
@@ -329,7 +320,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas_nb(K,L,A,alpha,beta)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas_nb(K,L,A,alpha,beta)
 </pre></div>
 </div>
 </div>
@@ -340,15 +331,14 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas_nb2(K,L,A,alpha,beta)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas_nb2(K,L,A,alpha,beta)
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ooops what went wrong? Up to V.0.12.2 Numba cannot create Arrays in njit mode, i.e. without using Python Objects. But do not despair, we can create a fast CobbDouglas function by iterating over our vectors. Here I first create the <code>CobbDouglasNB</code> function which takes floating point numbers and tells Numba not to use PyObjects, and then I create the vectorized version <code>CobbDouglasVecNB</code>, which iterates over the elements of K and L (here we assume both are vectors) and returns our output Y. I know it is strange that we have to giv ethe output as part of the function, but it allows us to speed up the computations.</p>
 </div>
@@ -359,7 +349,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="nd">@nb.njit</span><span class="p">(</span><span class="s1">'f8(f8,f8,f8,f8,f8)'</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="nd">@nb.njit</span><span class="p">(</span><span class="s1">'f8(f8,f8,f8,f8,f8)'</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">CobbDouglasNB</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">K</span><span class="o">**</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">L</span><span class="o">**</span><span class="n">beta</span>
 
@@ -378,7 +368,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">K</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">K</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -389,7 +379,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K[:,0],L[:,0],A,alpha,beta)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K[:,0],L[:,0],A,alpha,beta)
 </pre></div>
 </div>
 </div>
@@ -400,7 +390,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
 <span class="o">%</span><span class="k">timeit</span> CobbDouglasVecNB(Y[:,0],K[:,0],L[:,0],A,alpha,beta)
 </pre></div>
 </div>
@@ -408,16 +398,14 @@ Macroeconomics II (Econ-6395)            </a>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Twice-as-fast-as-Numpy!">Twice as fast as Numpy!<a class="anchor-link" href="#Twice-as-fast-as-Numpy!">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's generalize the function to arrays of 2 dimensions</p>
 </div>
@@ -428,7 +416,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8[:,:](f8[:,:],f8[:,:],f8[:,:],f8,f8,f8)'</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8[:,:](f8[:,:],f8[:,:],f8[:,:],f8,f8,f8)'</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">CobbDouglasVecNB</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
@@ -444,7 +432,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
 <span class="n">L</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">))</span>
 <span class="o">%</span><span class="k">timeit</span> CobbDouglas(K,L,A,alpha,beta)
 </pre></div>
@@ -457,7 +445,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
 <span class="o">%</span><span class="k">timeit</span> CobbDouglasVecNB(Y,K,L,A,alpha,beta)
 </pre></div>
 </div>
@@ -465,16 +453,14 @@ Macroeconomics II (Econ-6395)            </a>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="20%-faster-than-Numpy...so-we-get-the-idea.">20% faster than Numpy...so we get the idea.<a class="anchor-link" href="#20%-faster-than-Numpy...so-we-get-the-idea.">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>While this is great to speed up, we see that there are some issues one has to think about in order to get those gains.</p>
 <p>Now let's use the vectorize option, which creates Numpy Ufunctions, that is functions that operate on vectors (or at leats that s what I gather).</p>
@@ -486,7 +472,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="nd">@nb.vectorize</span><span class="p">(</span><span class="s1">'f8(f8,f8,f8,f8,f8,)'</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="nd">@nb.vectorize</span><span class="p">(</span><span class="s1">'f8(f8,f8,f8,f8,f8,)'</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">CobbDouglasNB2</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">A</span> <span class="o">*</span> <span class="n">K</span><span class="o">**</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">L</span><span class="o">**</span><span class="n">beta</span>
 </pre></div>
@@ -499,15 +485,14 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasNB2(K,L,A,alpha,beta)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasNB2(K,L,A,alpha,beta)
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's compare these functions on different sizes of matrices $K$ and $L$</p>
 </div>
@@ -518,7 +503,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mf">1e4</span><span class="p">,</span><span class="mf">1e4</span><span class="p">))</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mf">1e4</span><span class="p">,</span><span class="mf">1e4</span><span class="p">))</span>
 <span class="n">L</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mf">1e4</span><span class="p">,</span><span class="mf">1e4</span><span class="p">))</span>
 <span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
 </pre></div>
@@ -531,7 +516,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K[1:100,1:100],L[1:100,1:100],A,alpha,beta)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K[1:100,1:100],L[1:100,1:100],A,alpha,beta)
 </pre></div>
 </div>
 </div>
@@ -542,7 +527,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasVecNB(Y[1:100,1:100],K[1:100,1:100],L[1:100,1:100],A,alpha,beta)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasVecNB(Y[1:100,1:100],K[1:100,1:100],L[1:100,1:100],A,alpha,beta)
 </pre></div>
 </div>
 </div>
@@ -553,7 +538,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasNB2(K[1:100,1:100],L[1:100,1:100],A,alpha,beta)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasNB2(K[1:100,1:100],L[1:100,1:100],A,alpha,beta)
 </pre></div>
 </div>
 </div>
@@ -564,7 +549,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K[1:1000,1:1000],L[1:1000,1:1000],A,alpha,beta)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglas(K[1:1000,1:1000],L[1:1000,1:1000],A,alpha,beta)
 </pre></div>
 </div>
 </div>
@@ -575,7 +560,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasVecNB(Y[1:1000,1:1000],K[1:1000,1:1000],L[1:1000,1:1000],A,alpha,beta)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasVecNB(Y[1:1000,1:1000],K[1:1000,1:1000],L[1:1000,1:1000],A,alpha,beta)
 </pre></div>
 </div>
 </div>
@@ -586,15 +571,14 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasNB2(K[1:1000,1:1000],L[1:1000,1:1000],A,alpha,beta)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasNB2(K[1:1000,1:1000],L[1:1000,1:1000],A,alpha,beta)
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now let's try the CRRA utility function</p>
 </div>
@@ -605,7 +589,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8(f8,f8)'</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8(f8,f8)'</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">U_numba</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
     <span class="sd">'''This function returns the value of utility when the CRRA</span>
 <span class="sd">    coefficient is sigma. I.e. </span>
@@ -662,7 +646,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> U(grid,1)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> U(grid,1)
 </pre></div>
 </div>
 </div>
@@ -673,7 +657,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Unp(grid,1)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Unp(grid,1)
 </pre></div>
 </div>
 </div>
@@ -684,7 +668,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Unb(grid,1)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Unb(grid,1)
 </pre></div>
 </div>
 </div>
@@ -695,7 +679,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
 <span class="o">%</span><span class="k">timeit</span> Uvec(u,grid,1)
 </pre></div>
 </div>
@@ -707,7 +691,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> U(grid,3)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> U(grid,3)
 </pre></div>
 </div>
 </div>
@@ -718,7 +702,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Unb(grid,3)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Unb(grid,3)
 </pre></div>
 </div>
 </div>
@@ -729,7 +713,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Unp(grid,3)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> Unp(grid,3)
 </pre></div>
 </div>
 </div>
@@ -740,7 +724,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
 <span class="o">%</span><span class="k">timeit</span> Uvec(u,grid,3)
 </pre></div>
 </div>
@@ -748,16 +732,14 @@ Macroeconomics II (Econ-6395)            </a>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Optimizing-the-code-for-Dynamic-Programming-and-GIS">Optimizing the code for Dynamic Programming and GIS<a class="anchor-link" href="#Optimizing-the-code-for-Dynamic-Programming-and-GIS">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Optimal-Growth">Optimal Growth<a class="anchor-link" href="#Optimal-Growth">¶</a></h2>
 </div>
@@ -768,7 +750,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [292]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Parameters Optimal Growth</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="c1"># Parameters Optimal Growth</span>
 <span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span>
 <span class="n">beta</span><span class="o">=.</span><span class="mi">9</span>
 <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span>
@@ -807,7 +789,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [355]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numba</span> <span class="kn">as</span> <span class="nn">nb</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numba</span> <span class="kn">as</span> <span class="nn">nb</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fminbound</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interp</span>
 
@@ -885,7 +867,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [294]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasNB2(grid,1,A,alpha,0)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> CobbDouglasNB2(grid,1,A,alpha,0)
 </pre></div>
 </div>
 </div>
@@ -907,7 +889,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [295]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> F_nb(grid,alpha,A)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> F_nb(grid,alpha,A)
 </pre></div>
 </div>
 </div>
@@ -929,7 +911,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [296]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> F_np(grid,alpha,A)
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">timeit</span> F_np(grid,alpha,A)
 </pre></div>
 </div>
 </div>
@@ -951,7 +933,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [412]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">V0</span><span class="o">=</span><span class="n">LinInterp</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">U</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">sigma</span><span class="p">))</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">V0</span><span class="o">=</span><span class="n">LinInterp</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">U</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">sigma</span><span class="p">))</span>
 <span class="k">def</span> <span class="nf">bellman</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">):</span>
     <span class="sd">"""The approximate Bellman operator.</span>
 <span class="sd">    Parameters: w is a LinInterp object (i.e., a </span>
@@ -1029,7 +1011,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [407]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">Utrf</span><span class="p">(</span><span class="n">kp</span><span class="p">,</span><span class="n">kmax</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">w</span><span class="p">):</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">Utrf</span><span class="p">(</span><span class="n">kp</span><span class="p">,</span><span class="n">kmax</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">sigma</span><span class="p">,</span><span class="n">w</span><span class="p">):</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">U</span><span class="p">(</span><span class="n">kmax</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">k</span> <span class="o">-</span> <span class="n">kp</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">w</span><span class="p">(</span><span class="n">kp</span><span class="p">)</span>
 
 <span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8[:](f8[:],f8[:])'</span><span class="p">)</span>
@@ -1113,7 +1095,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [404]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">'V0'</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">'V0'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">U0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
@@ -1130,7 +1112,7 @@ Macroeconomics II (Econ-6395)            </a>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_png output_subarea ">
+<div class="output_png output_subarea">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXYAAAEACAYAAACnJV25AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAHDxJREFUeJzt3Xt4VOXZLvB7DpnMIZNzQjiEEEIgISQmiECqpBM0CI0R
 u0vbrXsLtdDSVstVo9g/sDZQSFpbVGqlFr9Wd75+6pa2EXCrELXDqQ0gKEcRwjnCGHKe83HtP8Ao
@@ -1260,7 +1242,7 @@ c+f2um1I7jwdqOeeew5Lly6F1+vFsmXLhuUVMQBw//33Y/v27WhtbUV6ejpWrVqFhx56SO62ZLF7
 92789a9/7b6UCwBqamqu+x9XZJcuXcKiRYvg9/uRlpaGxx9/vHukNtwpFAq5W5DN559/jm9+85sA
 gKSkJDz22GPX/dsLb1AiIhIM/3hKRCQYBjsRkWAY7EREgmGwExEJhsFORCQYBjsRkWAY7EREgmGw
 ExEJ5v8DV5vUZp6T+oYAAAAASUVORK5CYII=
-">
+" />
 </div>
 </div>
 </div>
@@ -1271,7 +1253,7 @@ ExEJ5v8DV5vUZp6T+oYAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In [405]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">C0</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">'C0'</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">C0</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">'C0'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">c0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
@@ -1288,7 +1270,7 @@ ExEJ5v8DV5vUZp6T+oYAAAAASUVORK5CYII=
 </div>
 <div class="output_area">
 <div class="prompt"></div>
-<div class="output_png output_subarea ">
+<div class="output_png output_subarea">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAEACAYAAACuzv3DAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAH4RJREFUeJzt3XtUVOXCBvBnEOSiRsigWMp4IwENmRTBUpxMgSNH0/Rk
 6CeFeposBTXNzNMnknnJVIhjhXoqTSvNzFveQBtHVGC8I2oq3vOSiIxcREdmvj/OCpsP5Doze/bM
@@ -1433,7 +1415,7 @@ fn4+CgsLAQC3b9/Gzp077fZ/anPmzMGVK1dw4cIF/PDDD+jbty9WrlwpdCxBlJaWoqioCABw69Yt
 nTu32v9YbdH169fx+uuvo7y8HN7e3pgyZUrFkZi9s+dnNt28eRNDhgwBAHh6euLdd9+t9twJbwgi
 IhI5nuwkIhI5FjkRkcixyImIRI5FTkQkcixyIiKRY5ETEYkci5yISORY5EREIvd/I3zmsW6XItkA
 AAAASUVORK5CYII=
-">
+" />
 </div>
 </div>
 </div>
@@ -1444,7 +1426,7 @@ AAAASUVORK5CYII=
 <div class="prompt input_prompt">In [446]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8(f8[:],f8[:])'</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="nd">@nb.jit</span><span class="p">(</span><span class="s1">'f8(f8[:],f8[:])'</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">errnb</span><span class="p">(</span><span class="n">V0</span><span class="p">,</span><span class="n">V1</span><span class="p">):</span>
     <span class="n">maxi</span><span class="o">=</span><span class="mf">0.0</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">V0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
@@ -1538,7 +1520,8 @@ AAAASUVORK5CYII=
     <ul class="list-group list-group-flush">
         <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
               <ul class="list-group" id="social">
-                <li class="list-group-item"><a href="https://github.com/Macroeconomics"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://github.com/econgrowth"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://twitter.com/OmerOzakEcon"><i class="fa fa-twitter-square fa-lg"></i> Twitter</a></li>
                 <li class="list-group-item"><a href="https://linkedin.com/in/omerozak"><i class="fa fa-linkedin-square fa-lg"></i> Linkedin</a></li>
                 <li class="list-group-item"><a href="https://www.researchgate.net/profile/Oemer_Oezak"><i class="fa fa-researchgate-square fa-lg"></i> Researchgate</a></li>
               </ul>
@@ -1569,13 +1552,13 @@ AAAASUVORK5CYII=
             <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
-                            Macroeconomics
+                        <a href="https://macroeconomics.github.io/tag/ipython.html">
+                            IPython
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/ipython.html">
-                            IPython
+                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
+                            Macroeconomics
                         </a>
                     </li>
                     <li class="list-group-item tag-1">

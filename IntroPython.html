@@ -35,6 +35,7 @@
 
     <link href="https://macroeconomics.github.io/theme/css/pygments/default.css" rel="stylesheet">
     <link rel="stylesheet" href="https://macroeconomics.github.io/theme/css/style.css" type="text/css"/>
+        <link href="https://macroeconomics.github.io/static/custom.css" rel="stylesheet">
 
         <link href="https://macroeconomics.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Macroeconomics II (Econ-6395) ATOM Feed"/>
@@ -112,18 +113,15 @@ Macroeconomics II (Econ-6395)            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+                <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1>Introduction to <img alt="Python" src="../images/pics/python-logo.png"> and <img alt="IPython" src="../images/pics/IPy_header.png"></h1>
+<h1>Introduction to <img alt="Python" src="../images/pics/python-logo.png" /> and <img alt="IPython" src="../images/pics/IPy_header.png" /></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Python</strong> is a powerful and easy to use programming language. It has a large community of developers and given its open source nature, you can find many solutions, scripts, and help all over the web. It is easy to learn and code, and faster than other high-level programming languages...and did I mention it is <em>free</em> because it is <strong>open source</strong></p>
 <p><strong>IPython</strong> is a very powerful extension to Python that provides:
@@ -138,16 +136,14 @@ Powerful interactive shells (terminal, Qt-based and Notebooks based on <a href="
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Getting-Python">Getting Python<a class="anchor-link" href="#Getting-Python">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You can download and install Python and its packages for free for your computer from <a href="http:www.python.org">Python.org</a>. While this is the official site, which offers the basic installer and you can try do add any packages you require yourself, a much easier approach, which is almost foolproof is to use <a href="https://www.continuum.io/downloads">Continuum Anaconda</a> or <a href="https://www.enthought.com/products/canopy">Enthought Canopy</a>. Both of these distributions offer academic licenses (<a href="https://www.enthought.com/products/canopy/academic/">Canopy</a>), which allow you to use a larger set of packages.</p>
 <h2 id="Installing-(I)Python-&amp;-Jupyter">Installing (I)Python & Jupyter<a class="anchor-link" href="#Installing-(I)Python-&amp;-Jupyter">¶</a></h2><p>The easiest and most convenient way to install a working version of IPython with all the required packages and tools is using <a href="https://www.continuum.io/downloads">Continuum's Anaconda Distribution</a>. You can install following the instructions in that website, or if you can just run <a href="../notebooks/CondaInstall.sh">this script</a>. After installing the latest version of Anaconda, add the <code>Anaconda/bin</code> directory to your <code>PATH</code> variable. Then download the following scripts (<a href="../notebooks/GeoPython2env.yml">GeoPythonenv2</a>, <a href="../notebooks/GeoPython3env.yml">GeoPythonenv3</a>) and execute</p>
@@ -169,8 +165,7 @@ conda-env create -f GeoPython3env.yml
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Note">Note<a class="anchor-link" href="#Note">¶</a></h4><p>I assume you have followed the steps above and have installed <code>Anaconda</code>. Everything that is done should work on any distribution that has the required packages, since the Python scripts should run (in principle) on any of these distributions.</p>
 <p>We will use IPython as our computing environment.</p>
@@ -178,16 +173,14 @@ conda-env create -f GeoPython3env.yml
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Let's-get-started">Let's get started<a class="anchor-link" href="#Let's-get-started">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Once you have your Python distribution installed you'll be ready to start working. You have two options:</p>
 <ul>
@@ -204,24 +197,21 @@ conda-env create -f GeoPython3env.yml
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Note">Note<a class="anchor-link" href="#Note">¶</a></h4><p>You can pass some additional commands to <code>ipython</code> in order to change colors and rendering of plots. I usually use <code>jupyter qtconsole --color=linux --pylab=inline</code>. You can create profiles to manage many options within <code>IPython</code> and <code>JuPyter</code>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="First-steps">First steps<a class="anchor-link" href="#First-steps">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's start by running some simple commands at the prompt to do some simple computations.</p>
 </div>
@@ -232,7 +222,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -243,7 +233,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">3</span><span class="o">*</span><span class="mi">2</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="mi">3</span><span class="o">*</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -254,7 +244,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">3</span><span class="o">**</span><span class="mi">2</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="mi">3</span><span class="o">**</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -265,7 +255,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">-</span><span class="mi">1</span><span class="o">**</span><span class="mi">2</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">-</span><span class="mi">1</span><span class="o">**</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -276,7 +266,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -287,15 +277,14 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">3</span><span class="o">*</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="mi">3</span><span class="o">*</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice that Python obeys the usual orders for operators, so exponentiation before multiplication/division, etc.</p>
 </div>
@@ -306,15 +295,14 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If you are in <code>Python 2.7</code> you will notice that this answer is wrong if $1,2\in\mathbb{R}$, but Python thinks they are integers, so it forces and integer. In order to have a more natural behavior of division we need</p>
 </div>
@@ -325,7 +313,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
 </pre></div>
 </div>
@@ -333,24 +321,21 @@ conda-env create -f GeoPython3env.yml
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Note">Note<a class="anchor-link" href="#Note">¶</a></h4><p>It is a good idea to include this among the packages to be imported by default</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Getting-help">Getting help<a class="anchor-link" href="#Getting-help">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So what else can we do? Where do we start if we are new? You can use <code>?</code> or <code>help()</code> to get help.</p>
 </div>
@@ -361,7 +346,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">?</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">?</span>
 </pre></div>
 </div>
 </div>
@@ -372,15 +357,14 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">help</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">help</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If you want information about a command, say <code>mycommand</code> you can use <code>help(mycommand)</code>, <code>mycommand?</code> or <code>mycommand??</code> to get information about how it is used or even see its code.</p>
 </div>
@@ -391,7 +375,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -402,7 +386,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>sum<span class="o">?</span>
+<div class="highlight hl-ipython2"><pre><span></span>sum<span class="o">?</span>
 </pre></div>
 </div>
 </div>
@@ -413,23 +397,21 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>sum<span class="o">??</span>
+<div class="highlight hl-ipython2"><pre><span></span>sum<span class="o">??</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Variables,-strings,-and-other-objects">Variables, strings, and other objects<a class="anchor-link" href="#Variables,-strings,-and-other-objects">¶</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can print information</p>
 </div>
@@ -440,15 +422,14 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">'Hello World!'</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">'Hello World!'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can also create variables, which can be of various types</p>
 </div>
@@ -459,7 +440,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">a</span><span class="o">+</span><span class="n">b</span>
 </pre></div>
@@ -468,8 +449,7 @@ conda-env create -f GeoPython3env.yml
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>a</code> and <code>b</code> now hold numerical values we can use for computing</p>
 </div>
@@ -480,7 +460,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
 <span class="n">d</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">'c=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">c</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">'d=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">d</span><span class="p">)</span>
@@ -490,8 +470,7 @@ conda-env create -f GeoPython3env.yml
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice that we have used <code>%s</code> and <code>%</code> to let Python know we are passing a string to the print function.</p>
 <p>What kind of variables are <code>c</code> and <code>d</code>? They look like vectors and matrices, but...</p>
@@ -503,7 +482,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">'a*c=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">))</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">'a*c=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">'b*d=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">d</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -515,15 +494,14 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span><span class="o">*</span><span class="n">d</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">c</span><span class="o">*</span><span class="n">d</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Actually, Python does not have vectors or matrices directly available. Instead it has lists, sets, arrays, etc., each with its own set of operations. We defined <code>c</code> and <code>d</code> as list objects</p>
 </div>
@@ -534,7 +512,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -545,7 +523,7 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -556,31 +534,28 @@ conda-env create -f GeoPython3env.yml
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Luckily Python has a powerful package for numerical computing called <a href="http://www.numpy.org/">Numpy</a>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Extending-Python's-Functionality-with-Packages">Extending Python's Functionality with Packages<a class="anchor-link" href="#Extending-Python's-Functionality-with-Packages">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In order to use a package in Python or IPython, say <code>mypackage</code>, you need to import it, by executing</p>
 <pre><code>import mypackage
@@ -607,15 +582,14 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">pylab</span><span class="o">?</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">pylab</span><span class="o">?</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I do recommend using the <code>--no-import-all</code> option in order to ensure you do not contaminate the namespace. Instead it might be best to use</p>
 <pre><code>%pylab --no-import-all
@@ -628,7 +602,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span><span class="o">?</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span><span class="o">?</span>
 </pre></div>
 </div>
 </div>
@@ -639,7 +613,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">pylab</span> --no-import-all
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">pylab</span> --no-import-all
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 </div>
@@ -651,15 +625,14 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>np<span class="o">?</span>
+<div class="highlight hl-ipython2"><pre><span></span>np<span class="o">?</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let us now recreate <code>c</code> and <code>d</code>, but as Numpy arrays instead.</p>
 </div>
@@ -670,7 +643,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">ca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="n">da</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">'c=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">c</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">'d=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">d</span><span class="p">)</span>
@@ -682,8 +655,7 @@ import matplotlib as plt
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We could have created them as matrices intead. Again how you want to cerate them depends on what you will be doing with them. See here for an explanation of the differences between Numpy arrays and matrices.</p>
 </div>
@@ -694,7 +666,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="n">dm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">'cm=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">cm</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">'dm=</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">dm</span><span class="p">)</span>
@@ -704,8 +676,7 @@ import matplotlib as plt
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's see some information about these...(this is a good moment to show tab completion...a <em>wonderful</em> feature of IPython, which is not avalable if Python)</p>
 </div>
@@ -716,7 +687,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">cm</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -727,7 +698,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ca</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">ca</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -738,7 +709,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dm</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dm</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -749,15 +720,14 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">da</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">da</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's try again some operations on our new arrays and matrices</p>
 </div>
@@ -768,7 +738,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cm</span><span class="o">*</span><span class="n">dm</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">cm</span><span class="o">*</span><span class="n">dm</span>
 </pre></div>
 </div>
 </div>
@@ -779,7 +749,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ca</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">ca</span>
 </pre></div>
 </div>
 </div>
@@ -790,7 +760,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">da</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">da</span>
 </pre></div>
 </div>
 </div>
@@ -801,7 +771,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ca</span><span class="o">*</span><span class="n">da</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">ca</span><span class="o">*</span><span class="n">da</span>
 </pre></div>
 </div>
 </div>
@@ -812,15 +782,14 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ca</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">da</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">ca</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">da</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can create special matrices using Numpy's functions and classes</p>
 </div>
@@ -831,7 +800,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)))</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)))</span>
 <span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
 <span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 <span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">cm</span><span class="p">))</span>
@@ -845,7 +814,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -856,7 +825,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#np.random.seed(123456)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="c1">#np.random.seed(123456)</span>
 <span class="n">x0</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">x0</span><span class="p">]</span>
 <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span> <span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">)]</span>
@@ -871,16 +840,14 @@ import matplotlib as plt
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Extending-Capabilities-with-Functions">Extending Capabilities with Functions<a class="anchor-link" href="#Extending-Capabilities-with-Functions">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We have used some of the functions in Python, Numpy and Matplotlib. But what if we wanted to create our own functions? It is very easy to do so in Python. There are two ways to define functions. Let's use them to define the CRRA utility function $u(c)=\frac{c^{1-\sigma}-1}{1-\sigma}$ and the production function $f(k)=Ak^\alpha$.</p>
 <p>The first method is as follows:</p>
@@ -892,7 +859,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
     <span class="sd">'''This function returns the value of utility when the CRRA</span>
 <span class="sd">    coefficient is sigma. I.e. </span>
 <span class="sd">    u(c,sigma)=(c**(1-sigma)-1)/(1-sigma) if sigma!=1 </span>
@@ -911,8 +878,7 @@ import matplotlib as plt
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This defined the utility function. Let's plot it for $0< c\le5$ and $\sigma\in\{0.5,1,1.5\}$</p>
 </div>
@@ -923,7 +889,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">u1</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">u2</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">u3</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
@@ -941,8 +907,7 @@ import matplotlib as plt
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>While this is nice, it requires us to always have to put a value for the CRRA coefficient. Furthermore, we need to remember if $c$ is the first or second argument. Since we tend to use log-utilities a lot, let us change the definition of the utility function so that it has a default value for $\sigma$ equal to 1</p>
 </div>
@@ -953,7 +918,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">'''This function returns the value of utility when the CRRA</span>
 <span class="sd">    coefficient is sigma. I.e. </span>
 <span class="sd">    u(c,sigma)=(c**(1-sigma)-1)/(1-sigma) if sigma!=1 </span>
@@ -976,7 +941,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">sigma1</span> <span class="o">=</span> <span class="o">.</span><span class="mi">25</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">sigma1</span> <span class="o">=</span> <span class="o">.</span><span class="mi">25</span>
 <span class="n">sigma3</span> <span class="o">=</span> <span class="mf">1.25</span>
 <span class="n">u1</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma1</span><span class="p">)</span>
 <span class="n">u2</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
@@ -995,16 +960,14 @@ import matplotlib as plt
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Exercise">Exercise<a class="anchor-link" href="#Exercise">¶</a></h3><p>Write the function for the production function. Can you generalize it so that we can use it for aggregate, per capita, and per efficiency units without having to write a function for each?</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The second method is to use the <code>lambda</code> notation, which allows you to define functions in one line or without giving the function a name.</p>
 </div>
@@ -1015,7 +978,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">squared</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">squared</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
 <span class="n">squared</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1023,16 +986,14 @@ import matplotlib as plt
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Our-first-script">Our first script<a class="anchor-link" href="#Our-first-script">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's write a script that prints "Hello World!"</p>
 </div>
@@ -1043,7 +1004,7 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">file</span>?
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%%file</span>?
 </pre></div>
 </div>
 </div>
@@ -1054,35 +1015,34 @@ import matplotlib as plt
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">file</span> helloworld.py
-#!/usr/bin/env python
-# coding=utf-8
-'''
-My First script in Python
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%%file</span> helloworld.py
+<span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># coding=utf-8</span>
+<span class="sd">'''</span>
+<span class="sd">My First script in Python</span>
 
-Author: Me
-E-mail: me@me.com
-Website: http://me.com
-GitHub:  https://github.com/me
-Date: Today
+<span class="sd">Author: Me</span>
+<span class="sd">E-mail: me@me.com</span>
+<span class="sd">Website: http://me.com</span>
+<span class="sd">GitHub:  https://github.com/me</span>
+<span class="sd">Date: Today</span>
 
-This code computes Random Walks and graphs them
-'''
+<span class="sd">This code computes Random Walks and graphs them</span>
+<span class="sd">'''</span>
 
-'''
-from __future__ import division
-import numpy as np
-import matplotlib.pyplot as plt
-'''
-print 'Hello World!'
+<span class="sd">'''</span>
+<span class="sd">from __future__ import division</span>
+<span class="sd">import numpy as np</span>
+<span class="sd">import matplotlib.pyplot as plt</span>
+<span class="sd">'''</span>
+<span class="k">print</span> <span class="s1">'Hello World!'</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's run that script</p>
 </div>
@@ -1093,15 +1053,14 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">run</span> helloworld.py
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">run</span> helloworld.py
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Exercise">Exercise<a class="anchor-link" href="#Exercise">¶</a></h4><p>Write a simple script that simulates and plots random walks. In particular, create a function <code>randomwalk(x0,T,mu,sigma)</code> that simulates the random walk starting at $x_0=x0$ until $t=T$ where the shock is distributed $\mathcal{N}(\mu,\sigma^2)$</p>
 </div>
@@ -1112,7 +1071,7 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">"It's time"</span>
 </pre></div>
@@ -1121,16 +1080,14 @@ print 'Hello World!'
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Working-with-data-using-Pandas">Working with data using Pandas<a class="anchor-link" href="#Working-with-data-using-Pandas">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong><a href="http://pandas.pydata.org/">Pandas</a></strong> is the Python Data Analysis Library, which is one of the most useful packages for economists and anyone using data. It is fast, powerful, flexible and very simple to use!</p>
 <p>To use <strong><a href="http://pandas.pydata.org/">Pandas</a></strong> just issue the import command:</p>
@@ -1142,15 +1099,14 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You can use Pandas to download data from various sources, including FRED and the World Bank. See <a href="http://pandas.pydata.org/pandas-docs/stable/remote_data.html?highlight=world%20bank">here</a>. As an exercise, go to the <a href="http://data.worldbank.org">World Bank WDI data page</a> and download as an excel file the "Mobile cellular subscriptions (per 100 people)" and as a csv file the "GDP per capita, PPP (constant 2011 international $)" series, the name of the series are IT.CEL.SETS.P2 and NY.GDP.PCAP.PP.KD. Save the file as <em>wdimobile.csv</em> and <em>wdigdppc.xlsx</em> and import it into python by issuing the following command:</p>
 </div>
@@ -1161,7 +1117,7 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfincome</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'./WDI/wdigdppc.csv'</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dfincome</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'./WDI/wdigdppc.csv'</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">dfmobile</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">'./WDI/wdimobile.xls'</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1169,16 +1125,14 @@ print 'Hello World!'
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now you should have a <em>data frame</em> with the data you downloaded.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's see what they look like...</p>
 </div>
@@ -1189,7 +1143,7 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfincome</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dfincome</span>
 </pre></div>
 </div>
 </div>
@@ -1200,15 +1154,14 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfmobile</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dfmobile</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice that these <strong>data frames</strong> look like spreadsheets or data tables. Columns have names that can be used to call the data, e.g.</p>
 </div>
@@ -1219,7 +1172,7 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfmobile</span><span class="o">.</span><span class="n">columns</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dfmobile</span><span class="o">.</span><span class="n">columns</span>
 </pre></div>
 </div>
 </div>
@@ -1230,15 +1183,14 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfmobile</span><span class="p">[</span><span class="s1">'Country Code'</span><span class="p">]</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dfmobile</span><span class="p">[</span><span class="s1">'Country Code'</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can use columns to compute additional information. For example the growth rate of income per capite between 2000 and 2005 is</p>
 </div>
@@ -1249,7 +1201,7 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">growth</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfincome</span><span class="p">[</span><span class="s1">'2005'</span><span class="p">])</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfincome</span><span class="p">[</span><span class="s1">'2000'</span><span class="p">])</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">growth</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfincome</span><span class="p">[</span><span class="s1">'2005'</span><span class="p">])</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfincome</span><span class="p">[</span><span class="s1">'2000'</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1260,15 +1212,14 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">growth</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">growth</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice we do not know which country the growth rate belongs to. We could create a column in dfincome that holds the growth value or we can change the index of the data frame so that it keeps the country code (this is useful!)</p>
 </div>
@@ -1279,7 +1230,7 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfincome</span><span class="p">[</span><span class="s1">'growth'</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfincome</span><span class="p">[</span><span class="s1">'2005'</span><span class="p">])</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfincome</span><span class="p">[</span><span class="s1">'2000'</span><span class="p">])</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dfincome</span><span class="p">[</span><span class="s1">'growth'</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfincome</span><span class="p">[</span><span class="s1">'2005'</span><span class="p">])</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfincome</span><span class="p">[</span><span class="s1">'2000'</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1290,7 +1241,7 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfincome</span><span class="p">[[</span><span class="s1">'Country Code'</span><span class="p">,</span><span class="s1">'growth'</span><span class="p">]]</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dfincome</span><span class="p">[[</span><span class="s1">'Country Code'</span><span class="p">,</span><span class="s1">'growth'</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -1301,7 +1252,7 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfincome</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'Country Code'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dfincome</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'Country Code'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1312,7 +1263,7 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">growth</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfincome</span><span class="p">[</span><span class="s1">'2005'</span><span class="p">])</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfincome</span><span class="p">[</span><span class="s1">'2000'</span><span class="p">])</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">growth</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfincome</span><span class="p">[</span><span class="s1">'2005'</span><span class="p">])</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfincome</span><span class="p">[</span><span class="s1">'2000'</span><span class="p">])</span>
 <span class="n">growth</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s1">'growth'</span>
 <span class="n">growth</span>
 </pre></div>
@@ -1321,8 +1272,7 @@ print 'Hello World!'
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's delete the growth column from dfincome</p>
 </div>
@@ -1333,15 +1283,14 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfincome</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'growth'</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dfincome</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">'growth'</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's compute the growth of cell phone subscription for the period 2000-2005</p>
 </div>
@@ -1352,7 +1301,7 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfmobile</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'Country Code'</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dfmobile</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'Country Code'</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">growthmobile</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfmobile</span><span class="p">[</span><span class="s1">'2005'</span><span class="p">])</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">dfmobile</span><span class="p">[</span><span class="s1">'2000'</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1364,7 +1313,7 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">growthmobile</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s1">'mobile'</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">growthmobile</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s1">'mobile'</span>
 </pre></div>
 </div>
 </div>
@@ -1375,15 +1324,14 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">growthmobile</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">growthmobile</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's see the descriptive stats for each growth process</p>
 </div>
@@ -1394,7 +1342,7 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">growth</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">growth</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1405,15 +1353,14 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">growthmobile</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">growthmobile</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notice that growthmobile has infinite mean, i.e. some country started with zero coverage and now has positive one. Let's see for which ccountries that is the case and change those observations to NaN.</p>
 </div>
@@ -1424,7 +1371,7 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">growthmobile</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">growthmobile</span><span class="o">==</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">growthmobile</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">growthmobile</span><span class="o">==</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1435,7 +1382,7 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">growthmobile</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">growthmobile</span><span class="o">==</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">growthmobile</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">growthmobile</span><span class="o">==</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 </pre></div>
 </div>
 </div>
@@ -1446,15 +1393,14 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">growthmobile</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">growthmobile</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's compute the correlation between between both growth rates</p>
 </div>
@@ -1465,15 +1411,14 @@ print 'Hello World!'
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">growth</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">growthmobile</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">growth</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">growthmobile</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's run an OLS regression between both growth rates, but first let's merge the data together. 
 First we merge the data using the pd.merge command, which allows us to merge two data frames.</p>
@@ -1485,7 +1430,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">mydata</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">growth</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span><span class="n">growthmobile</span><span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">mydata</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">growth</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span><span class="n">growthmobile</span><span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
 <span class="n">mydata</span>
 </pre></div>
 </div>
@@ -1493,8 +1438,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Second, we use the pd.concat command that concatenates series or data frames into data frames.</p>
 </div>
@@ -1505,7 +1449,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">grates</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">growth</span><span class="p">,</span><span class="n">growthmobile</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">grates</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">growth</span><span class="p">,</span><span class="n">growthmobile</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">grates</span>
 </pre></div>
 </div>
@@ -1513,8 +1457,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now let's import the <em>statsmodels</em> module to run the regression.</p>
 </div>
@@ -1525,7 +1468,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="kn">as</span> <span class="nn">sm</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="kn">as</span> <span class="nn">sm</span>
 <span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">as</span> <span class="nn">smf</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Latex</span>
 </pre></div>
@@ -1538,7 +1481,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">'growth'</span><span class="p">],</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">'mobile'</span><span class="p">]),</span> <span class="n">missing</span><span class="o">=</span><span class="s1">'drop'</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">'growth'</span><span class="p">],</span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">mydata</span><span class="p">[</span><span class="s1">'mobile'</span><span class="p">]),</span> <span class="n">missing</span><span class="o">=</span><span class="s1">'drop'</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">mod</span><span class="o">.</span><span class="n">summary2</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1550,7 +1493,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">'growth ~ mobile'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mydata</span><span class="p">[[</span><span class="s1">'growth'</span><span class="p">,</span><span class="s1">'mobile'</span><span class="p">]],</span> <span class="n">missing</span><span class="o">=</span><span class="s1">'drop'</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">'growth ~ mobile'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">mydata</span><span class="p">[[</span><span class="s1">'growth'</span><span class="p">,</span><span class="s1">'mobile'</span><span class="p">]],</span> <span class="n">missing</span><span class="o">=</span><span class="s1">'drop'</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">mod</span><span class="o">.</span><span class="n">summary2</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1562,7 +1505,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">'growth ~ mobile'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">grates</span><span class="p">,</span> <span class="n">missing</span><span class="o">=</span><span class="s1">'drop'</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="s1">'growth ~ mobile'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">grates</span><span class="p">,</span> <span class="n">missing</span><span class="o">=</span><span class="s1">'drop'</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="n">mod</span><span class="o">.</span><span class="n">summary2</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1574,7 +1517,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">mysummary</span><span class="o">=</span><span class="n">mod</span><span class="o">.</span><span class="n">summary2</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">mysummary</span><span class="o">=</span><span class="n">mod</span><span class="o">.</span><span class="n">summary2</span><span class="p">()</span>
 <span class="n">Latex</span><span class="p">(</span><span class="n">mysummary</span><span class="o">.</span><span class="n">as_latex</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -1582,16 +1525,14 @@ First we merge the data using the pd.merge command, which allows us to merge two
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Homework">Homework<a class="anchor-link" href="#Homework">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Using Pandas and Statsmodels write a Python script that:</p>
 <ol>
@@ -1604,8 +1545,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Some additional useful tools:</p>
 <ul>
@@ -1620,7 +1560,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c">%%latex</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="c">%%latex</span>
 <span class="k">\begin</span><span class="nb">{</span>eqnarray<span class="nb">}</span>
 <span class="k">\nabla</span> <span class="k">\times</span> <span class="k">\vec</span><span class="nb">{</span><span class="k">\mathbf</span><span class="nb">{</span>B<span class="nb">}}</span> -<span class="k">\,</span> <span class="k">\frac</span>1c<span class="k">\,</span> <span class="k">\frac</span><span class="nb">{</span><span class="k">\partial\vec</span><span class="nb">{</span><span class="k">\mathbf</span><span class="nb">{</span>E<span class="nb">}}}{</span><span class="k">\partial</span> t<span class="nb">}</span> <span class="nb">&</span> = <span class="k">\frac</span><span class="nb">{</span>4<span class="k">\pi</span><span class="nb">}{</span>c<span class="nb">}</span><span class="k">\vec</span><span class="nb">{</span><span class="k">\mathbf</span><span class="nb">{</span>j<span class="nb">}}</span> <span class="k">\\</span>
 <span class="k">\nabla</span> <span class="k">\cdot</span> <span class="k">\vec</span><span class="nb">{</span><span class="k">\mathbf</span><span class="nb">{</span>E<span class="nb">}}</span> <span class="nb">&</span> = 4 <span class="k">\pi</span> <span class="k">\rho</span> <span class="k">\\</span>
@@ -1633,8 +1573,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Some examples of plots...</p>
 </div>
@@ -1645,7 +1584,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">dfincome</span><span class="p">[[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1990</span><span class="p">,</span><span class="mi">2013</span><span class="p">)]]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'USA'</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">dfincome</span><span class="p">[[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1990</span><span class="p">,</span><span class="mi">2013</span><span class="p">)]]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'USA'</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1656,7 +1595,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">grates</span><span class="o">.</span><span class="n">growth</span><span class="p">,</span><span class="n">grates</span><span class="o">.</span><span class="n">mobile</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">grates</span><span class="o">.</span><span class="n">growth</span><span class="p">,</span><span class="n">grates</span><span class="o">.</span><span class="n">mobile</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1667,7 +1606,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">pandas.io</span> <span class="kn">import</span> <span class="n">wb</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">pandas.io</span> <span class="kn">import</span> <span class="n">wb</span>
 <span class="n">wb</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">'cell*'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1675,8 +1614,7 @@ First we merge the data using the pd.merge command, which allows us to merge two
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Notebook written by <a href="http://omerozak.com">Ömer Özak</a> for his First Year Ph.D. students in Economics at <a href="http.www.smu.edu">Southern Methodist University</a>. Feel free to distribute or enlarge or contribute.</p>
 </div>
@@ -1733,7 +1671,8 @@ First we merge the data using the pd.merge command, which allows us to merge two
     <ul class="list-group list-group-flush">
         <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
               <ul class="list-group" id="social">
-                <li class="list-group-item"><a href="https://github.com/Macroeconomics"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://github.com/econgrowth"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://twitter.com/OmerOzakEcon"><i class="fa fa-twitter-square fa-lg"></i> Twitter</a></li>
                 <li class="list-group-item"><a href="https://linkedin.com/in/omerozak"><i class="fa fa-linkedin-square fa-lg"></i> Linkedin</a></li>
                 <li class="list-group-item"><a href="https://www.researchgate.net/profile/Oemer_Oezak"><i class="fa fa-researchgate-square fa-lg"></i> Researchgate</a></li>
               </ul>
@@ -1764,13 +1703,13 @@ First we merge the data using the pd.merge command, which allows us to merge two
             <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
-                            Macroeconomics
+                        <a href="https://macroeconomics.github.io/tag/ipython.html">
+                            IPython
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/ipython.html">
-                            IPython
+                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
+                            Macroeconomics
                         </a>
                     </li>
                     <li class="list-group-item tag-1">

@@ -35,6 +35,7 @@
 
     <link href="https://macroeconomics.github.io/theme/css/pygments/default.css" rel="stylesheet">
     <link rel="stylesheet" href="https://macroeconomics.github.io/theme/css/style.css" type="text/css"/>
+        <link href="https://macroeconomics.github.io/static/custom.css" rel="stylesheet">
 
         <link href="https://macroeconomics.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
               title="Macroeconomics II (Econ-6395) ATOM Feed"/>
@@ -112,62 +113,54 @@ Macroeconomics II (Econ-6395)            </a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+                <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Introduction-to-Dynamic-Programming">Introduction to Dynamic Programming<a class="anchor-link" href="#Introduction-to-Dynamic-Programming">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We have studied the theory of dynamic programming in discrete time under certainty. Let's review what we know so far, so that we can start thinking about how to take to the computer.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-Problem">The Problem<a class="anchor-link" href="#The-Problem">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We want to find a sequence $\{x_t\}_{t=0}^\infty$ and a function $V^*:X\to\mathbb{R}$ such that</p>
-<p>$$V^{\ast}\left(x_{0}\right)=\sup\limits _{\left\{ x_{t}\right\} _{t=0}^{\infty}}\sum\limits _{t=0}^{\infty}\beta^{t}U(x_{t},x_{t+1})$$</p>
+$$V^{\ast}\left(x_{0}\right)=\sup\limits _{\left\{ x_{t}\right\} _{t=0}^{\infty}}\sum\limits _{t=0}^{\infty}\beta^{t}U(x_{t},x_{t+1})$$<p></p>
 <p>subject to $x_{t+1}\in G(x_{t})\subseteq X\subseteq\mathbb{R}^K$, for all $t\geq0$ and $x_0\in\mathbb{R}$ given. We assume $\beta\in(0,1)$.</p>
 <p>We have seen that we can analyze this problem by solving instead the related problem</p>
-<p>$$V(x)=\sup\limits _{y\in G(x)}\left\{ U(x,y)+\beta V(y)\right\} ,\text{ for all }x\in X.$$</p>
+$$V(x)=\sup\limits _{y\in G(x)}\left\{ U(x,y)+\beta V(y)\right\} ,\text{ for all }x\in X.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Basic-Results">Basic Results<a class="anchor-link" href="#Basic-Results">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Assumptions">Assumptions<a class="anchor-link" href="#Assumptions">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
 <li><p>$G\left(x\right)$  is nonempty for all $x\in X$ ; and for all $x_{0}\in X$  and $\mathbf{x}\in \Phi (x_{0})$, $\lim\nolimits_{n\rightarrow\infty}\sum_{t=0}^{n}\beta^{t}U(x_{t},x_{t+1})$ exists and is finite.</p>
@@ -188,52 +181,45 @@ Macroeconomics II (Econ-6395)            </a>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Theorem">Theorem<a class="anchor-link" href="#Theorem">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><em>There exists a unique (value) function $V^</em>(x_0)=V(x_0)$, which is continuous, strictly increasing, strictly concave, and differentiable. Also, there exists a unique path ${x^<em><em>t}</em>{t=0}^\infty$, which starting from the given $x_0$ attains the value $V^</em>(x<em>0)$. The path can be found through a unique continuous policy function $\pi: X\to X$ such that $x^*</em>{t+1}=\pi(x^<em>_t)$. </em></p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Taking-it-to-the-computer">Taking it to the computer<a class="anchor-link" href="#Taking-it-to-the-computer">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ok. Now that we know the conditions for the existence and uniqueness (plus other characteristics) of our problem, how do we go about solving it?</p>
 <p>The idea is going to be simple and is based on what we saw when we proved the contraction mapping theorem and the proof of the previous theorem (Yes I know...we split this in various steps and intermediate results, which might have confused you).</p>
 <p>Remember that our Bellman Operator $T: C(X)\to C(X)$ defined as</p>
-<p>$$T(V(x))\equiv\sup\limits _{y\in G(x)}\left\{ U(x,y)+\beta V(y)\right\}$$</p>
-<p>assigns a continuous, strictly increasing, strictly concave function $T(V)$ to each continuous, increasing, and concave function $V$ defined on $X$. Since $T(V)$ is a contraction mapping, we know that if $V_0$ is any initial continuous, increasing, and concave function defined on $X$, then $T^n(V_0)\to V^*$. This is precisely what we are going to do using the computer (well we will also do it by hand for a couple of examples).</p>
+$$T(V(x))\equiv\sup\limits _{y\in G(x)}\left\{ U(x,y)+\beta V(y)\right\}$$<p>assigns a continuous, strictly increasing, strictly concave function $T(V)$ to each continuous, increasing, and concave function $V$ defined on $X$. Since $T(V)$ is a contraction mapping, we know that if $V_0$ is any initial continuous, increasing, and concave function defined on $X$, then $T^n(V_0)\to V^*$. This is precisely what we are going to do using the computer (well we will also do it by hand for a couple of examples).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="A-first-example">A first example<a class="anchor-link" href="#A-first-example">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Assume we want to solve the following finite dimensional problem.</p>
 <p>An apple farmer wants to maximize her discounted sum of utilities from consuming special non-peroshable apples. She owns only one tree which each period produces $y_t\in\{0,1,\ldots,ymax\}=\{y^i\}_{i=0}^N$ apples, where $y_t=y^i$ with probability $p^i$. Each period she has to decide how many apples to pick and consume. If</p>
@@ -242,22 +228,19 @@ Macroeconomics II (Econ-6395)            </a>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Value-function-iteration">Value function iteration<a class="anchor-link" href="#Value-function-iteration">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So, now that we have a strategy to tackle the problem, and you have learned some basic Python at <a href="http://codeacademy.com">Code Academy</a> and IPython in our other <a href="https://github.com/ozak/CompEcon/blob/master/notebooks/IntroPython.ipynb">notebook</a>, we are ready to write some code and do some dynamic economic analysis.</p>
 <p>But before we start, there is one issue I want to highlight. Notice that our state space $X$ is not assumed to be finite, and clearly the fact that our functions are continuous imply that we cannot be in a finite problem. So how do we represent such an infinite object in a computer, which only has finite memory? The solution is to take an approximation to the function, what Stachurski (2009) calls a fitted function. There are various methods to approximate functions (see Judd (1998) for an excellent presentation). The simplest method is a linear interpolation, which is what we will use here.</p>
 <p>The idea behind linear interpolation is quite simple. Assume we want to approximate the function $V: X\to X$, $X\subseteq\mathbb{R}$. The only thing we need is a finite set $\{x_i\}_{i=0}^N\subseteq X$ for which we compute the value under $V$, i.e. we create the finite set of values $\{V_i=V(x_i)\}_{i=0}^N$. Then our approximate function $V$, $\hat V$, will be defined as</p>
-<p>$$\hat V(x)=V_{i-1}+\frac{V_i-V_{i-1}}{x_i-x_{i-1}}(x-x_{i-1}) \quad\text{ if } x_{i-1}\le x < x_i.$$</p>
-<p>In principle we could construct our own interpolation function, but <a href="http://www.scipy.org/">Scipy</a> has already <a href="http://docs.scipy.org/doc/scipy/reference/interpolate.html">optimized approximation algorithms</a>, so let's use that package instead. Let's see what a linear interpolation of $\sin(x)$ would look like.</p>
+$$\hat V(x)=V_{i-1}+\frac{V_i-V_{i-1}}{x_i-x_{i-1}}(x-x_{i-1}) \quad\text{ if } x_{i-1}\le x < x_i.$$<p>In principle we could construct our own interpolation function, but <a href="http://www.scipy.org/">Scipy</a> has already <a href="http://docs.scipy.org/doc/scipy/reference/interpolate.html">optimized approximation algorithms</a>, so let's use that package instead. Let's see what a linear interpolation of $\sin(x)$ would look like.</p>
 </div>
 </div>
 </div>
@@ -266,7 +249,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="o">%</span><span class="k">pylab</span> --no-import-all
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interp</span>
@@ -280,7 +263,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>interp<span class="o">?</span>
+<div class="highlight hl-ipython2"><pre><span></span>interp<span class="o">?</span>
 </pre></div>
 </div>
 </div>
@@ -291,7 +274,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">'Actual Function'</span><span class="p">)</span>
 <span class="k">for</span>  <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
@@ -314,8 +297,7 @@ Macroeconomics II (Econ-6395)            </a>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Clearly the more points we have the better our approximation. But, more points means more computations and more time to get those approximations. Since we will be iterating over approximations, we might not want to use too many points, but be smart about the choice of points or we might want to use less points for a start and then increase the number of points once we have a good candidate solution to our fixed point problem.</p>
 <p>In order to make it easy to define interpolated functions, we define a new class of Python object</p>
@@ -327,7 +309,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">class</span> <span class="nc">LinInterp</span><span class="p">:</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="k">class</span> <span class="nc">LinInterp</span><span class="p">:</span>
     <span class="s2">"Provides linear interpolation in one dimension."</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
@@ -351,8 +333,7 @@ Macroeconomics II (Econ-6395)            </a>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We can now define our interpolated sinus function as follows</p>
 </div>
@@ -363,7 +344,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">xp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">xp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">yp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">xp</span><span class="p">)</span>
 <span class="n">oursin</span> <span class="o">=</span> <span class="n">LinInterp</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">yp</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">oursin</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
@@ -373,46 +354,40 @@ Macroeconomics II (Econ-6395)            </a>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Optimal-Growth">Optimal Growth<a class="anchor-link" href="#Optimal-Growth">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's start by computing the solution to an optimal growth problem, in which a social planner seeks to find paths $\{c_t,k_t\}$ such that</p>
-<p>\begin{align}
+\begin{align}
 \max_{\{c_t,k_t\}}&\sum_{t=0}^{\infty}\beta^{t}u(c_{t})\\[.2cm]
 \text{s.t.}&k;_{t+1}\leq f(k_{t})+(1-\delta)k_{t}-c_{t}\\[.2cm]
 c_{t}\geq0,&\ k_{t}\geq0,\ k_{0}\text{ is given}.
-\end{align}</p>
-<p>As usual we assume that our utility function $u(\cdot)$ and production function $f(\cdot)$ are Neoclassical. Under these conditions we have seen that our problem satisfies the conditions of our previous theorem and thus we <em>know</em> a unique solution exists.</p>
+\end{align}<p>As usual we assume that our utility function $u(\cdot)$ and production function $f(\cdot)$ are Neoclassical. Under these conditions we have seen that our problem satisfies the conditions of our previous theorem and thus we <em>know</em> a unique solution exists.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="An-example-with-analytical-solution">An example with analytical solution<a class="anchor-link" href="#An-example-with-analytical-solution">¶</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's assume that $u(c)=\ln(c)$, $f(k)=k^\alpha$, and $\delta=1$. For this case we have seen that the solution implies</p>
-<p>\begin{align}
+\begin{align}
 &\text{Value Function: } &  V(k)=&\frac{\ln(1-\alpha\beta)}{1-\beta}+\frac{\alpha\beta\ln(\alpha\beta)}{(1-\alpha\beta)(1-\beta)}+\frac{\alpha}{1-\alpha\beta}\ln(k)\\[.2cm]
 &\text{Optimal Policy: } & \pi\left(k\right)=&\beta\alpha k^{\alpha} \\[.2cm]
 &\text{Optimal Consumption Function: } & c=&\left(1-\beta\alpha\right)k^{\alpha}\\[.2cm]
-\end{align}</p>
-<p>We will use these to compare the solution found by iteration of the Value function described above. Copy the Python functions you had defined in the previous notebook into the cell below and define Python functions for the actual optimal solutions given above.</p>
+\end{align}<p>We will use these to compare the solution found by iteration of the Value function described above. Copy the Python functions you had defined in the previous notebook into the cell below and define Python functions for the actual optimal solutions given above.</p>
 </div>
 </div>
 </div>
@@ -421,37 +396,37 @@ c_{t}\geq0,&\ k_{t}\geq0,\ k_{0}\text{ is given}.
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">file</span> optgrowthfuncs.py
-def U(c,sigma=1):
-    '''This function returns the value of utility when the CRRA
-    coefficient is sigma. I.e. 
-    u(c,sigma)=(c**(1-sigma)-1)/(1-sigma) if sigma!=1 
-    and 
-    u(c,sigma)=ln(c) if sigma==1
-    Usage: u(c,sigma)
-    '''
-    if sigma!=1:
-        u=(c**(1-sigma)-1)/(1-sigma)
-    else:
-        u=np.log(c)
-    return u
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%%file</span> optgrowthfuncs.py
+<span class="k">def</span> <span class="nf">U</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">'''This function returns the value of utility when the CRRA</span>
+<span class="sd">    coefficient is sigma. I.e. </span>
+<span class="sd">    u(c,sigma)=(c**(1-sigma)-1)/(1-sigma) if sigma!=1 </span>
+<span class="sd">    and </span>
+<span class="sd">    u(c,sigma)=ln(c) if sigma==1</span>
+<span class="sd">    Usage: u(c,sigma)</span>
+<span class="sd">    '''</span>
+    <span class="k">if</span> <span class="n">sigma</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="p">(</span><span class="n">c</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sigma</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">u</span>
 
-def F(K,L=1,alpha=.3,A=1):
-    '''
-    Cobb-Douglas production function
-    F(K,L)=K^alpha L^(1-alpha)
-    '''
-    return K**alpha * L**(1-alpha)
+<span class="k">def</span> <span class="nf">F</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span><span class="n">A</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">'''</span>
+<span class="sd">    Cobb-Douglas production function</span>
+<span class="sd">    F(K,L)=K^alpha L^(1-alpha)</span>
+<span class="sd">    '''</span>
+    <span class="k">return</span> <span class="n">K</span><span class="o">**</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">L</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span>
 
-def Va(k,alpha=.3,beta=.9):
-    ab=alpha*beta
-    return np.log(1-ab)/(1-beta)+ab*np.log(ab)/((1-beta)*(1-ab))+alpha*np.log(k)/(1-ab)
+<span class="k">def</span> <span class="nf">Va</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span><span class="n">beta</span><span class="o">=.</span><span class="mi">9</span><span class="p">):</span>
+    <span class="n">ab</span><span class="o">=</span><span class="n">alpha</span><span class="o">*</span><span class="n">beta</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ab</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">beta</span><span class="p">)</span><span class="o">+</span><span class="n">ab</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ab</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">beta</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ab</span><span class="p">))</span><span class="o">+</span><span class="n">alpha</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ab</span><span class="p">)</span>
 
-def opk(k,alpha=.3,beta=.9):
-    return alpha*beta*k**alpha
+<span class="k">def</span> <span class="nf">opk</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span><span class="n">beta</span><span class="o">=.</span><span class="mi">9</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">alpha</span><span class="o">*</span><span class="n">beta</span><span class="o">*</span><span class="n">k</span><span class="o">**</span><span class="n">alpha</span>
 
-def opc(k,alpha=.3,beta=.9):
-    return (1-alpha*beta)*k**alpha
+<span class="k">def</span> <span class="nf">opc</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span><span class="n">beta</span><span class="o">=.</span><span class="mi">9</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="o">*</span><span class="n">beta</span><span class="p">)</span><span class="o">*</span><span class="n">k</span><span class="o">**</span><span class="n">alpha</span>
 </pre></div>
 </div>
 </div>
@@ -462,7 +437,7 @@ def opc(k,alpha=.3,beta=.9):
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">load</span> optgrowthfuncs.py
+<div class="highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">load</span> optgrowthfuncs.py
 </pre></div>
 </div>
 </div>
@@ -473,7 +448,7 @@ def opc(k,alpha=.3,beta=.9):
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">U</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">U</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">'''This function returns the value of utility when the CRRA</span>
 <span class="sd">    coefficient is sigma. I.e. </span>
 <span class="sd">    u(c,sigma)=(c**(1-sigma)-1)/(1-sigma) if sigma!=1 </span>
@@ -509,8 +484,7 @@ def opc(k,alpha=.3,beta=.9):
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's fix the value of the fundamental parameters so we can realize computations</p>
 </div>
@@ -521,7 +495,7 @@ def opc(k,alpha=.3,beta=.9):
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">alpha</span><span class="o">=.</span><span class="mi">3</span>
 <span class="n">beta</span><span class="o">=.</span><span class="mi">9</span>
 <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span>
 <span class="n">delta</span><span class="o">=</span><span class="mi">1</span>
@@ -531,8 +505,7 @@ def opc(k,alpha=.3,beta=.9):
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now let's focus on the Value function iteration:</p>
 </div>
@@ -543,7 +516,7 @@ def opc(k,alpha=.3,beta=.9):
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Grid of values for state variable over which function will be approximated</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="c1"># Grid of values for state variable over which function will be approximated</span>
 <span class="n">gridmin</span><span class="p">,</span> <span class="n">gridmax</span><span class="p">,</span> <span class="n">gridsize</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">300</span>
 <span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">gridmin</span><span class="p">,</span> <span class="n">gridmax</span><span class="o">**</span><span class="mf">1e-1</span><span class="p">,</span> <span class="n">gridsize</span><span class="p">)</span><span class="o">**</span><span class="mi">10</span>
 </pre></div>
@@ -552,8 +525,7 @@ def opc(k,alpha=.3,beta=.9):
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Here we have created a grid on $[gridmin,gridmax]$ that has a number of points given by <code>gridsize</code>. Since we know that the Value functions is stricly concave, our grid has more points closer to zero than farther away</p>
 </div>
@@ -564,7 +536,7 @@ def opc(k,alpha=.3,beta=.9):
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">);</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'State Space'</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Number of Points'</span><span class="p">);</span>
 </pre></div>
@@ -577,7 +549,7 @@ def opc(k,alpha=.3,beta=.9):
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="s1">'r.'</span><span class="p">);</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="s1">'r.'</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'State Space Grid'</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -585,12 +557,10 @@ def opc(k,alpha=.3,beta=.9):
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now we need a function, which for given $V_0$ solves</p>
-<p>$$\sup\limits _{y\in G(x)}\left\{ U(x,y)+\beta V(y)\right\}.$$</p>
-<p>Let's use one of Scipy's optimizing routines</p>
+$$\sup\limits _{y\in G(x)}\left\{ U(x,y)+\beta V(y)\right\}.$$<p>Let's use one of Scipy's optimizing routines</p>
 </div>
 </div>
 </div>
@@ -599,7 +569,7 @@ def opc(k,alpha=.3,beta=.9):
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fminbound</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fminbound</span>
 fminbound<span class="o">?</span>
 </pre></div>
 </div>
@@ -607,12 +577,10 @@ fminbound<span class="o">?</span>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Since <code>fminbound</code> returns</p>
-<p>$$\arg\min\limits _{y\in [\underline x,\bar x]}\left\{ U(x,y)+\beta V(y)\right\}$$</p>
-<p>we have to either replace our objective function for its negative or, better yet, define a function that uses <code>fminbound</code> and returns the maximum and the maximizer</p>
+$$\arg\min\limits _{y\in [\underline x,\bar x]}\left\{ U(x,y)+\beta V(y)\right\}$$<p>we have to either replace our objective function for its negative or, better yet, define a function that uses <code>fminbound</code> and returns the maximum and the maximizer</p>
 </div>
 </div>
 </div>
@@ -621,7 +589,7 @@ fminbound<span class="o">?</span>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Maximize function V on interval [a,b]</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="c1"># Maximize function V on interval [a,b]</span>
 <span class="k">def</span> <span class="nf">maximum</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="n">fminbound</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="o">-</span><span class="n">V</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)))</span>
 <span class="c1"># Return Maximizer of function V on interval [a,b]</span>
@@ -633,16 +601,14 @@ fminbound<span class="o">?</span>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Note">Note<a class="anchor-link" href="#Note">¶</a></h4><p>We could have included other parameters to pass to our <code>maximizer</code> and <code>maximum</code> functions, e.g. to allow us to manipulate the options of <code>fminbound</code></p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="The-Bellman-Operator">The Bellman Operator<a class="anchor-link" href="#The-Bellman-Operator">¶</a></h4>
 </div>
@@ -653,7 +619,7 @@ fminbound<span class="o">?</span>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># The following two functions are used to find the optimal policy and value functions using value function iteration</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="c1"># The following two functions are used to find the optimal policy and value functions using value function iteration</span>
 <span class="c1"># Bellman Operator</span>
 <span class="k">def</span> <span class="nf">bellman</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
     <span class="sd">"""The approximate Bellman operator.</span>
@@ -692,8 +658,7 @@ fminbound<span class="o">?</span>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Given a linear interpolation of our guess for the Value function, $V_0=w$, the first function returns a <code>LinInterp</code> object, which is the linear interpolation of the function generated by the Bellman Operator on the finite set of points on the grid. The second function returns what Stachurski (2009) calls a <em>w-greedy</em> policy, i.e. the function that maximizes the RHS of the Bellman Operator.</p>
 <p>Now we are ready to work on the iteration</p>
@@ -705,7 +670,7 @@ fminbound<span class="o">?</span>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Parameters for the optimization procedures</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="c1"># Parameters for the optimization procedures</span>
 <span class="n">count</span><span class="o">=</span><span class="mi">0</span>
 <span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span>
 <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span>
@@ -716,8 +681,7 @@ fminbound<span class="o">?</span>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Our initial guess $V_0$</p>
 </div>
@@ -728,7 +692,7 @@ fminbound<span class="o">?</span>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">V0</span><span class="o">=</span><span class="n">LinInterp</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">U</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">V0</span><span class="o">=</span><span class="n">LinInterp</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">U</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">'V'</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">));</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">Va</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Actual'</span><span class="p">);</span>
@@ -739,8 +703,7 @@ fminbound<span class="o">?</span>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>After one interation</p>
 </div>
@@ -751,7 +714,7 @@ fminbound<span class="o">?</span>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">'V'</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">));</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V0</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">'V'</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">));</span>
 <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
 <span class="n">V0</span><span class="o">=</span><span class="n">bellman</span><span class="p">(</span><span class="n">V0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -765,8 +728,7 @@ fminbound<span class="o">?</span>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Doing it by hand is too slow..let's automate this process</p>
 </div>
@@ -777,7 +739,7 @@ fminbound<span class="o">?</span>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">grid</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">Va</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Actual'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'k'</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">);</span>
 
@@ -804,8 +766,7 @@ fminbound<span class="o">?</span>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Does it look like we converged? Let's compare our estimated Value function <code>V1</code> and the actual function <code>Va</code> and compute the error at each point.</p>
 </div>
@@ -816,7 +777,7 @@ fminbound<span class="o">?</span>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">err</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">err</span>
 <span class="n">err</span><span class="o">=</span><span class="n">Va</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="o">-</span><span class="n">V1</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">err</span><span class="p">);</span>
 <span class="k">print</span> <span class="n">err</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">-</span><span class="n">err</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
@@ -830,7 +791,7 @@ fminbound<span class="o">?</span>
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="highlight hl-ipython2"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">grid</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">Va</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">'Actual'</span><span class="p">)</span>
@@ -843,8 +804,7 @@ fminbound<span class="o">?</span>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Exercise">Exercise<a class="anchor-link" href="#Exercise">¶</a></h4><ol>
 <li>Use the <code>policy</code> function to compute the optimal policy. Compare it to the actual one</li>
@@ -907,7 +867,8 @@ fminbound<span class="o">?</span>
     <ul class="list-group list-group-flush">
         <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
               <ul class="list-group" id="social">
-                <li class="list-group-item"><a href="https://github.com/Macroeconomics"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://github.com/econgrowth"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://twitter.com/OmerOzakEcon"><i class="fa fa-twitter-square fa-lg"></i> Twitter</a></li>
                 <li class="list-group-item"><a href="https://linkedin.com/in/omerozak"><i class="fa fa-linkedin-square fa-lg"></i> Linkedin</a></li>
                 <li class="list-group-item"><a href="https://www.researchgate.net/profile/Oemer_Oezak"><i class="fa fa-researchgate-square fa-lg"></i> Researchgate</a></li>
               </ul>
@@ -938,13 +899,13 @@ fminbound<span class="o">?</span>
             <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
-                            Macroeconomics
+                        <a href="https://macroeconomics.github.io/tag/ipython.html">
+                            IPython
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/ipython.html">
-                            IPython
+                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
+                            Macroeconomics
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
