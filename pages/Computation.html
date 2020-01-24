@@ -76,43 +76,128 @@ Macroeconomics II (Econ-6395)            </a>
         
         <div class="entry-content">
             <p>We will be using (I)Python as our programming language. In order to use some of the material available on this website and to share your material with others you should create a <a href="http://github.com/"><i class="fa fa-github fa-1x"></i>GitHub</a> account for yourself. This will be useful to you in the future to keep track of changes when you are writing papers. I also recommend creating a <a href="https://bitbucket.org/"><i class="fa fa-bitbucket fa-1x"></i>Bitbucket</a> account, which has similar functionality, but allows you to have unlimited private repositories for personal use. Additionally, I suggest you read <a href="https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf">Gentzkow &amp; Shapiro's <em>Code and Data for the Social Sciences: A Practitioner’s Guide</em></a> to familiarize yourself with good practices in coding and statistical analysis. We will cover additional topics in class.</p>
+<hr>
+<h1>Text Editor</h1>
+<p>You should have a good text editor, which hopefully has syntax highlighting for various languages, especially for <code>python</code>, <code>R</code> and <code>Stata</code>. I personally recommend <a href="https://atom.io/">atom</a>, which is free, custimizable and very flexible.</p>
+<hr>
 <h1>Installing (I)Python &amp; Jupyter</h1>
-<p>The easiest and most convenient way to install a working version of IPython with all the required packages and tools is using <a href="https://www.continuum.io/downloads">Continuum's Anaconda Distribution</a>. You can install following the instructions in that website, or if you can just run <a href="../notebooks/CondaInstall.sh">this script</a>. After installing the latest version of Anaconda, add the <code>Anaconda/bin</code> directory to your <code>PATH</code> variable. </p>
+<p>The easiest and most convenient way to install a working version of IPython with all the required packages and tools is using <a href="https://www.anaconda.com/distribution/">Continuum's Anaconda Distribution</a>. You can install following the instructions in that website, or if you can just run <a href="https://www.dropbox.com/s/6st528ethbkmvv2/CondaInstall.sh?dl=0">this script (Mac/Linux)</a>. After installing the latest version of Anaconda, add the <code>Anaconda/bin</code> directory to your <code>PATH</code> variable. </p>
 <p>In Windows install <a href="https://www.microsoft.com/en-us/download/details.aspx?id=44266">Visual C++ 9.0</a>, <a href="https://msdn.microsoft.com/en-us/library/hh567368.aspx">Visual C++ 14</a> and <a href="https://www.microsoft.com/en-us/download/details.aspx?id=47259">Microsoft MPI6</a>. </p>
-<p>In OSX download and install XCode (from the Apple store) and command line tools (option within XCode or in a terminal execute <code>xcode-select --install</code>).</p>
-<p>Then download the following scripts (<a href="../notebooks/GeoPython2env.yml">GeoPython2env</a>, <a href="../notebooks/GeoPython3env.yml">GeoPython3env</a>) and execute</p>
-<div class="highlight"><pre><span></span><span class="n">conda</span> <span class="k">update</span> <span class="n">conda</span>
-<span class="n">conda</span><span class="o">-</span><span class="n">env</span> <span class="k">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">GeoPython2env</span><span class="p">.</span><span class="n">yml</span>
-<span class="n">conda</span><span class="o">-</span><span class="n">env</span> <span class="k">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">GeoPython3env</span><span class="p">.</span><span class="n">yml</span>
+<p>In <code>MACOS</code> download and install XCode (from the Apple store) and command line tools (option within XCode or in a terminal execute <code>xcode-select --install</code>).</p>
+<p>Then you can either:</p>
+<p>A. download one of the following scripts </p>
+<ul>
+<li><a href="https://www.dropbox.com/s/d79ahsu3xz4632g/GeoPython3env2019B_nobuilds.yml?dl=0">GeoPython3env</a> (latest environment)</li>
+<li><a href="https://www.dropbox.com/s/38a7mcaziyzmovj/GeoPython3env.yml?dl=0">GeoPython3env old</a>  (older Python 3 environment)</li>
+<li><a href="https://www.dropbox.com/s/mrr9qwyz7t6s2uu/GeoPython2env.yml?dl=0">GeoPython2env</a> (older Python 2 environment)</li>
+</ul>
+<p>and execute</p>
+<div class="highlight"><pre><span></span><span class="nv">conda</span> <span class="nv">update</span> <span class="nv">conda</span>
+<span class="nv">conda</span><span class="o">-</span><span class="nv">env</span> <span class="nv">create</span> <span class="o">-</span><span class="nv">f</span> <span class="nv">GeoPython3env2019B_nobuilds</span>.<span class="nv">yml</span>
+# <span class="nv">Or</span> <span class="nv">uncomment</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">these</span> <span class="k">if</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">install</span> <span class="nv">the</span> <span class="nv">older</span> <span class="nv">versions</span>
+#<span class="nv">conda</span><span class="o">-</span><span class="nv">env</span> <span class="nv">create</span> <span class="o">-</span><span class="nv">f</span> <span class="nv">GeoPython2env</span>.<span class="nv">yml</span>
+#<span class="nv">conda</span><span class="o">-</span><span class="nv">env</span> <span class="nv">create</span> <span class="o">-</span><span class="nv">f</span> <span class="nv">GeoPython3env</span>.<span class="nv">yml</span>
 </pre></div>
 
 
-<p>This will create two environments with all the packages you will require for this course (and more!). To start using one of the <code>Python 2.7</code> environment you will need to exectute the following command</p>
-<div class="highlight"><pre><span></span><span class="k">source</span> <span class="n">activate</span> <span class="n">GeoPython2env</span>
+<p>This should create an environment with all the packages you will require for this course (and more!). </p>
+<p>B. If A. fails, which seems to happen often due to version conflicts, execute</p>
+<div class="highlight"><pre><span></span><span class="n">conda</span> <span class="k">create</span> <span class="c1">--name GeoPython3env -c conda-forge -c numba -c rapidsai -c mro -c r -c defaults python=3.6 geopandas georasters pandas numpy matplotlib seaborn jupyter scikit-image scikit-learn scipy r rstudio r-irkernel ipykernel ipyparallel statsmodels pycountry networkx rpy2 rasterio r-tidyr r-tibble r-dplyr pandana urbanaccess dill xlrd pandas-datareader rise jupyterlab cython numba openpyxl scikit-bio geoplot wikipedia swifter pelican datashader </span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">GeoPython3env</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">linearmodels</span> <span class="n">isounidecode</span> <span class="n">geonamescache</span> <span class="n">geocoder</span>
 </pre></div>
 
 
-<p>and for <code>Python 3.x</code></p>
+<p>This should create an environment with most of the packages we need. We can always install others down the road.</p>
+<p>To start using one of the environment you will need to exectute the following command</p>
 <div class="highlight"><pre><span></span><span class="k">source</span> <span class="n">activate</span> <span class="n">GeoPython3env</span>
 </pre></div>
 
 
-<p>I would suggest using <code>Python 3.x</code>, since it is the latest and most uptodate version.</p>
+<p>or for <code>Python 2.x</code></p>
+<div class="highlight"><pre><span></span><span class="k">source</span> <span class="n">activate</span> <span class="n">GeoPython2env</span>
+</pre></div>
+
+
+<p>I would suggest using <code>GeoPython3env</code>, since it is the latest and most up-to-date version (I'll try to keep adding new versions as time passes).</p>
+<h4>MacOS</h4>
+<p>Instead of the previous options, you can download <a href="https://www.dropbox.com/s/8hz368xsh48390i/GeoPython3env-spec-file.txt?dl=0">this file</a> and execute</p>
+<div class="highlight"><pre><span></span><span class="n">conda</span> <span class="k">create</span> <span class="c1">--name GeoPython3env --file GeoPython3env-spec-file.txt</span>
+</pre></div>
+
+
 <h2>Parallel Computing</h2>
 <p>One of the advantages of <code>Jupyter Notebooks</code> is that they allow you to work (very easily) with multiple processors using <code>ipyparallel</code>. Once you have <code>ipyparallel</code> installed (automatically done for you with the scritps above), you will need to execute the following code once</p>
 <div class="highlight"><pre><span></span><span class="n">ipcluster</span> <span class="n">nbextension</span> <span class="n">enable</span>
 </pre></div>
 
 
+<h2>Stata Kernel</h2>
+<p>We can use <code>Stata</code> within Jupyter Notebooks with the <a href="https://kylebarron.dev/stata_kernel/">Stata kernel</a>. I recommend you make sure it is installed and you have highlighting. To install (in case you do not use the <code>YAML</code> environment file above), execute</p>
+<div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">stata_kernel</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">stata_kernel</span><span class="p">.</span><span class="n">install</span>
+</pre></div>
+
+
+<p>and then </p>
+<div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="k">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">nodejs</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">jupyter</span> <span class="n">labextension</span> <span class="n">install</span> <span class="n">jupyterlab</span><span class="o">-</span><span class="n">stata</span><span class="o">-</span><span class="n">highlight</span>
+</pre></div>
+
+
+<h2>R kernel</h2>
+<p>We can also use <code>R</code> within Jupyter Notebooks with the <a href="https://irkernel.github.io/">R kernel</a>. The best way to install it (in case you do not use the <code>YAML</code> environment file above) is to use <code>conda</code> by executing</p>
+<div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="k">c</span> <span class="n">r</span> <span class="n">r</span><span class="o">-</span><span class="n">irkernel</span>
+</pre></div>
+
+
+<p>You can also install <code>R</code> and <code>R</code> packages by using <code>conda</code>. Simply execute</p>
+<div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="k">c</span> <span class="n">r</span> <span class="n">r</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="k">c</span> <span class="n">r</span> <span class="n">r</span><span class="o">-</span><span class="n">PACKAGE_NAME</span>
+</pre></div>
+
+
+<h2>Running Stata or R in Python</h2>
+<p>We can also use <code>Stata</code> or <code>R</code> directly within <code>Python</code>. You only need to use the <code>%magic</code> for each after installing the required packages. For example for <code>Stata</code> you need  <a href="https://github.com/TiesdeKok/ipystata"><code>ipystata</code></a>. Install by executing</p>
+<div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ipystata</span>
+</pre></div>
+
+
+<p>Then in <code>jupyter</code> execute</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipystata</span> 
+<span class="kn">from</span> <span class="nn">ipystata.config</span> <span class="kn">import</span> <span class="n">config_stata</span>
+<span class="n">config_stata</span><span class="p">(</span><span class="s1">&#39;Path to your Stata executable&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Once configured you can use the <code>%%stata</code> magic. E.g.</p>
+<div class="highlight"><pre><span></span><span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">ipystata</span>  
+<span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="o">%%</span><span class="n">stata</span>  
+        <span class="n">display</span> <span class="s2">&quot;Hello, I am printed in Stata.&quot;</span>
+</pre></div>
+
+
+<p>More info in the <a href="https://github.com/TiesdeKok/ipystata"><code>ipystata</code> website</a>.</p>
+<p>Similarly, we can use <code>R</code> using <a href="https://rpy2.bitbucket.io/"><code>rpy2</code></a>. Install by executing</p>
+<div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">rpy2</span>
+</pre></div>
+
+
+<p>Then in jupyter execute</p>
+<div class="highlight"><pre><span></span><span class="k">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="o">%</span><span class="n">load_ext</span> <span class="n">rpy2</span><span class="p">.</span><span class="n">ipython</span>
+<span class="k">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="o">%%</span><span class="n">R</span>
+
+        <span class="n">R</span><span class="p">.</span><span class="k">version</span>
+</pre></div>
+
+
+<p>More info in the <a href="https://rpy2.bitbucket.io/"><code>rpy2</code> website</a>.</p>
 <h1>Notebooks</h1>
 <ul>
-<li>Notebook 1: <a href="/IntroPython.html">Introduction</a></li>
-<li>Notebook 2: <a href="/Economic Data Analysis.html">Economic Data Analysis</a></li>
-<li>Notebook 3: <a href="/Dynamic Programming.html">Dynamic Programming in Python</a></li>
-<li>Notebook 4: <a href="/Dynamic Programming Numba.html">Faster Dynamic Programming with Numba</a></li>
-<li>Notebook 5:</li>
-<li>Notebook 6:</li>
-<li>Notebook 7: </li>
+<li>Notebook 1: Introduction <a href="/IntroPython.html">(html)</a> <a href="/notebooks/IntroPython.ipynb">(ipynb)</a></li>
+<li>Notebook 2: Dynamic Programming in Python <a href="/Dynamic Programming.html">(html)</a> <a href="/notebooks/DynamicProgramming.ipynb">(ipynb)</a></li>
+<li>Notebook 3: Faster Dynamic Programming with Numba <a href="/Dynamic Programming Numba.html">(html)</a> <a href="Faster Computation with Numba.ipynb">ipynb</a></li>
+<li>Notebook 4: Economic Data Analysis <a href="/Economic Data Analysis.html">(html)</a> <a href="/notebooks/EconomicDataAnalysis.ipynb">(ipynb)</a></li>
 </ul>
         </div>
     </section>
@@ -156,13 +241,13 @@ Macroeconomics II (Econ-6395)            </a>
             <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/ipython.html">
-                            IPython
+                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
+                            Macroeconomics
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
-                            Macroeconomics
+                        <a href="https://macroeconomics.github.io/tag/ipython.html">
+                            IPython
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
