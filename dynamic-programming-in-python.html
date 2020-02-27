@@ -237,7 +237,7 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 &amp;\text{Optimal Consumption Function: } &amp; c=&amp;\left(1-\beta\alpha\right)k^{\alpha}\\[.2cm]
 \end{align}</div>
 <p>We will use these to compare the solution found by iteration of the Value function described above. Copy the Python functions you had defined in the previous notebook into the cell below and define Python functions for the actual optimal solutions given above.</p>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="nb">file</span> <span class="n">optgrowthfuncs</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">file</span> <span class="n">optgrowthfuncs</span><span class="o">.</span><span class="n">py</span>
 <span class="k">def</span> <span class="nf">U</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;This function returns the value of utility when the CRRA</span>
 <span class="sd">    coefficient is sigma. I.e. </span>
@@ -400,7 +400,7 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 <span class="n">count</span><span class="o">=</span><span class="mi">0</span>
 <span class="n">maxiter</span><span class="o">=</span><span class="mi">1000</span>
 <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span>
-<span class="k">print</span> <span class="s1">&#39;tol=</span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">tol</span>
+<span class="nb">print</span> <span class="s1">&#39;tol=</span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">tol</span>
 </pre></div>
 
 
@@ -442,7 +442,7 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
     <span class="n">V0</span><span class="o">=</span><span class="n">V1</span>
     <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
     <span class="k">if</span> <span class="n">err</span><span class="o">&lt;</span><span class="n">tol</span><span class="p">:</span>
-        <span class="k">print</span> <span class="n">count</span>
+        <span class="nb">print</span> <span class="n">count</span>
         <span class="k">break</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">V1</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Estimated&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">);</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
@@ -451,10 +451,10 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
 
 
 <p>Does it look like we converged? Let's compare our estimated Value function <code>V1</code> and the actual function <code>Va</code> and compute the error at each point.</p>
-<div class="highlight"><pre><span></span><span class="k">print</span> <span class="n">err</span>
+<div class="highlight"><pre><span></span><span class="nb">print</span> <span class="n">err</span>
 <span class="n">err</span><span class="o">=</span><span class="n">Va</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="o">-</span><span class="n">V1</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">err</span><span class="p">);</span>
-<span class="k">print</span> <span class="n">err</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">-</span><span class="n">err</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="nb">print</span> <span class="n">err</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">-</span><span class="n">err</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
 </pre></div>
 
 
@@ -584,8 +584,8 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
             <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/notebooks.html">
-                            Notebooks
+                        <a href="https://macroeconomics.github.io/tag/ipython.html">
+                            IPython
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -594,8 +594,8 @@ c_{t}\geq0,&amp;\ k_{t}\geq0,\ k_{0}\text{ is given}.
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/ipython.html">
-                            IPython
+                        <a href="https://macroeconomics.github.io/tag/notebooks.html">
+                            Notebooks
                         </a>
                     </li>
                     <li class="list-group-item tag-4">

@@ -161,7 +161,7 @@ Macroeconomics II (Econ-6395)            </a>
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="k">import</span> <span class="n">jit</span><span class="p">,</span> <span class="n">njit</span><span class="p">,</span> <span class="n">autojit</span><span class="p">,</span> <span class="n">jitclass</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span><span class="p">,</span> <span class="n">njit</span><span class="p">,</span> <span class="n">autojit</span><span class="p">,</span> <span class="n">jitclass</span>
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
@@ -1192,8 +1192,8 @@ def CobbDouglas(K, L, A, alpha, beta):
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="k">import</span> <span class="n">fminbound</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">interp</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fminbound</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interp</span>
 
 <span class="c1"># Auxiliary functions </span>
 <span class="c1"># Maximize function V on interval [a,b]</span>
@@ -1208,13 +1208,13 @@ def CobbDouglas(K, L, A, alpha, beta):
 <span class="k">class</span> <span class="nc">LinInterp</span><span class="p">:</span>
     <span class="s2">"Provides linear interpolation in one dimension."</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
         <span class="sd">"""Parameters: X and Y are sequences or arrays</span>
 <span class="sd">        containing the (x,y) interpolation points.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Y</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span>
 
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
         <span class="sd">"""Parameters: z is a number, sequence or array.</span>
 <span class="sd">        This method makes an instance f of LinInterp callable,</span>
 <span class="sd">        so f(z) returns the interpolation value(s) at z.</span>
@@ -2129,8 +2129,8 @@ def solvenb():
             <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/notebooks.html">
-                            Notebooks
+                        <a href="https://macroeconomics.github.io/tag/ipython.html">
+                            IPython
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -2139,8 +2139,8 @@ def solvenb():
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/ipython.html">
-                            IPython
+                        <a href="https://macroeconomics.github.io/tag/notebooks.html">
+                            Notebooks
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
