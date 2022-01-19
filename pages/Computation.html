@@ -8,30 +8,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <link href="https://macroeconomics.github.io/images/favicomatic/favicon.ico" rel="icon">
+    <link href="../images/favicomatic/favicon.ico" rel="icon">
 
-<link rel="canonical" href="https://macroeconomics.github.io/pages/Computation.html">
+<link rel="canonical" href="../pages/Computation.html">
 
         <meta name="author" content="Ömer Özak" />
-        <meta name="description" content="We will be using (I)Python as our programming language. In order to use some of the material available on this website and to share your material with others you should create a GitHub account for yourself. This will be useful to you in the future to keep track of …" />
+        <meta name="description" content="We will be using (I)Python as our programming language and QGIS for basic GIS exploration. In order to use some of the material available on this website and to share your material with others you should create a GitHub account for yourself. This will be useful to you in …" />
 
     <meta property="og:site_name" content="Macroeconomics II (Econ-6395)" />
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="Computation"/>
-    <meta property="og:url" content="https://macroeconomics.github.io/pages/Computation.html"/>
-    <meta property="og:description" content="We will be using (I)Python as our programming language. In order to use some of the material available on this website and to share your material with others you should create a GitHub account for yourself. This will be useful to you in the future to keep track of …" />
+    <meta property="og:url" content="../pages/Computation.html"/>
+    <meta property="og:description" content="We will be using (I)Python as our programming language and QGIS for basic GIS exploration. In order to use some of the material available on this website and to share your material with others you should create a GitHub account for yourself. This will be useful to you in …" />
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://macroeconomics.github.io/theme/css/bootstrap.slate.min.css" type="text/css"/>
-    <link href="https://macroeconomics.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="../theme/css/bootstrap.slate.min.css" type="text/css"/>
+    <link href="../theme/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="https://macroeconomics.github.io/theme/css/pygments/default.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://macroeconomics.github.io/theme/css/style.css" type="text/css"/>
-        <link href="https://macroeconomics.github.io/static/custom.css" rel="stylesheet">
+    <link href="../theme/css/pygments/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="../theme/css/style.css" type="text/css"/>
+        <link href="../static/custom.css" rel="stylesheet">
 
-        <link href="https://macroeconomics.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Macroeconomics II (Econ-6395) ATOM Feed"/>
 
 
 
@@ -48,7 +46,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="https://macroeconomics.github.io/" class="navbar-brand">
+            <a href="../" class="navbar-brand">
 Macroeconomics II (Econ-6395)            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -75,130 +73,221 @@ Macroeconomics II (Econ-6395)            </a>
         <h1 class="entry-title">Computation</h1>
         
         <div class="entry-content">
-            <p>We will be using (I)Python as our programming language. In order to use some of the material available on this website and to share your material with others you should create a <a href="http://github.com/"><i class="fa fa-github fa-1x"></i>GitHub</a> account for yourself. This will be useful to you in the future to keep track of changes when you are writing papers. I also recommend creating a <a href="https://bitbucket.org/"><i class="fa fa-bitbucket fa-1x"></i>Bitbucket</a> account, which has similar functionality, but allows you to have unlimited private repositories for personal use. Additionally, I suggest you read <a href="https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf">Gentzkow &amp; Shapiro's <em>Code and Data for the Social Sciences: A Practitioner’s Guide</em></a> to familiarize yourself with good practices in coding and statistical analysis. We will cover additional topics in class.</p>
+            <p><a href="https://mybinder.org/v2/gh/ozak/CompEcon/master?urlpath=lab"><img alt="Binder" src="https://img.shields.io/badge/launch-JupyterLab-579ACA.svg?logo=data:image/png;base64,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"></a> <a href="https://mybinder.org/v2/gh/ozak/CompEcon/master"><img alt="Binder" src="https://mybinder.org/badge_logo.svg"></a> <a href="https://mybinder.org/v2/gh/ozak/CompEcon/master?filepath=index.ipynb"><img alt="Binder" src="https://img.shields.io/badge/launch-notebook-579ACA.svg?logo=data:image/png;base64,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"></a> </p>
+<p>We will be using (I)Python as our programming language and QGIS for basic GIS exploration. In order to use some of the material available on this website and to share your material with others you should create a <a href="http://github.com/"><i class="fa fa-github fa-1x"></i>GitHub</a> account for yourself. This will be useful to you in the future to keep track of changes when you are writing papers. I also recommend creating a <a href="https://bitbucket.org/"><i class="fa fa-bitbucket fa-1x"></i>Bitbucket</a> account, which has similar functionality, but allows you to have unlimited private repositories for personal use. Additionally, I suggest you read <a href="https://web.stanford.edu/~gentzkow/research/CodeAndData.pdf">Gentzkow &amp; Shapiro's <em>Code and Data for the Social Sciences: A Practitioner’s Guide</em></a> to familiarize yourself with good practices in coding and statistical analysis. We will cover additional topics in class.</p>
+<hr>
+<h1>MacOS</h1>
+<h3>Homebrew</h3>
+<p>On <code>MacOS</code> you can use <a href="https://brew.sh/">Homebrew</a>, which is an excellent tool for installing all kinds of open source software. First, download and install XCode (from the Apple store) and command line tools (option within XCode or in a terminal execute <code>xcode-select --install</code>). Second, install <code>Homebrew</code></p>
+<div class="highlight"><pre><span></span><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre></div>
+
+<p>Third, install some of the software we will use, including <code>qgis</code>, <code>MacTeX</code>, <code>R</code>, <code>Rstudio</code></p>
+<div class="highlight"><pre><span></span><code>brew tap osgeo/osgeo4mac
+brew cask install qgis
+brew cask install mactex
+brew install r
+brew cask install rstudio
+</code></pre></div>
+
+<p>There are many tools that can be installed via <code>Homebrew</code> whenever needed. Try it out!</p>
+<h3>iTerm2</h3>
+<p>I highly recommend using <a href="https://www.iterm2.com/">iTerm2</a> instead of the terminal that comes with <code>OSX</code>. It is custumizable and very powerful. </p>
+<hr>
+<h1>Installing QGIS</h1>
+<p>Download and install QGIS from their <a href="https://qgis.org/en/site/forusers/download.html">website</a>. </p>
 <hr>
 <h1>Text Editor</h1>
 <p>You should have a good text editor, which hopefully has syntax highlighting for various languages, especially for <code>python</code>, <code>R</code> and <code>Stata</code>. I personally recommend <a href="https://atom.io/">atom</a>, which is free, custimizable and very flexible.</p>
 <hr>
+<h1>LaTeX/LyX</h1>
+<p>Install the <code>LaTeX</code> distribution for your system from the <a href="https://www.latex-project.org/get/#tex-distributions">LaTeX website</a>. If <code>LyX</code> is not installed with your distribution and you want to use a WSIWYG front for <code>LaTeX</code>, download and install <a href="https://www.lyx.org/Download">LyX here</a>.</p>
+<p>Another option is to use <a href="https://tectonic-typesetting.github.io/en-US/">tectonic</a>, which is supposed to install a smaller version of the <code>TeX</code> distributon and download only packages that you require. You can install it using <code>conda</code> into your <code>GeoPython</code> environment.</p>
+<p>To get started with <code>LaTeX</code> check out <a href="https://www.overleaf.com/learn/latex/Free_online_introduction_to_LaTeX_(part_1)">Overleaf's Introduction</a> or some of its <a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes">other resources</a> to get started.</p>
+<p>Some of my templates for <code>LaTeX</code>:</p>
+<ul>
+<li><a href="https://www.dropbox.com/s/r3s63czke0pb8ar/WPtemplate.tex?dl=0">Working Paper</a></li>
+<li><a href="https://www.dropbox.com/s/hkgcruoo6rm9ccy/slides.tex?dl=0">Slides</a></li>
+</ul>
+<p>You can find more templates <a href="https://www.latextemplates.com/">here</a> or <a href="https://www.overleaf.com/gallery/tagged/presentation">here</a>.</p>
+<hr>
+<h1>Markdown Editor</h1>
+<p>It is useful to have a markdown editor to edit files for <code>Github</code> as well as generating websites like this one. Here are a few options:</p>
+<ul>
+<li><a href="https://macdown.uranusjr.com/">MacDown</a> free and opensource for MacOS.</li>
+<li><a href="https://typora.io/">typora</a> works on MacOS, WIndows and Linux (free beta)</li>
+<li><a href="https://atom.io/packages/markdown-preview">atom Markdown Preview</a> free and open source for any OS that handles <a href="https://atom.io/">atom</a></li>
+<li><a href="https://dillinger.io/">dillinger</a> online and open source</li>
+<li><a href="https://stackedit.io/app#">stackedit</a> online and open source</li>
+</ul>
+<p>More information on markdown at <a href="https://www.markdownguide.org/">Markdown Guide</a>.</p>
+<hr>
+<h1>Stata Packages</h1>
+<p>It is useful to keep a list your Stata packages in case you need to reinstall or replicate your environment somewhere else. For this you can use <code>adolist</code></p>
+<div class="highlight"><pre><span></span><code>net install adolist, from(http://fmwww.bc.edu/RePEc/bocode/a)
+</code></pre></div>
+
+<p>To create a list of your packages</p>
+<div class="highlight"><pre><span></span><code> adolist store mystatapacks_latest.pkl
+</code></pre></div>
+
+<p>To install the packages from the list</p>
+<div class="highlight"><pre><span></span><code>adolist install mystatapacks_latest.pkl
+</code></pre></div>
+
+<p>You can update an existing list by</p>
+<div class="highlight"><pre><span></span><code> adolist update mystatapacks_latest.pkl
+</code></pre></div>
+
+<p><a href="https://www.dropbox.com/s/ryrskg415wkvyj5/mystatapacks_latest.pkl?dl=0">Here</a> is my latest <code>mystatapacks_latest.pkl</code> in case you want to have some useful packges installed.</p>
+<hr>
 <h1>Installing (I)Python &amp; Jupyter</h1>
 <p>The easiest and most convenient way to install a working version of IPython with all the required packages and tools is using <a href="https://www.anaconda.com/distribution/">Continuum's Anaconda Distribution</a>. You can install following the instructions in that website, or if you can just run <a href="https://www.dropbox.com/s/6st528ethbkmvv2/CondaInstall.sh?dl=0">this script (Mac/Linux)</a>. After installing the latest version of Anaconda, add the <code>Anaconda/bin</code> directory to your <code>PATH</code> variable. </p>
-<p>In Windows install <a href="https://www.microsoft.com/en-us/download/details.aspx?id=44266">Visual C++ 9.0</a>, <a href="https://msdn.microsoft.com/en-us/library/hh567368.aspx">Visual C++ 14</a> and <a href="https://www.microsoft.com/en-us/download/details.aspx?id=47259">Microsoft MPI6</a>. </p>
-<p>In <code>MACOS</code> download and install XCode (from the Apple store) and command line tools (option within XCode or in a terminal execute <code>xcode-select --install</code>).</p>
-<p>Then you can either:</p>
-<p>A. download one of the following scripts </p>
+<p>In <code>Windows</code> you may need to install some version of <a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">Visual C++</a> (e.g. for <code>Python-2.7</code> you need <a href="https://www.microsoft.com/en-us/download/details.aspx?id=44266">Visual C++ 9.0</a> otherwise choose the most up-to-date version) and <a href="https://www.microsoft.com/en-us/download/details.aspx?id=57467">Microsoft MPI</a>. </p>
+<p>In <code>MACOS</code> download and install <code>XCode</code> (from the Apple store) and command line tools (option within <code>XCode</code> or in a terminal execute <code>xcode-select --install</code>).</p>
+<p>Since the basic installation may not have all the packages you need and it is always best to keep an environment for your work, after installation:</p>
+<p>A. <strong>(Recommended)</strong> In a terminal window execute</p>
+<div class="highlight"><pre><span></span><code>conda create --name GeoPython39env -c conda-forge -c r -c mro --override-channels python=3.9 georasters geopandas pandas spatialpandas statsmodels xlrd networkx ipykernel ipyparallel ipython ipython_genutils ipywidgets jupyter jupyterlab kiwisolver matplotlib-base matplotlib scikit-image scikit-learn scipy seaborn geoplot geopy geotiff pycountry nb_conda_kernels stata_kernel
+</code></pre></div>
+
+<p>or if you want a very complete environment</p>
+<div class="highlight"><pre><span></span><code><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">GeoPython39env</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="o">-</span><span class="n">c</span> <span class="n">r</span> <span class="o">-</span><span class="n">c</span> <span class="n">mro</span> <span class="o">--</span><span class="n">override</span><span class="o">-</span><span class="n">channels</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.9</span> <span class="n">asciitree</span> <span class="n">autopep8</span> <span class="n">babel</span> <span class="n">basemap</span> <span class="n">beautifulsoup4</span> <span class="n">blas</span> <span class="n">bokeh</span> <span class="n">bzip2</span> <span class="n">cartopy</span> <span class="n">colorcet</span> <span class="n">curl</span> <span class="n">cython</span> <span class="n">cytoolz</span> <span class="n">dask</span> <span class="n">dask</span><span class="o">-</span><span class="n">core</span> <span class="n">datashader</span> <span class="n">datashape</span> <span class="n">descartes</span> <span class="n">dill</span> <span class="n">docutils</span> <span class="n">earthengine</span><span class="o">-</span><span class="n">api</span> <span class="n">fiona</span> <span class="n">gensim</span> <span class="n">geographiclib</span> <span class="n">geopandas</span> <span class="n">geoplot</span> <span class="n">geopy</span> <span class="n">geotiff</span> <span class="n">google</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="n">client</span> <span class="n">google</span><span class="o">-</span><span class="n">auth</span> <span class="n">google</span><span class="o">-</span><span class="n">auth</span><span class="o">-</span><span class="n">httplib2</span> <span class="n">georasters</span> <span class="n">imageio</span> <span class="n">imagesize</span> <span class="n">ipykernel</span> <span class="n">ipyparallel</span> <span class="n">ipython</span> <span class="n">ipython_genutils</span> <span class="n">ipywidgets</span> <span class="n">jupyter</span> <span class="n">jupyterlab</span> <span class="n">kiwisolver</span> <span class="n">matplotlib</span><span class="o">-</span><span class="n">base</span> <span class="n">matplotlib</span> <span class="n">markdown</span> <span class="n">networkx</span> <span class="n">nose</span> <span class="n">numba</span> <span class="n">numpy</span> <span class="n">openpyxl</span> <span class="n">pandas</span> <span class="n">pandas</span><span class="o">-</span><span class="n">datareader</span> <span class="n">pandoc</span> <span class="n">pandocfilters</span> <span class="n">pandana</span> <span class="n">pelican</span> <span class="n">pycountry</span> <span class="n">pymc3</span> <span class="n">pysal</span> <span class="n">urbanaccess</span> <span class="n">rasterstats</span> <span class="n">r</span> <span class="n">r</span><span class="o">-</span><span class="n">base</span> <span class="n">r</span><span class="o">-</span><span class="n">irkernel</span> <span class="n">statsmodels</span> <span class="n">sympy</span> <span class="n">rpy2</span> <span class="n">rasterio</span> <span class="n">r</span><span class="o">-</span><span class="n">tidyr</span> <span class="n">r</span><span class="o">-</span><span class="n">tibble</span> <span class="n">r</span><span class="o">-</span><span class="n">dplyr</span> <span class="n">rise</span> <span class="n">seaborn</span> <span class="n">scikit</span><span class="o">-</span><span class="n">allel</span> <span class="n">scikit</span><span class="o">-</span><span class="n">bio</span> <span class="n">scikit</span><span class="o">-</span><span class="n">image</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span> <span class="n">scipy</span> <span class="n">seaborn</span> <span class="n">swifter</span> <span class="n">theano</span> <span class="n">unidecode</span> <span class="n">urllib3</span> <span class="n">wikipedia</span> <span class="n">xlrd</span> <span class="n">jupyter_contrib_nbextensions</span> <span class="n">rstudio</span> <span class="n">camelot</span><span class="o">-</span><span class="n">py</span> <span class="n">html5lib</span> <span class="n">ghostscript</span> <span class="n">plotnine</span> <span class="n">nodejs</span> <span class="n">nb_conda_kernels</span> <span class="n">stata_kernel</span> <span class="n">libgfortran</span><span class="o">-</span><span class="n">ng</span>
+</code></pre></div>
+
+<p>Next execute </p>
+<div class="highlight"><pre><span></span><code><span class="n">conda</span> <span class="n">activate</span> <span class="n">GeoPython39env</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="n">linearmodels</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">jeetsukumaran</span><span class="o">/</span><span class="n">DendroPy</span><span class="o">.</span><span class="n">git</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">dmsul</span><span class="o">/</span><span class="n">econtools</span> <span class="n">ecopy</span> <span class="n">facebook</span><span class="o">-</span><span class="n">business</span> <span class="n">facebook</span><span class="o">-</span><span class="n">sdk</span> <span class="n">fontawesome</span><span class="o">-</span><span class="n">markdown</span> <span class="n">geocoder</span> <span class="n">geonamescache</span> <span class="n">googledrivedownloader</span> <span class="n">googletrans</span> <span class="n">ipystata</span> <span class="n">isodate</span> <span class="n">isounidecode</span> <span class="n">latexcodec</span> <span class="n">ldpred</span> <span class="n">linearmodels</span> <span class="n">lingpy</span> <span class="n">mccabe</span> <span class="n">ordered</span><span class="o">-</span><span class="n">set</span> <span class="n">plinkio</span> <span class="n">pyarrow</span> <span class="n">pybtex</span> <span class="n">pycldf</span> <span class="n">pycountry</span> <span class="n">pydocstyle</span> <span class="n">pyface</span> <span class="n">pyflakes</span> <span class="n">pylatex</span> <span class="n">pyparsing</span> <span class="n">pyreadstat</span> <span class="n">pytest</span><span class="o">-</span><span class="n">cov</span> <span class="n">python</span><span class="o">-</span><span class="n">jsonrpc</span><span class="o">-</span><span class="n">server</span> <span class="n">python</span><span class="o">-</span><span class="n">language</span><span class="o">-</span><span class="n">server</span> <span class="n">pytrends</span> <span class="n">quilt</span> <span class="n">ratelim</span> <span class="n">readme</span><span class="o">-</span><span class="n">renderer</span> <span class="n">rfc3986</span> <span class="n">rope</span> <span class="n">simpledbf</span> <span class="n">simplejson</span> <span class="n">smartypants</span> <span class="n">snowballstemmer</span> <span class="n">snuggs</span> <span class="n">stata</span><span class="o">-</span><span class="n">kernel</span> <span class="n">tabulate</span> <span class="n">tex2ipy</span> <span class="n">texsoup</span> <span class="n">toolz</span> <span class="n">traits</span> <span class="n">traitsui</span> <span class="n">twine</span> <span class="n">typogrify</span> <span class="n">uritemplate</span> <span class="n">w3lib</span> <span class="n">webencodings</span> <span class="n">wrapt</span> <span class="n">xlwt</span> <span class="n">yapf</span> <span class="n">modin</span> <span class="n">stargazer</span> <span class="n">covid</span> <span class="n">COVID19Py</span> <span class="n">pandasql</span> <span class="n">mplleaflet</span> <span class="n">scikit</span><span class="o">-</span><span class="n">gstat</span> <span class="n">binsreg</span>
+
+<span class="n">conda</span> <span class="n">update</span> <span class="o">--</span><span class="n">all</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="o">-</span><span class="n">c</span> <span class="n">r</span> <span class="o">-</span><span class="n">c</span> <span class="n">mro</span>
+
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">stata_kernel</span><span class="o">.</span><span class="n">install</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">nodejs</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">jupyter</span> <span class="n">labextension</span> <span class="n">install</span> <span class="n">jupyterlab</span><span class="o">-</span><span class="n">stata</span><span class="o">-</span><span class="n">highlight</span>
+<span class="n">jupyter</span> <span class="n">labextension</span> <span class="n">install</span> <span class="n">verdant</span><span class="o">-</span><span class="n">history</span>
+<span class="n">ipcluster</span> <span class="n">nbextension</span> <span class="n">enable</span>
+<span class="n">jupyter</span> <span class="n">contrib</span> <span class="n">nbextension</span> <span class="n">install</span> <span class="o">--</span><span class="n">sys</span><span class="o">-</span><span class="n">prefix</span>
+<span class="n">jupyter</span> <span class="n">labextension</span> <span class="n">install</span> <span class="n">verdant</span><span class="o">-</span><span class="n">history</span>
+<span class="n">jupyter</span> <span class="n">nbextension</span> <span class="n">enable</span> <span class="n">nbTranslate</span><span class="o">/</span><span class="n">main</span>
+<span class="n">r</span> <span class="o">-</span><span class="n">e</span> <span class="s2">&quot;IRkernel::installspec()&quot;</span>
+
+<span class="n">ipcluster</span> <span class="n">nbextension</span> <span class="n">enable</span>
+</code></pre></div>
+
+<p>This should create an environment with most of the packages we need. We can always install others down the road. </p>
+<p><code>Windows</code> users will need to follow <a href="https://kylebarron.dev/stata_kernel/getting_started/">additional instructions</a> to have the <code>Stata</code> kernel working.</p>
+<p>B. <strong>(Generally not recommended)</strong> download one of the following scripts </p>
 <ul>
-<li><a href="https://www.dropbox.com/s/d79ahsu3xz4632g/GeoPython3env2019B_nobuilds.yml?dl=0">GeoPython3env</a> (latest environment)</li>
+<li><a href="https://www.dropbox.com/s/mnyndhyqeir64yh/environment_full.yml?dl=0">GeoPython38env</a></li>
+<li><a href="https://www.dropbox.com/s/xousjyaegz8px9c/GeoPython37_2020.yml?dl=0">GeoPython37env</a></li>
+<li><a href="https://www.dropbox.com/s/d79ahsu3xz4632g/GeoPython3env2019B_nobuilds.yml?dl=0">GeoPython35env</a> (older Python 3.5 environment)</li>
 <li><a href="https://www.dropbox.com/s/38a7mcaziyzmovj/GeoPython3env.yml?dl=0">GeoPython3env old</a>  (older Python 3 environment)</li>
 <li><a href="https://www.dropbox.com/s/mrr9qwyz7t6s2uu/GeoPython2env.yml?dl=0">GeoPython2env</a> (older Python 2 environment)</li>
 </ul>
 <p>and execute</p>
-<div class="highlight"><pre><span></span><span class="err">conda update conda</span>
-<span class="err">conda-env create -f GeoPython3env2019B_nobuilds.yml</span>
-<span class="err"># Or uncomment one of these if you want to install the older versions</span>
-<span class="err">#conda-env create -f GeoPython2env.yml</span>
-<span class="err">#conda-env create -f GeoPython3env.yml</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">conda</span> <span class="nv">update</span> <span class="nv">conda</span>
+<span class="nv">conda</span><span class="o">-</span><span class="nv">env</span> <span class="nv">create</span> <span class="o">-</span><span class="nv">f</span> <span class="nv">GeoPython3env2019B_nobuilds</span>.<span class="nv">yml</span>
+# <span class="nv">Or</span> <span class="nv">uncomment</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">these</span> <span class="k">if</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">install</span> <span class="nv">the</span> <span class="nv">older</span> <span class="nv">versions</span>
+#<span class="nv">conda</span><span class="o">-</span><span class="nv">env</span> <span class="nv">create</span> <span class="o">-</span><span class="nv">f</span> <span class="nv">GeoPython2env</span>.<span class="nv">yml</span>
+#<span class="nv">conda</span><span class="o">-</span><span class="nv">env</span> <span class="nv">create</span> <span class="o">-</span><span class="nv">f</span> <span class="nv">GeoPython3env</span>.<span class="nv">yml</span>
+</code></pre></div>
 
-
-<p>This should create an environment with all the packages you will require for this course (and more!). </p>
-<p>B. If A. fails, which seems to happen often due to version conflicts, execute</p>
-<div class="highlight"><pre><span></span><span class="err">conda create --name GeoPython3env -c conda-forge -c numba -c rapidsai -c mro -c r -c defaults python=3.6 geopandas georasters pandas numpy matplotlib seaborn jupyter scikit-image scikit-learn scipy r rstudio r-irkernel ipykernel ipyparallel statsmodels pycountry networkx rpy2 rasterio r-tidyr r-tibble r-dplyr pandana urbanaccess dill xlrd pandas-datareader rise jupyterlab cython numba openpyxl scikit-bio geoplot wikipedia swifter pelican datashader </span>
-<span class="err">conda activate GeoPython3env</span>
-<span class="err">pip install linearmodels isounidecode geonamescache geocoder</span>
-</pre></div>
-
-
-<p>This should create an environment with most of the packages we need. We can always install others down the road.</p>
-<p>To start using one of the environment you will need to exectute the following command</p>
-<div class="highlight"><pre><span></span><span class="err">source activate GeoPython3env</span>
-</pre></div>
-
-
-<p>or for <code>Python 2.x</code></p>
-<div class="highlight"><pre><span></span><span class="err">source activate GeoPython2env</span>
-</pre></div>
-
-
-<p>I would suggest using <code>GeoPython3env</code>, since it is the latest and most up-to-date version (I'll try to keep adding new versions as time passes).</p>
 <h4>MacOS</h4>
 <p>Instead of the previous options, you can download <a href="https://www.dropbox.com/s/8hz368xsh48390i/GeoPython3env-spec-file.txt?dl=0">this file</a> and execute</p>
-<div class="highlight"><pre><span></span><span class="err">conda create --name GeoPython3env --file GeoPython3env-spec-file.txt</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>conda create --name GeoPython3env --file GeoPython3env-spec-file.txt
+</code></pre></div>
 
+<h3>After Installation is complete</h3>
+<p>This should create an environment with all the packages you will require for this course (and more!). </p>
+<p>To start using one of the environment you will need to exectute the following command</p>
+<div class="highlight"><pre><span></span><code>source activate GeoPython38env
+</code></pre></div>
 
+<p>or for <code>Python 2.x</code></p>
+<div class="highlight"><pre><span></span><code>source activate GeoPython2env
+</code></pre></div>
+
+<p>I would suggest using <code>GeoPython38env</code>, since it is the latest and most up-to-date version (I'll try to keep adding new versions as time passes).</p>
 <h2>Parallel Computing</h2>
 <p>One of the advantages of <code>Jupyter Notebooks</code> is that they allow you to work (very easily) with multiple processors using <code>ipyparallel</code>. Once you have <code>ipyparallel</code> installed (automatically done for you with the scritps above), you will need to execute the following code once</p>
-<div class="highlight"><pre><span></span><span class="err">ipcluster nbextension enable</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>ipcluster nbextension enable
+</code></pre></div>
 
 <h2>Stata Kernel</h2>
 <p>We can use <code>Stata</code> within Jupyter Notebooks with the <a href="https://kylebarron.dev/stata_kernel/">Stata kernel</a>. I recommend you make sure it is installed and you have highlighting. To install (in case you do not use the <code>YAML</code> environment file above), execute</p>
-<div class="highlight"><pre><span></span><span class="err">pip install stata_kernel</span>
-<span class="err">python -m stata_kernel.install</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>pip install stata_kernel
+python -m stata_kernel.install
+</code></pre></div>
 
 <p>and then </p>
-<div class="highlight"><pre><span></span><span class="err">conda install -c conda-forge nodejs -y</span>
-<span class="err">jupyter labextension install jupyterlab-stata-highlight</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>conda install -c conda-forge nodejs -y
+jupyter labextension install jupyterlab-stata-highlight
+</code></pre></div>
 
-
+<p><code>Windows</code> users will need to follow <a href="https://kylebarron.dev/stata_kernel/getting_started/">additional instructions</a> to have the <code>Stata</code> kernel working.</p>
 <h2>R kernel</h2>
 <p>We can also use <code>R</code> within Jupyter Notebooks with the <a href="https://irkernel.github.io/">R kernel</a>. The best way to install it (in case you do not use the <code>YAML</code> environment file above) is to use <code>conda</code> by executing</p>
-<div class="highlight"><pre><span></span><span class="err">conda install -c r r-irkernel</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>conda install -c conda-forge -c r r-irkernel
+</code></pre></div>
 
 <p>You can also install <code>R</code> and <code>R</code> packages by using <code>conda</code>. Simply execute</p>
-<div class="highlight"><pre><span></span><span class="err">conda install -c r r</span>
-<span class="err">conda install -c r r-PACKAGE_NAME</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>conda install -c conda-forge -c r r
+conda install -c conda-forge -c r r-PACKAGE_NAME
+</code></pre></div>
 
+<p>For the <code>R-kernel</code> to be available you need to open <code>R</code> and execute</p>
+<div class="highlight"><pre><span></span><code>IRkernel::installspec()
+</code></pre></div>
 
 <h2>Running Stata or R in Python</h2>
 <p>We can also use <code>Stata</code> or <code>R</code> directly within <code>Python</code>. You only need to use the <code>%magic</code> for each after installing the required packages. For example for <code>Stata</code> you need  <a href="https://github.com/TiesdeKok/ipystata"><code>ipystata</code></a>. Install by executing</p>
-<div class="highlight"><pre><span></span><span class="err">pip install ipystata</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>pip install ipystata
+</code></pre></div>
 
 <p>Then in <code>jupyter</code> execute</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipystata</span> 
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">ipystata</span> 
 <span class="kn">from</span> <span class="nn">ipystata.config</span> <span class="kn">import</span> <span class="n">config_stata</span>
 <span class="n">config_stata</span><span class="p">(</span><span class="s1">&#39;Path to your Stata executable&#39;</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Once configured you can use the <code>%%stata</code> magic. E.g.</p>
-<div class="highlight"><pre><span></span><span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">ipystata</span>  
+<div class="highlight"><pre><span></span><code><span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span> <span class="nn">ipystata</span>  
 <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="o">%%</span><span class="n">stata</span>  
         <span class="n">display</span> <span class="s2">&quot;Hello, I am printed in Stata.&quot;</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>More info in the <a href="https://github.com/TiesdeKok/ipystata"><code>ipystata</code> website</a>.</p>
 <p>Similarly, we can use <code>R</code> using <a href="https://rpy2.bitbucket.io/"><code>rpy2</code></a>. Install by executing</p>
-<div class="highlight"><pre><span></span><span class="err">pip install rpy2</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>conda install -c conda-forge -c r rpy2
+</code></pre></div>
 
 <p>Then in jupyter execute</p>
-<div class="highlight"><pre><span></span><span class="k">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="o">%</span><span class="n">load_ext</span> <span class="n">rpy2</span><span class="p">.</span><span class="n">ipython</span>
-<span class="k">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="o">%%</span><span class="n">R</span>
+<div class="highlight"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="o">%</span><span class="n">load_ext</span> <span class="n">rpy2</span><span class="o">.</span><span class="n">ipython</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="o">%%</span><span class="n">R</span>
 
-        <span class="n">R</span><span class="p">.</span><span class="k">version</span>
-</pre></div>
-
+        <span class="n">R</span><span class="o">.</span><span class="n">version</span>
+</code></pre></div>
 
 <p>More info in the <a href="https://rpy2.bitbucket.io/"><code>rpy2</code> website</a>.</p>
+<hr>
 <h1>Notebooks</h1>
 <ul>
 <li>Notebook 1: Introduction <a href="/IntroPython.html">(html)</a> <a href="/notebooks/IntroPython.ipynb">(ipynb)</a></li>
 <li>Notebook 2: Dynamic Programming in Python <a href="/Dynamic Programming.html">(html)</a> <a href="/notebooks/DynamicProgramming.ipynb">(ipynb)</a></li>
 <li>Notebook 3: Faster Dynamic Programming with Numba <a href="/Dynamic Programming Numba.html">(html)</a> <a href="Faster Computation with Numba.ipynb">ipynb</a></li>
 <li>Notebook 4: Economic Data Analysis <a href="/Economic Data Analysis.html">(html)</a> <a href="/notebooks/EconomicDataAnalysis.ipynb">(ipynb)</a></li>
+<li>Notebook 5: GIS with QGIS <a href="/GIS with QGIS.html">(html)</a> <a href="/notebooks/GIS.ipynb">(ipynb)</a></li>
+<li>Notebook 6: GIS with Python (Geometries) <a href="/GIS with Python.html">(html)</a> <a href="/notebooks/GIS with Python.ipynb">(ipynb)</a></li>
+<li>Notebook 7: GIS with Python 2 (Rasters) <a href="/GIS with Python 2.html">(html)</a> <a href="/notebooks/GIS with Python 2.ipynb">(ipynb)</a></li>
+<li>Notebook 8: GIS with Python 3 (Data Munging) <a href="/GIS with Python 3.html">(html)</a> <a href="/notebooks/GIS with Python 3.ipynb">(ipynb)</a></li>
+<li>Notebook 9: Stata Jupyter Notebooks (Stata kernel) <a href="/Stata Notebook Example.html">(html)</a> <a href="/notebooks/Stata Notebook Example.ipynb">(ipynb)</a></li>
+<li>Notebook 10: Stata in a Python Jupyter Notebook (ipystata) <a href="/Stata in Python Notebook.html">(html)</a> <a href="/notebooks/Stata in Python Notebook.ipynb">(ipynb)</a></li>
 </ul>
+<hr>
+<h1>Try it out online</h1>
+<p>If you want to try out some of the tools and play around without installing or if installation fails, use this <a href="https://mybinder.org/v2/gh/ozak/CompEcon/master">Jupyter Notebook binder</a> or the <a href="https://mybinder.org/v2/gh/ozak/CompEcon/master?urlpath=lab/tree/">JupyterLab binder</a>.</p>
+<p><a href="https://mybinder.org/v2/gh/ozak/CompEcon/master?urlpath=lab"><img alt="Binder" src="https://img.shields.io/badge/launch-JupyterLab-579ACA.svg?logo=data:image/png;base64,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"></a>
+<a href="https://mybinder.org/v2/gh/ozak/CompEcon/master"><img alt="Binder" src="https://mybinder.org/badge_logo.svg"></a> <a href="https://mybinder.org/v2/gh/ozak/CompEcon/master?filepath=index.ipynb"><img alt="Binder" src="https://img.shields.io/badge/launch-notebook-579ACA.svg?logo=data:image/png;base64,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"></a> </p>
         </div>
     </section>
         </div>
@@ -238,26 +327,16 @@ Macroeconomics II (Econ-6395)            </a>
 
 
 
-            <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+            <li class="list-group-item"><a href="../"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
-                    <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
-                            Macroeconomics
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/notebooks.html">
-                            Notebooks
-                        </a>
-                    </li>
-                    <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/ipython.html">
+                    <li class="list-group-item tag-4">
+                        <a href="../tag/ipython.html">
                             IPython
                         </a>
                     </li>
                     <li class="list-group-item tag-4">
-                        <a href="https://macroeconomics.github.io/tag/economic-growth.html">
-                            Economic Growth
+                        <a href="../tag/macroeconomics.html">
+                            Macroeconomics
                         </a>
                     </li>
                 </ul>
@@ -292,13 +371,13 @@ Macroeconomics II (Econ-6395)            </a>
       </div>
    </div>
 </footer>
-<script src="https://macroeconomics.github.io/theme/js/jquery.min.js"></script>
+<script src="../theme/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://macroeconomics.github.io/theme/js/bootstrap.min.js"></script>
+<script src="../theme/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="https://macroeconomics.github.io/theme/js/respond.min.js"></script>
+<script src="../theme/js/respond.min.js"></script>
 
     <!-- GitHub JS -->
     <script type="text/javascript">
@@ -306,7 +385,7 @@ Macroeconomics II (Econ-6395)            </a>
             if (!window.jXHR) {
                 var jxhr = document.createElement('script');
                 jxhr.type = 'text/javascript';
-                jxhr.src = 'https://macroeconomics.github.io/theme/js/jXHR.js';
+                jxhr.src = '../theme/js/jXHR.js';
                 var s = document.getElementsByTagName('script')[0];
                 s.parentNode.insertBefore(jxhr, s);
             }
@@ -319,7 +398,7 @@ Macroeconomics II (Econ-6395)            </a>
             });
         });
     </script>
-    <script src="https://macroeconomics.github.io/theme/js/github.js" type="text/javascript"></script>
+    <script src="../theme/js/github.js" type="text/javascript"></script>
     <!-- End GitHub JS Code -->
 
 </body>
