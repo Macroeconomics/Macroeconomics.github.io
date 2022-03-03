@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+# coding: utf-8
+'''
+======================================================
+Author:  Ömer Özak, 2019 (ozak at smu.edu)
+Website: http://omerozak.com
+GitHub:  https://github.com/ozak/
+======================================================
+Create figure for industrialization per capita
+Source: https://commons.wikimedia.org/wiki/File:Industrialization_per_capita_1750-1900.svg
+'''
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+palette_colors = ["#1b9e77", "#d95f02", "#7570b3", "#e7298a", "#66a61e",
+                  "#e6ab02", "#a6761d", "#666666"]
+palette = sns.color_palette(palette_colors, 8)
+sns.set_style("white")
+years = [1750, 1800, 1830, 1860, 1880, 1900, 1913]
+countries = ["United Kingdom", "Germany", "France", "Austria-Hungary",
+             "Russia", "Italy", "United States", "Japan"]
+data = np.array([
+       [  10.,   16.,   25.,   64.,   87.,  100.,  115.],
+       [   8.,    8.,    9.,   15.,   25.,   52.,   85.],
+       [   9.,    9.,   12.,   20.,   28.,   39.,   59.],
+       [   7.,    7.,    8.,   11.,   15.,   23.,   32.],
+       [   6.,    6.,    7.,    8.,   10.,   15.,   20.],
+       [   8.,    8.,    8.,   10.,   12.,   17.,   26.],
+       [   4.,    9.,   14.,   21.,   38.,   69.,  126.],
+       [   7.,    7.,    7.,    7.,    9.,   12.,   20.]])
+plt.figure(figsize=(6, 4))
+for k in range(8):
+    plt.plot(years, data[k, :], lw=2, color=palette[k], label=countries[k])
+plt.legend(loc="best")
+plt.xlabel("Year")
+plt.ylabel("Relative per capita industrialization level")
+plt.xlim([1750, 1913])
+data

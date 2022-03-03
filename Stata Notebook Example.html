@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Stata Notebook Example - Macroeconomics II (Econ-6395)</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link href="https://macroeconomics.github.io/images/favicomatic/favicon.ico" rel="icon">
+
+<link rel="canonical" href="https://macroeconomics.github.io/Stata Notebook Example.html">
+
+        <meta name="author" content="Ömer Özak" />
+        <meta name="keywords" content="Economic Growth,Macroeconomics,IPython,Notebooks" />
+        <meta name="description" content="Working with in You can work with a Jupyter notebook using Stata just as you would using Python. Text and math can be written in Markdown as we have done in the other notebooks. So, use your usual Stata code in code cells, produce figures etc., as if you were in the Stata" />
+
+        <meta property="og:site_name" content="Macroeconomics II (Econ-6395)" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Stata Notebook Example"/>
+        <meta property="og:url" content="https://macroeconomics.github.io/Stata Notebook Example.html"/>
+        <meta property="og:description" content="Working with in You can work with a Jupyter notebook using Stata just as you would using Python. Text and math can be written in Markdown as we have done in the other notebooks. So, use your usual Stata code in code cells, produce figures etc., as if you were in the Stata"/>
+        <meta property="article:published_time" content="2020-06-02" />
+            <meta property="article:section" content="Ph.D." />
+            <meta property="article:tag" content="Economic Growth" />
+            <meta property="article:tag" content="Macroeconomics" />
+            <meta property="article:tag" content="IPython" />
+            <meta property="article:tag" content="Notebooks" />
+            <meta property="article:author" content="Ömer Özak" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://macroeconomics.github.io/theme/css/bootstrap.spacelab.min.css" type="text/css"/>
+    <link href="https://macroeconomics.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://macroeconomics.github.io/theme/css/pygments/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://macroeconomics.github.io/theme/css/style.css" type="text/css"/>
+        <link href="https://macroeconomics.github.io/static/custom.css" rel="stylesheet">
+
+        <link href="https://macroeconomics.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Macroeconomics II (Econ-6395) ATOM Feed"/>
+
+
+
+        <link href="https://macroeconomics.github.io/feeds/phd.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Macroeconomics II (Econ-6395) Ph.D. ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://macroeconomics.github.io/" class="navbar-brand">
+Macroeconomics II (Econ-6395)            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/pages/Syllabus.html">Syllabus</a></li>
+                    <li><a href="/pages/Lecture Notes.html">Lecture Notes</a></li>
+                    <li><a href="/pages/Practice Material.html">Practice Material</a></li>
+                    <li><a href="/pages/Computation.html">Computation</a></li>
+                    <li><a href="/pages/CV.html">CV</a></li>
+                    <li><a href="/pages/Contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://macroeconomics.github.io/Stata Notebook Example.html"
+                       rel="bookmark"
+                       title="Permalink to Stata Notebook Example">
+                        Stata Notebook Example
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2020-06-02T10:20:00-05:00"> Tue 02 June 2020</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://macroeconomics.github.io/tag/economic-growth.html">Economic Growth</a>
+        /
+	<a href="https://macroeconomics.github.io/tag/macroeconomics.html">Macroeconomics</a>
+        /
+	<a href="https://macroeconomics.github.io/tag/ipython.html">IPython</a>
+        /
+	<a href="https://macroeconomics.github.io/tag/notebooks.html">Notebooks</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Working with <img src="https://www.stata.com/includes/images/stata-fb.jpg" alt="Stata" width="200" /> in <img src="https://raw.githubusercontent.com/adebar/awesome-jupyter/master/logo.png" alt="Jupyter" width="250/"></h1>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can work with a <code>Jupyter</code> notebook using <code>Stata</code> just as you would using Python. Text and math can be written in Markdown as we have done in the other notebooks. So, use your usual <code>Stata</code> code in <code>code cells</code>, produce figures etc., as if you were in the <code>Stata</code> console, but make it nice by using markdown to explain what you are doing.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="A-simple-example">A simple example<a class="anchor-link" href="#A-simple-example">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's run a simple <code>Stata</code> example using one of their help files.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-stata"><pre><span></span><span class="k">sysuse</span> auto<span class="m">.</span>dta
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(1978 Automobile Data)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Basic-information">Basic information<a class="anchor-link" href="#Basic-information">&#182;</a></h2><p>Let's summarize and describe the data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-stata"><pre><span></span><span class="k">summ</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+        make |          0
+       price |         74    6165.257    2949.496       3291      15906
+         mpg |         74     21.2973    5.785503         12         41
+       rep78 |         69    3.405797    .9899323          1          5
+    headroom |         74    2.993243    .8459948        1.5          5
+-------------+---------------------------------------------------------
+       trunk |         74    13.75676    4.277404          5         23
+      weight |         74    3019.459    777.1936       1760       4840
+      length |         74    187.9324    22.26634        142        233
+        turn |         74    39.64865    4.399354         31         51
+displacement |         74    197.2973    91.83722         79        425
+-------------+---------------------------------------------------------
+  gear_ratio |         74    3.014865    .4562871       2.19       3.89
+     foreign |         74    .2972973    .4601885          0          1
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-stata"><pre><span></span><span class="k">desc</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Contains data from /Applications/Stata/ado/base/a/auto.dta
+  obs:            74                          1978 Automobile Data
+ vars:            12                          13 Apr 2018 17:45
+                                              (_dta has notes)
+--------------------------------------------------------------------------------
+              storage   display    value
+variable name   type    format     label      variable label
+--------------------------------------------------------------------------------
+make            str18   %-18s                 Make and Model
+price           int     %8.0gc                Price
+mpg             int     %8.0g                 Mileage (mpg)
+rep78           int     %8.0g                 Repair Record 1978
+headroom        float   %6.1f                 Headroom (in.)
+trunk           int     %8.0g                 Trunk space (cu. ft.)
+weight          int     %8.0gc                Weight (lbs.)
+length          int     %8.0g                 Length (in.)
+turn            int     %8.0g                 Turn Circle (ft.)
+displacement    int     %8.0g                 Displacement (cu. in.)
+gear_ratio      float   %6.2f                 Gear Ratio
+foreign         byte    %8.0g      origin     Car type
+--------------------------------------------------------------------------------
+Sorted by: foreign
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Regressions">Regressions<a class="anchor-link" href="#Regressions">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's run a simple regression</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-stata"><pre><span></span><span class="k">reg</span> price mpg rep78 headroom trunk weight length turn displacement gear_ratio foreign, r
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Linear regression                               Number of obs     =         69
+                                                F(10, 58)         =      11.47
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.5989
+                                                Root MSE          =     1997.3
+
+------------------------------------------------------------------------------
+             |               Robust
+       price |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         mpg |  -21.80518   84.00518    -0.26   0.796    -189.9598    146.3495
+       rep78 |   184.7935   337.0935     0.55   0.586    -489.9724    859.5594
+    headroom |  -635.4921   251.3987    -2.53   0.014    -1138.721    -132.263
+       trunk |   71.49929   70.18603     1.02   0.313     -68.9933    211.9919
+      weight |   4.521161   1.963781     2.30   0.025      .590227    8.452096
+      length |  -76.49101   51.40168    -1.49   0.142    -179.3826    26.40062
+        turn |  -114.2777   122.2631    -0.93   0.354    -359.0139    130.4585
+displacement |   11.54012   7.065004     1.63   0.108    -2.602017    25.68227
+  gear_ratio |  -318.6479   1016.632    -0.31   0.755    -2353.658    1716.362
+     foreign |   3334.848   988.7149     3.37   0.001     1355.721    5313.976
+       _cons |   9789.494   8240.462     1.19   0.240    -6705.583    26284.57
+------------------------------------------------------------------------------
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Plots">Plots<a class="anchor-link" href="#Plots">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-stata"><pre><span></span><span class="k">scatter</span> price mpg, mlabel(make)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+                <iframe frameborder="0" scrolling="no" height="436" width="600" srcdoc='&lt;html&gt;&lt;body&gt;&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;!-- This is a Stata 16.1 generated SVG file (http://www.stata.com) --&gt;
+
+&lt;svg version="1.1" width="600px" height="436px" viewBox="0 0 3960 2880" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+	&lt;desc&gt;Stata Graph - Graph&lt;/desc&gt;
+	&lt;rect x="0" y="0" width="3960" height="2880" style="fill:#EAF2F3;stroke:none"/&gt;
+	&lt;rect x="0.00" y="0.00" width="3959.88" height="2880.00" style="fill:#EAF2F3"/&gt;
+	&lt;rect x="2.88" y="2.88" width="3954.12" height="2874.24" style="fill:none;stroke:#EAF2F3;stroke-width:5.76"/&gt;
+	&lt;rect x="390.80" y="100.86" width="3468.22" height="2388.33" style="fill:#FFFFFF"/&gt;
+	&lt;rect x="393.68" y="103.74" width="3462.46" height="2382.57" style="fill:none;stroke:#FFFFFF;stroke-width:5.76"/&gt;
+	&lt;line x1="390.80" y1="1714.86" x2="3859.02" y2="1714.86" style="stroke:#EAF2F3;stroke-width:8.64"/&gt;
+	&lt;line x1="390.80" y1="1003.89" x2="3859.02" y2="1003.89" style="stroke:#EAF2F3;stroke-width:8.64"/&gt;
+	&lt;line x1="390.80" y1="292.93" x2="3859.02" y2="292.93" style="stroke:#EAF2F3;stroke-width:8.64"/&gt;
+	&lt;circle cx="1747.60" cy="1843.07" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1747.60" cy="1843.07" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1789.55" y="1871.08" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;AMC Concord&lt;/text&gt;
+	&lt;circle cx="1208.67" cy="1750.62" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1208.67" cy="1750.62" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1250.62" y="1778.63" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;AMC Pacer&lt;/text&gt;
+	&lt;circle cx="1747.60" cy="1885.64" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1747.60" cy="1885.64" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1789.55" y="1913.65" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;AMC Spirit&lt;/text&gt;
+	&lt;circle cx="1532.03" cy="1741.09" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1532.03" cy="1741.09" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1573.98" y="1769.10" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Buick Century&lt;/text&gt;
+	&lt;circle cx="993.09" cy="1312.90" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="993.09" cy="1312.90" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1035.05" y="1340.92" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Buick Electra&lt;/text&gt;
+	&lt;circle cx="1316.45" cy="1602.86" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1316.45" cy="1602.86" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1358.40" y="1630.87" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Buick LeSabre&lt;/text&gt;
+	&lt;circle cx="2178.87" cy="1792.70" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2178.87" cy="1792.70" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2220.82" y="1820.71" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Buick Opel&lt;/text&gt;
+	&lt;circle cx="1532.03" cy="1688.00" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1532.03" cy="1688.00" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1573.98" y="1716.01" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Buick Regal&lt;/text&gt;
+	&lt;circle cx="1100.88" cy="951.05" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1100.88" cy="951.05" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1142.83" y="979.06" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Buick Riviera&lt;/text&gt;
+	&lt;circle cx="1424.24" cy="1845.42" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1424.24" cy="1845.42" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1466.19" y="1873.43" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Buick Skylark&lt;/text&gt;
+	&lt;circle cx="885.31" cy="807.00" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="885.31" cy="807.00" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="927.26" y="835.01" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Cad. Deville&lt;/text&gt;
+	&lt;circle cx="885.31" cy="364.08" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="885.31" cy="364.08" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="927.26" y="392.10" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Cad. Eldorado&lt;/text&gt;
+	&lt;circle cx="1639.81" cy="164.22" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1639.81" cy="164.22" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1681.76" y="192.23" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Cad. Seville&lt;/text&gt;
+	&lt;circle cx="2502.22" cy="1956.80" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2502.22" cy="1956.80" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2544.18" y="1984.81" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Chev. Chevette&lt;/text&gt;
+	&lt;circle cx="1100.88" cy="1614.62" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1100.88" cy="1614.62" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1142.83" y="1642.63" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Chev. Impala&lt;/text&gt;
+	&lt;circle cx="1747.60" cy="1785.40" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1747.60" cy="1785.40" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1789.55" y="1813.41" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Chev. Malibu&lt;/text&gt;
+	&lt;circle cx="1747.60" cy="1700.13" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1747.60" cy="1700.13" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1789.55" y="1728.14" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Chev. Monte Carlo&lt;/text&gt;
+	&lt;circle cx="1963.29" cy="1904.45" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1963.29" cy="1904.45" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2005.24" y="1932.46" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Chev. Monza&lt;/text&gt;
+	&lt;circle cx="1424.24" cy="1863.49" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1424.24" cy="1863.49" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1466.19" y="1891.50" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Chev. Nova&lt;/text&gt;
+	&lt;circle cx="2610.01" cy="1859.40" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2610.01" cy="1859.40" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2651.96" y="1887.41" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Dodge Colt&lt;/text&gt;
+	&lt;circle cx="1316.45" cy="1855.69" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1316.45" cy="1855.69" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1358.40" y="1883.70" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Dodge Diplomat&lt;/text&gt;
+	&lt;circle cx="1100.88" cy="1588.88" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1100.88" cy="1588.88" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1142.83" y="1616.89" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Dodge Magnum&lt;/text&gt;
+	&lt;circle cx="1208.67" cy="1524.03" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1208.67" cy="1524.03" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1250.62" y="1552.04" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Dodge St. Regis&lt;/text&gt;
+	&lt;circle cx="2394.44" cy="1801.73" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2394.44" cy="1801.73" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2436.39" y="1829.74" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Ford Fiesta&lt;/text&gt;
+	&lt;circle cx="1639.81" cy="1830.44" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1639.81" cy="1830.44" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1681.76" y="1858.46" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Ford Mustang&lt;/text&gt;
+	&lt;circle cx="669.74" cy="791.03" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="669.74" cy="791.03" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="711.69" y="819.05" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Linc. Continental&lt;/text&gt;
+	&lt;circle cx="669.74" cy="492.91" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="669.74" cy="492.91" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="711.69" y="520.92" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Linc. Mark V&lt;/text&gt;
+	&lt;circle cx="885.31" cy="511.10" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="885.31" cy="511.10" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="927.26" y="539.12" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Linc. Versailles&lt;/text&gt;
+	&lt;circle cx="1747.60" cy="1881.43" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1747.60" cy="1881.43" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1789.55" y="1909.44" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Merc. Bobcat&lt;/text&gt;
+	&lt;circle cx="885.31" cy="1661.02" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="885.31" cy="1661.02" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="927.26" y="1689.04" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Merc. Cougar&lt;/text&gt;
+	&lt;circle cx="993.09" cy="1549.27" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="993.09" cy="1549.27" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1035.05" y="1577.29" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Merc. Marquis&lt;/text&gt;
+	&lt;circle cx="1316.45" cy="1783.66" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1316.45" cy="1783.66" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1358.40" y="1811.68" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Merc. Monarch&lt;/text&gt;
+	&lt;circle cx="885.31" cy="1529.60" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="885.31" cy="1529.60" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="927.26" y="1557.61" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Merc. XR-7&lt;/text&gt;
+	&lt;circle cx="1532.03" cy="1957.91" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1532.03" cy="1957.91" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1573.98" y="1985.92" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Merc. Zephyr&lt;/text&gt;
+	&lt;circle cx="1639.81" cy="1172.57" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1639.81" cy="1172.57" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1681.76" y="1200.58" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Olds 98&lt;/text&gt;
+	&lt;circle cx="1424.24" cy="1690.48" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1424.24" cy="1690.48" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1466.19" y="1718.49" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Olds Cutl Supr&lt;/text&gt;
+	&lt;circle cx="1424.24" cy="1752.85" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1424.24" cy="1752.85" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1466.19" y="1780.86" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Olds Cutlass&lt;/text&gt;
+	&lt;circle cx="1316.45" cy="1730.57" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1316.45" cy="1730.57" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1358.40" y="1758.59" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Olds Delta 88&lt;/text&gt;
+	&lt;circle cx="1424.24" cy="1831.31" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1424.24" cy="1831.31" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1466.19" y="1859.32" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Olds Omega&lt;/text&gt;
+	&lt;circle cx="1963.29" cy="1829.33" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1963.29" cy="1829.33" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2005.24" y="1857.34" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Olds Starfire&lt;/text&gt;
+	&lt;circle cx="1100.88" cy="951.17" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1100.88" cy="951.17" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1142.83" y="979.18" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Olds Toronado&lt;/text&gt;
+	&lt;circle cx="2394.44" cy="1765.10" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2394.44" cy="1765.10" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2436.39" y="1793.11" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Plym. Arrow&lt;/text&gt;
+	&lt;circle cx="3041.16" cy="1796.66" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="3041.16" cy="1796.66" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="3083.11" y="1824.67" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Plym. Champ&lt;/text&gt;
+	&lt;circle cx="2071.08" cy="1788.49" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2071.08" cy="1788.49" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2113.03" y="1816.50" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Plym. Horizon&lt;/text&gt;
+	&lt;circle cx="2178.87" cy="1503.61" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2178.87" cy="1503.61" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2220.82" y="1531.62" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Plym. Sapporo&lt;/text&gt;
+	&lt;circle cx="1316.45" cy="1848.51" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1316.45" cy="1848.51" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1358.40" y="1876.52" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Plym. Volare&lt;/text&gt;
+	&lt;circle cx="1316.45" cy="1601.38" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1316.45" cy="1601.38" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1358.40" y="1629.39" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Pont. Catalina&lt;/text&gt;
+	&lt;circle cx="1316.45" cy="1724.26" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1316.45" cy="1724.26" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1358.40" y="1752.27" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Pont. Firebird&lt;/text&gt;
+	&lt;circle cx="1424.24" cy="1683.30" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1424.24" cy="1683.30" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1466.19" y="1711.31" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Pont. Grand Prix&lt;/text&gt;
+	&lt;circle cx="1424.24" cy="1754.33" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1424.24" cy="1754.33" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1466.19" y="1782.35" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Pont. Le Mans&lt;/text&gt;
+	&lt;circle cx="1424.24" cy="1796.78" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1424.24" cy="1796.78" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1466.19" y="1824.79" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Pont. Phoenix&lt;/text&gt;
+	&lt;circle cx="1963.29" cy="1832.67" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1963.29" cy="1832.67" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2005.24" y="1860.68" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Pont. Sunbird&lt;/text&gt;
+	&lt;circle cx="1208.67" cy="1048.07" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1208.67" cy="1048.07" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1250.62" y="1076.08" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Audi 5000&lt;/text&gt;
+	&lt;circle cx="1855.51" cy="1530.71" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1855.51" cy="1530.71" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1897.46" y="1558.72" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Audi Fox&lt;/text&gt;
+	&lt;circle cx="2071.08" cy="1041.64" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2071.08" cy="1041.64" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2113.03" y="1069.65" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;BMW 320i&lt;/text&gt;
+	&lt;circle cx="1855.51" cy="1540.12" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1855.51" cy="1540.12" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1897.46" y="1568.13" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Datsun 200&lt;/text&gt;
+	&lt;circle cx="3148.94" cy="1773.39" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="3148.94" cy="1773.39" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="3190.89" y="1801.40" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Datsun 210&lt;/text&gt;
+	&lt;circle cx="1963.29" cy="1703.72" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1963.29" cy="1703.72" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2005.24" y="1731.73" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Datsun 510&lt;/text&gt;
+	&lt;circle cx="1639.81" cy="1269.96" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1639.81" cy="1269.96" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1681.76" y="1297.97" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Datsun 810&lt;/text&gt;
+	&lt;circle cx="1639.81" cy="1814.97" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1639.81" cy="1814.97" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1681.76" y="1842.99" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Fiat Strada&lt;/text&gt;
+	&lt;circle cx="2071.08" cy="1601.25" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2071.08" cy="1601.25" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2113.03" y="1629.26" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Honda Accord&lt;/text&gt;
+	&lt;circle cx="2394.44" cy="1786.14" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2394.44" cy="1786.14" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2436.39" y="1814.15" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Honda Civic&lt;/text&gt;
+	&lt;circle cx="2610.01" cy="1857.79" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2610.01" cy="1857.79" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2651.96" y="1885.80" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Mazda GLC&lt;/text&gt;
+	&lt;circle cx="885.31" cy="578.80" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="885.31" cy="578.80" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="927.26" y="606.81" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Peugeot 604&lt;/text&gt;
+	&lt;circle cx="2178.87" cy="1872.02" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2178.87" cy="1872.02" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2220.82" y="1900.04" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Renault Le Car&lt;/text&gt;
+	&lt;circle cx="3148.94" cy="1885.76" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="3148.94" cy="1885.76" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="3190.89" y="1913.77" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Subaru&lt;/text&gt;
+	&lt;circle cx="1316.45" cy="1587.02" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1316.45" cy="1587.02" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1358.40" y="1615.03" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Toyota Celica&lt;/text&gt;
+	&lt;circle cx="2717.80" cy="1892.94" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2717.80" cy="1892.94" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2759.75" y="1920.95" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Toyota Corolla&lt;/text&gt;
+	&lt;circle cx="1316.45" cy="1612.64" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1316.45" cy="1612.64" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1358.40" y="1640.65" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Toyota Corona&lt;/text&gt;
+	&lt;circle cx="1855.51" cy="1410.55" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1855.51" cy="1410.55" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1897.46" y="1438.56" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;VW Dasher&lt;/text&gt;
+	&lt;circle cx="3795.66" cy="1658.43" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="3795.66" cy="1658.43" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="3837.61" y="1686.44" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;VW Diesel&lt;/text&gt;
+	&lt;circle cx="2071.08" cy="1757.92" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2071.08" cy="1757.92" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2113.03" y="1785.94" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;VW Rabbit&lt;/text&gt;
+	&lt;circle cx="2071.08" cy="1451.88" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="2071.08" cy="1451.88" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="2113.03" y="1479.89" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;VW Scirocco&lt;/text&gt;
+	&lt;circle cx="1208.67" cy="720.25" r="26.35" style="fill:#1A476F"/&gt;
+	&lt;circle cx="1208.67" cy="720.25" r="22.03" style="fill:none;stroke:#1A476F;stroke-width:8.64"/&gt;
+	&lt;text x="1250.62" y="748.26" style="font-family:'Helvetica';font-size:79.94px;fill:#1A476f"&gt;Volvo 260&lt;/text&gt;
+	&lt;line x1="390.80" y1="2489.19" x2="390.80" y2="100.86" style="stroke:#000000;stroke-width:5.76"/&gt;
+	&lt;line x1="390.80" y1="2425.82" x2="350.83" y2="2425.82" style="stroke:#000000;stroke-width:5.76"/&gt;
+	&lt;text x="300.72" y="2425.82" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" transform="rotate(-90 300.72,2425.82)" text-anchor="middle"&gt;0&lt;/text&gt;
+	&lt;line x1="390.80" y1="1714.86" x2="350.83" y2="1714.86" style="stroke:#000000;stroke-width:5.76"/&gt;
+	&lt;text x="300.72" y="1714.86" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" transform="rotate(-90 300.72,1714.86)" text-anchor="middle"&gt;5,000&lt;/text&gt;
+	&lt;line x1="390.80" y1="1003.89" x2="350.83" y2="1003.89" style="stroke:#000000;stroke-width:5.76"/&gt;
+	&lt;text x="300.72" y="1003.89" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" transform="rotate(-90 300.72,1003.89)" text-anchor="middle"&gt;10,000&lt;/text&gt;
+	&lt;line x1="390.80" y1="292.93" x2="350.83" y2="292.93" style="stroke:#000000;stroke-width:5.76"/&gt;
+	&lt;text x="300.72" y="292.93" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" transform="rotate(-90 300.72,292.93)" text-anchor="middle"&gt;15,000&lt;/text&gt;
+	&lt;text x="190.71" y="1294.96" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" transform="rotate(-90 190.71,1294.96)" text-anchor="middle"&gt;Price&lt;/text&gt;
+	&lt;line x1="390.80" y1="2489.19" x2="3859.02" y2="2489.19" style="stroke:#000000;stroke-width:5.76"/&gt;
+	&lt;line x1="454.16" y1="2489.19" x2="454.16" y2="2529.16" style="stroke:#000000;stroke-width:5.76"/&gt;
+	&lt;text x="454.16" y="2619.14" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="middle"&gt;10&lt;/text&gt;
+	&lt;line x1="1532.03" y1="2489.19" x2="1532.03" y2="2529.16" style="stroke:#000000;stroke-width:5.76"/&gt;
+	&lt;text x="1532.03" y="2619.14" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="middle"&gt;20&lt;/text&gt;
+	&lt;line x1="2610.01" y1="2489.19" x2="2610.01" y2="2529.16" style="stroke:#000000;stroke-width:5.76"/&gt;
+	&lt;text x="2610.01" y="2619.14" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="middle"&gt;30&lt;/text&gt;
+	&lt;line x1="3687.87" y1="2489.19" x2="3687.87" y2="2529.16" style="stroke:#000000;stroke-width:5.76"/&gt;
+	&lt;text x="3687.87" y="2619.14" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="middle"&gt;40&lt;/text&gt;
+	&lt;text x="2124.91" y="2729.16" style="font-family:'Helvetica';font-size:99.99px;fill:#000000" text-anchor="middle"&gt;Mileage (mpg)&lt;/text&gt;
+&lt;/svg&gt;
+&lt;/body&gt;&lt;/html&gt;'></iframe>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-stata"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+            </div>
+            <!-- /.entry-content -->
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="https://github.com/ozak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://twitter.com/OmerOzakEcon"><i class="fa fa-twitter-square fa-lg"></i> Twitter</a></li>
+                <li class="list-group-item"><a href="https://linkedin.com/in/omerozak"><i class="fa fa-linkedin-square fa-lg"></i> Linkedin</a></li>
+                <li class="list-group-item"><a href="https://www.researchgate.net/profile/Oemer_Oezak"><i class="fa fa-researchgate-square fa-lg"></i> Researchgate</a></li>
+              </ul>
+            </li>
+
+    <li class="list-group-item"><h4><i class="fa fa-external-link fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://omerozak.com/" target="_blank">
+                Ömer Özak
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.smu.edu/economics" target="_blank">
+                Dept. Economics
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.smu.edu/" target="_blank">
+                SMU
+            </a>
+        </li>
+      </ul>
+    </li>
+
+
+
+            <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
+                            Macroeconomics
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="https://macroeconomics.github.io/tag/ipython.html">
+                            IPython
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="https://macroeconomics.github.io/tag/notebooks.html">
+                            Notebooks
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="https://macroeconomics.github.io/tag/economic-growth.html">
+                            Economic Growth
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+        <div id="gh_repos">
+            <p class="list-group-item">Status updating...</p>
+        </div>
+            <a href="https://github.com/Macroeconomics">@Macroeconomics</a> on GitHub
+    </li>
+    </ul>
+</section>            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2022 Ömer Özak
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://macroeconomics.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://macroeconomics.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://macroeconomics.github.io/theme/js/respond.min.js"></script>
+
+    <!-- GitHub JS -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (!window.jXHR) {
+                var jxhr = document.createElement('script');
+                jxhr.type = 'text/javascript';
+                jxhr.src = 'https://macroeconomics.github.io/theme/js/jXHR.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(jxhr, s);
+            }
+
+            github.showRepos({
+                user: 'Macroeconomics',
+                count: 2,
+                skip_forks: false,
+                target: '#gh_repos'
+            });
+        });
+    </script>
+    <script src="https://macroeconomics.github.io/theme/js/github.js" type="text/javascript"></script>
+    <!-- End GitHub JS Code -->
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-586c25633fd6ba9b"></script>
+</body>
+</html>

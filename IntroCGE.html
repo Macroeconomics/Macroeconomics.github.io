@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Introduction to CGE - Macroeconomics II (Econ-6395)</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link href="https://macroeconomics.github.io/images/favicomatic/favicon.ico" rel="icon">
+
+<link rel="canonical" href="https://macroeconomics.github.io/IntroCGE.html">
+
+        <meta name="author" content="Ömer Özak" />
+        <meta name="keywords" content="Macroeconomics,IPython,Notebooks" />
+        <meta name="description" content="Introduction to Computational General Equilibrium (CGE) Models¶ In this notebook we&#39;ll cover soem basic ideas that will introduce you to CGE modelling, i.e., of solving Walrasian GE models in a computer. To make things simple we will focus on the easiest CGE model possible: a pure endowment economy with $M$ individuals and $N$ commodities. When $M=2$ and $N=2$, this is an economy that can be represented in an Edgeworth box." />
+
+        <meta property="og:site_name" content="Macroeconomics II (Econ-6395)" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Introduction to CGE"/>
+        <meta property="og:url" content="https://macroeconomics.github.io/IntroCGE.html"/>
+        <meta property="og:description" content="Introduction to Computational General Equilibrium (CGE) Models¶ In this notebook we&#39;ll cover soem basic ideas that will introduce you to CGE modelling, i.e., of solving Walrasian GE models in a computer. To make things simple we will focus on the easiest CGE model possible: a pure endowment economy with $M$ individuals and $N$ commodities. When $M=2$ and $N=2$, this is an economy that can be represented in an Edgeworth box."/>
+        <meta property="article:published_time" content="2022-03-02" />
+            <meta property="article:section" content="Ph.D." />
+            <meta property="article:tag" content="Macroeconomics" />
+            <meta property="article:tag" content="IPython" />
+            <meta property="article:tag" content="Notebooks" />
+            <meta property="article:author" content="Ömer Özak" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://macroeconomics.github.io/theme/css/bootstrap.spacelab.min.css" type="text/css"/>
+    <link href="https://macroeconomics.github.io/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="https://macroeconomics.github.io/theme/css/pygments/default.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://macroeconomics.github.io/theme/css/style.css" type="text/css"/>
+        <link href="https://macroeconomics.github.io/static/custom.css" rel="stylesheet">
+
+        <link href="https://macroeconomics.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Macroeconomics II (Econ-6395) ATOM Feed"/>
+
+
+
+        <link href="https://macroeconomics.github.io/feeds/phd.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Macroeconomics II (Econ-6395) Ph.D. ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://macroeconomics.github.io/" class="navbar-brand">
+Macroeconomics II (Econ-6395)            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                    <li><a href="/pages/Syllabus.html">Syllabus</a></li>
+                    <li><a href="/pages/Lecture Notes.html">Lecture Notes</a></li>
+                    <li><a href="/pages/Practice Material.html">Practice Material</a></li>
+                    <li><a href="/pages/Computation.html">Computation</a></li>
+                    <li><a href="/pages/CV.html">CV</a></li>
+                    <li><a href="/pages/Contact.html">Contact</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="https://macroeconomics.github.io/IntroCGE.html"
+                       rel="bookmark"
+                       title="Permalink to Introduction to CGE">
+                        Introduction to CGE
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2022-03-02T23:20:00-06:00"> Wed 02 March 2022</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="https://macroeconomics.github.io/tag/macroeconomics.html">Macroeconomics</a>
+        /
+	<a href="https://macroeconomics.github.io/tag/ipython.html">IPython</a>
+        /
+	<a href="https://macroeconomics.github.io/tag/notebooks.html">Notebooks</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction-to-Computational-General-Equilibrium-(CGE)-Models">Introduction to Computational General Equilibrium (CGE) Models<a class="anchor-link" href="#Introduction-to-Computational-General-Equilibrium-(CGE)-Models">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this notebook we'll cover soem basic ideas that will introduce you to CGE modelling, i.e., of solving Walrasian GE models in a computer. To make things simple we will focus on the easiest CGE model possible: a pure endowment economy with $M$ individuals and $N$ commodities. When $M=2$ and $N=2$, this is an economy that can be represented in an Edgeworth box.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Preferences">Preferences<a class="anchor-link" href="#Preferences">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We will focus on an economy in which all individuals have Cobb-Douglas preferences, i.e., we'll assume that each individual $i$ has utility</p>
+$$
+u_i(x_{i1}, x_{i2}, \dots, x_{iN})= x_{i1}^{\alpha_{i1}} x_{i2}^{\alpha_{i2}} \cdots x_{iN}^{\alpha_{iN}}
+$$<p>where $x_{ij}$ denoted the amount of good $j=1,\ldots,M$ she consumes. We assume that $\alpha_{ij}\ge0$ for all $j=1,2,\ldots,M$, $\sum_{j=1}^M\alpha_{ij}\le1$ to ensure the utility function is strictly quasi-concave. Let's denote the consumption plan of individual $i$ by $x_i\equiv(x_{i1}, x_{i2}, \ldots, x_{iM})$.</p>
+<p>Given a price vector $p=(p_1, p_2, \ldots,p_M)$, the value of her total expenditures is
+$$
+p\cdot x_i = \sum_{j=1}^M p_i\cdot x_{ij}.
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Endowments">Endowments<a class="anchor-link" href="#Endowments">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Each individual in the economy is endowed with a quantity of each good $\omega_{ij}\ge0$. We will denote by $\omega_i=(\omega_{i1}, \omega_{i2}, \ldots, \omega_{iM})$ the vector of endowments of an individual $i$.</p>
+<p>Given her endowments vector and a price vector $p=(p_1, p_2, \ldots,p_M)$, the value of her resources is
+$$
+y_i \equiv p\cdot \omega_i = \sum_{j=1}^M p_i\cdot\omega_{ij}.
+$$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Individual's-Optimal-Consumption/Demand">Individual's Optimal Consumption/Demand<a class="anchor-link" href="#Individual's-Optimal-Consumption/Demand">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Given her initial endowments $\omega_i$ and a price vector $p$, each individual $i$ choses her consumption basket $x^*_i$, which solves the following optimization problem</p>
+$$
+\max_{x_i} u_i(x_{i1}, x_{i2}, \dots, x_{iN})= x_{i1}^{\alpha_{i1}} x_{i2}^{\alpha_{i2}} \cdots x_{iN}^{\alpha_{iN}}
+$$<p>subject to</p>
+$$
+p\cdot x_i\le y_i.
+$$<p>Since the utility function is strictly quasiconcave and the restriction is convex, we can apply the <a href="https://econgrowth.github.io/notebooks/papers/kuhntucker1950.pdf">Kuhn-Tucker</a> or <a href="http://www.jstor.org/stable/1911819">Arrow-Enthoven</a> Theorems to find the optimal choices of the individual. But, since her utility is strictly increasing in all goods, we know the restriction will hold with equality and we can just use Langrange's method (if you need to review this material, check out <a href="https://www.amazon.com/Mathematical-Methods-Models-Economists-Fuente/dp/0521585295">La Fuente Ch.7</a> or <a href="https://www.amazon.com/Mathematics-Economists-Carl-P-Simon/dp/0393957330">Simon and Blume Ch.18</a>). The Langrangian is</p>
+$$
+\mathcal{L}(x_i, \lambda) = u_i(x_i)-\lambda(p\cdot x_i-y_i)
+$$<p>so, her optimal consumption choice $x^*_i$ must satisfy</p>
+$$
+\frac{\partial u_i(x^*_i)}{\partial x_{ij}}=\lambda p_j, \quad j=1,\ldots,M
+$$<p>and the budget constraint. Given our assumption about the functional form of $u_i(x_i)$, this implies it must satisfy</p>
+$$
+\frac{\alpha_{ij}}{x^*_{ij}}u_i(x^*_i)=\lambda p_j, \quad j=1,\ldots,M,
+$$<p>which implies that for any two goods $j,j'=1,\ldots,M$</p>
+$$
+\frac{\alpha_{ij}}{p_j \cdot x^*_{ij}}=\frac{\alpha_{ij'}}{p_{j'} \cdot x^*_{ij'}}.
+$$<p>Replacing in the budget contraint we have</p>
+$$
+p\cdot x_i = \sum_{j=1}^M p_j \cdot x^*_{ij} = \sum_{j=1}^M \left(\frac{\alpha_{ij}}{\alpha_{i1}}p_1 x^*_{i1}\right) = p_1 x^*_{i1}\frac{\sum_{j=1}^M \alpha_{ij}}{\alpha_{i1}}=y_i,
+$$<p>so that the optimal demand for good $j$ satisfies</p>
+$$
+p_j x^*_{ij}=\frac{\alpha_{ij}}{\sum_{j=1}^M \alpha_{ij}}y_i \iff x^*_{ij}=\frac{1}{p_j}\frac{\alpha_{ij}}{\sum_{j=1}^M \alpha_{ij}}y_i.
+$$<p>Notice that since our utility function is homothetic, we knew (right?) that the share of income spent on good $j$ had to be equal to</p>
+$$
+\frac{\alpha_{ij}}{\sum_{j=1}^M \alpha_{ij}}.
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Equilibrium">Equilibrium<a class="anchor-link" href="#Equilibrium">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A <strong>Walrasian equilibrium</strong> for this endowment economy is a set of prices $p^*$ and an allocation $x^*=(x^*_1, \ldots, x^*_N)$ such that</p>
+<ol>
+<li><p>$x^*_i$ maximizes the utility of individual $i$ given the value of her endowmwents (at those prices $p^*$),</p>
+</li>
+<li><p>$x^*$ is feasible, i.e.,</p>
+</li>
+</ol>
+$$
+\sum_{i=1}^N x^*_{ij}\le \sum_{i=1}^N \omega_{ij}, \quad \text{for all } j=1,\ldots,M.
+$$<ol>
+<li>all markets clear, i.e., </li>
+</ol>
+$$
+\sum_{i=1}^N x^*_{ij}=\sum_{i=1}^N \omega_{ij}, \quad \text{for all } j=1,\ldots,M.
+$$<p>Moreover, it must be the case that $p_j\ge0$ and</p>
+$$
+p_j\left(\sum_{i=1}^N x^*_{ij}-\sum_{i=1}^N \omega_{ij}\right)=0, \quad  \text{for all } j=1,\ldots,M.
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Computation">Computation<a class="anchor-link" href="#Computation">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Given our assumptions on the utility functions of individuals, we know there exists a unique Walrasian equilibrium for our economy. This is important, since if we want to compute an equilibrium, we <strong>need</strong> to know it exists (otherwise we would be trying the impossible!) and, additionally, that what we find is indeed the only solution (if there are multiple isolated equilibria we could try to find them, but this is only possible if it is a finite set).</p>
+<p>Let us create some functions that will allow us to solve this problem.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.misc</span> <span class="kn">import</span> <span class="n">derivative</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="o">%</span><span class="k">matplotlib</span> widget
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="k">def</span> <span class="nf">CobbDouglas</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span> <span class="mf">1e-10</span><span class="p">,</span> <span class="n">deriv</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the utility of an individual with Cobb-Douglas preferences</span>
+<span class="sd">    Additionally it returns the exact and numerical derivatives</span>
+<span class="sd">    x: (1 x N) vector</span>
+<span class="sd">    alpha:(1 x N) vector</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">lx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="n">alpha</span><span class="p">)</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="n">alpha</span><span class="p">)</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">deriv</span><span class="p">:</span>
+        <span class="n">uprime</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">u</span> <span class="o">/</span> <span class="n">x</span>
+        <span class="n">nuprime</span> <span class="o">=</span> <span class="p">(((</span><span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">lx</span><span class="p">,</span> <span class="n">lx</span><span class="p">])</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">lx</span><span class="p">)))</span><span class="o">**</span><span class="n">alpha</span><span class="p">)</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="p">((</span><span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">lx</span><span class="p">,</span> <span class="n">lx</span><span class="p">])</span> <span class="o">-</span> <span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">lx</span><span class="p">)))</span><span class="o">**</span><span class="n">alpha</span><span class="p">)</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span>
+        <span class="n">du</span> <span class="o">=</span> <span class="p">[</span><span class="n">uprime</span><span class="p">,</span> <span class="n">nuprime</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">du</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">u</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's compute the utility for "all" values of $x$ in $[0,10]^M$ and plot them.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Individuals</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Goods</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">M</span><span class="p">)])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">CobbDouglas</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Good 1&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Good 2&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Indiference Map&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Text(0.5, 1.0, &#39;Indiference Map&#39;)</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+
+ 
+ 
+<div id="cb544e8b-4cb0-4e8a-84ae-25b819dc4251"></div>
+<div class="output_subarea output_widget_view ">
+<script type="text/javascript">
+var element = $('#cb544e8b-4cb0-4e8a-84ae-25b819dc4251');
+</script>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "ecef7491dd4e4a958e8b40c4deb0681d", "version_major": 2, "version_minor": 0}
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">surf</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">rstride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cstride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Good 1&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Good 2&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Utility&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+
+ 
+ 
+<div id="38e86822-c098-4a8a-b056-6751a0ea043f"></div>
+<div class="output_subarea output_widget_view ">
+<script type="text/javascript">
+var element = $('#38e86822-c098-4a8a-b056-6751a0ea043f');
+</script>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "1e10891dc082433d8856257b0bd83eed", "version_major": 2, "version_minor": 0}
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Demands">Demands<a class="anchor-link" href="#Demands">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since we computed the actual demand functions $x^*_i=x^*(p, \omega_i)$ for each good $j$ for each individual $i$, in this case we can simply compute the optimal demand for each individual $i$ given her initial endowments $\omega_i$ and prices $p$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">CobbDouglasDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the demand vector of an individual with Cobb-Douglas Utility with parameter vector alpha,</span>
+<span class="sd">    given her initial endowments and prices for all goods</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># Total income</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">ly</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">((</span><span class="n">alpha</span> <span class="o">/</span> <span class="n">alpha</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">ExcessDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute excess demand function for each good</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">CobbDouglasDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">w</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">z</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Let&#39;s test to make sure function is well written</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CobbDouglasDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[1., 2.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ExcessDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0., 0.])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="This-is-an-equilibrium,-but-of-course-in-an-economy-with-only-1-individual,-$(p,-x^*)=(p,\omega)$-is-an-equilibrium-for-any-$p^*$.">This is an equilibrium, but of course in an economy with only 1 individual, $(p, x^*)=(p,\omega)$ is an equilibrium for any $p^*$.<a class="anchor-link" href="#This-is-an-equilibrium,-but-of-course-in-an-economy-with-only-1-individual,-$(p,-x^*)=(p,\omega)$-is-an-equilibrium-for-any-$p^*$.">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CobbDouglasDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[1.  , 2.  ],
+       [0.75, 4.5 ]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ExcessDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([-1.25,  2.5 ])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Here-we-have-excess-supply-for-good-1-and-excess-demand-for-good-2">Here we have excess supply for good 1 and excess demand for good 2<a class="anchor-link" href="#Here-we-have-excess-supply-for-good-1-and-excess-demand-for-good-2">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CobbDouglasDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[1.  , 2.  ],
+       [0.75, 4.5 ],
+       [1.  , 2.  ]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ExcessDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([-1.25,  2.5 ])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Again-we-have-excess-supply-for-good-1-and-excess-demand-for-good-2">Again we have excess supply for good 1 and excess demand for good 2<a class="anchor-link" href="#Again-we-have-excess-supply-for-good-1-and-excess-demand-for-good-2">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Economy with 2 individuals of each type and 4 goods 2 groups of identical goods</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span> <span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CobbDouglasDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[18]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[1.  , 2.  , 1.  , 2.  ],
+       [0.75, 4.5 , 0.75, 4.5 ]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ExcessDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[19]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([-1.25,  2.5 , -1.25,  2.5 ])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="We-have-excess-supply-for-goods-1-&amp;-3-and-excess-demand-for-goods-2-&amp;-4">We have excess supply for goods 1 &amp; 3 and excess demand for goods 2 &amp; 4<a class="anchor-link" href="#We-have-excess-supply-for-goods-1-&amp;-3-and-excess-demand-for-goods-2-&amp;-4">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Same economy with 6 individuals of each type</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CobbDouglasDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[21]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[1.  , 2.  ],
+       [0.75, 4.5 ],
+       [1.  , 2.  ],
+       [0.75, 4.5 ],
+       [1.  , 2.  ],
+       [0.75, 4.5 ],
+       [1.  , 2.  ],
+       [0.75, 4.5 ],
+       [1.  , 2.  ],
+       [0.75, 4.5 ],
+       [1.  , 2.  ],
+       [0.75, 4.5 ]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ExcessDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[22]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([-7.5, 15. ])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Again-we-have-excess-supply-for-good-1-and-excess-demand-for-good-2">Again we have excess supply for good 1 and excess demand for good 2<a class="anchor-link" href="#Again-we-have-excess-supply-for-good-1-and-excess-demand-for-good-2">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Generate a random economy</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123456</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># Individuals</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># Goods</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CobbDouglasDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[24]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[ 0.06294882, 15.384009  ,  0.35974815,  1.78605326,  0.98713098,
+         1.4619451 ,  0.32224148,  0.46684643,  0.21707141,  0.38702674],
+       [ 0.1644502 ,  6.33970455,  0.15897394,  1.52212019,  1.91146183,
+         1.36125119,  0.14530766,  0.3837844 ,  0.93265339,  0.08717989],
+       [ 0.44055175,  3.90468844,  0.21041224,  1.22336136,  1.56694785,
+         0.27756504,  0.43915708,  0.1420236 ,  0.62545458,  0.73122106],
+       [ 0.6263485 ,  0.82583705,  1.63481706,  2.06095533,  1.45856805,
+         2.05221523,  0.16764338,  0.30126113,  1.5545487 ,  0.26888522],
+       [ 0.16962293, 10.26114459,  0.40995851,  0.89941164,  0.22872069,
+         2.25932655,  0.21872618,  0.14075043,  0.77759137,  0.10540906]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ExcessDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([-0.92823133, 33.45476917,  1.04394497,  5.49562486,  4.16797743,
+        5.72879772, -2.22220818, -1.85816175,  1.5840073 , -0.78118152])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Now-we-have-excess-supply-for-goods-1,-7,-8,-and-10,-and-excess-demand-for-the-other">Now we have excess supply for goods 1, 7, 8, and 10, and excess demand for the other<a class="anchor-link" href="#Now-we-have-excess-supply-for-goods-1,-7,-8,-and-10,-and-excess-demand-for-the-other">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="How-can-we-find-the-equilibrium-price?">How can we find the equilibrium price?<a class="anchor-link" href="#How-can-we-find-the-equilibrium-price?">&#182;</a></h1><h1 id="We-need-excess-demand-to-be-equal-to-zero!">We need excess demand to be equal to zero!<a class="anchor-link" href="#We-need-excess-demand-to-be-equal-to-zero!">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, we only need to use our computer to find the zero of an equation. Luckily, this is a very well studied problem (see <a href="https://en.wikipedia.org/wiki/Root-finding_algorithms">this Wikipedia enry</a>). In <code>python</code> we can use the <code>scipy</code> package.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But before we use this to try to find an equilibrium, we need to remember a few things.</p>
+<ol>
+<li><p>Equlibrium prices only determine relative proces, not absolute ones, so we need to decide on a numeraire. Various choices, e.g. chose $p_j=1$ for some good $j$. Another common option is to normalize the price vector so it has length 1.</p>
+</li>
+<li><p>Walras Law: If $M-1$ markets clear, then the $M^{th}$ market also clears.</p>
+</li>
+</ol>
+<p>So let's define a new excess demand function that takes these issues into account.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">ExcessDemand2</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute excess demand function for all but the last good</span>
+<span class="sd">    Price of good 1 = 1</span>
+<span class="sd">    Prices are normalized to length of vector is equal to 1</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># Ensure p has the right shape</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">CobbDouglasDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">w</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Simple-$2\times2$-Economy">Simple $2\times2$ Economy<a class="anchor-link" href="#Simple-$2\times2$-Economy">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that the excess demand with normalized prices generates the same excess demand as with the original price vector</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CobbDouglasDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[29]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[1.  , 2.  ],
+       [0.75, 4.5 ]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ExcessDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[30]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([-1.25,  2.5 ])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ExcessDemand2</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[31]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([2.5])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">root</span><span class="p">(</span><span class="n">ExcessDemand2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[33]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>    fjac: array([[-1.]])
+     fun: array([0.])
+ message: &#39;The solution converged.&#39;
+    nfev: 9
+     qtf: array([-3.41060513e-13])
+       r: array([1.12500002])
+  status: 1
+ success: True
+       x: array([1.33333333])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pstar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sol</span><span class="o">.</span><span class="n">x</span><span class="p">])</span>
+<span class="n">ExcessDemand</span><span class="p">(</span><span class="n">pstar</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[34]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0., 0.])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Similar-$2\times-4-$-Economy">Similar $2\times 4 $ Economy<a class="anchor-link" href="#Similar-$2\times-4-$-Economy">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Economy with 2 individuals of each type and 4 goods 2 groups of identical goods</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span> <span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">/</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ExcessDemand</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[36]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([-1.25,  2.5 , -1.25,  2.5 ])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ExcessDemand2</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[37]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 2.5 , -1.25,  2.5 ])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">root</span><span class="p">(</span><span class="n">ExcessDemand2</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[39]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>    fjac: array([[-0.62895721,  0.65802207,  0.41402873],
+       [-0.37302649, -0.72267448,  0.5818873 ],
+       [-0.68210268, -0.21153853, -0.69999099]])
+     fun: array([ 3.55271368e-15, -3.46389584e-14,  3.55271368e-15])
+ message: &#39;The solution converged.&#39;
+    nfev: 22
+     qtf: array([-1.01465740e-10,  1.11012285e-10,  1.00525300e-11])
+       r: array([ 12.46421401,  -6.92935655,  -1.09460301,   7.56845431,
+       -12.41387919,   0.23254797])
+  status: 1
+ success: True
+       x: array([1.33333333, 1.        , 1.33333333])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pstar</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">x</span>
+<span class="n">pstar</span> <span class="o">=</span> <span class="n">pstar</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pstar</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">pstar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pstar</span><span class="p">])</span>
+<span class="n">ExcessDemand</span><span class="p">(</span><span class="n">pstar</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[40]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 2.66453526e-14,  3.55271368e-15, -3.46389584e-14,  3.55271368e-15])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="$6\times-2$-Economy">$6\times 2$ Economy<a class="anchor-link" href="#$6\times-2$-Economy">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's try with a larger economy</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Same economy with 6 individuals of each type</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">root</span><span class="p">(</span><span class="n">ExcessDemand2</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[43]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>    fjac: array([[-1.]])
+     fun: array([0.])
+ message: &#39;The solution converged.&#39;
+    nfev: 9
+     qtf: array([-2.04636308e-12])
+       r: array([6.7500001])
+  status: 1
+ success: True
+       x: array([1.33333333])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pstar</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">x</span>
+<span class="n">pstar</span> <span class="o">=</span> <span class="n">pstar</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pstar</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">pstar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pstar</span><span class="p">])</span>
+<span class="n">ExcessDemand</span><span class="p">(</span><span class="n">pstar</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[44]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0., 0.])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="And-even-larger-economy-$10\times5$">And even larger economy $10\times5$<a class="anchor-link" href="#And-even-larger-economy-$10\times5$">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Generate a random economy</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123456</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># Individuals</span>
+<span class="n">M</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># Goods</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">M</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">M</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">M</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alpha</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[46]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0.49221316, 0.47207785, 0.46207345, 0.48029696, 0.47177654])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ExcessDemand2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[47]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([-0.07674737,  0.03088612,  0.18651534,  0.0374476 ,  0.01341667,
+       -0.16281969, -0.06375667, -0.01270213, -0.01086539])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">root</span><span class="p">(</span><span class="n">ExcessDemand2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[49]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>    fjac: array([[-0.97464726,  0.04059005,  0.08124723,  0.04631381,  0.05691774,
+         0.12506279,  0.10236769,  0.07151283,  0.07208003],
+       [ 0.03606727, -0.9383307 ,  0.12858517,  0.0672332 ,  0.12461059,
+         0.16820018,  0.13556554,  0.17119197,  0.07534189],
+       [ 0.05447312,  0.07375412, -0.81455107,  0.12017277,  0.15913621,
+         0.31160695,  0.32369185,  0.17513512,  0.23619085],
+       [ 0.03593944,  0.06136329,  0.10218258, -0.92937828,  0.10782306,
+         0.17224962,  0.2146313 ,  0.16276907,  0.0830754 ],
+       [ 0.02531927, -0.00238874,  0.06856393,  0.02847763, -0.92539275,
+         0.22470325,  0.20311207,  0.1395213 ,  0.16210258],
+       [-0.06792698, -0.08794553, -0.13177869, -0.06141629, -0.08241399,
+        -0.87127438,  0.32258962,  0.21891082,  0.22049218],
+       [-0.06080575, -0.06604033, -0.18310706, -0.12400818, -0.07871698,
+        -0.04434082, -0.7964004 ,  0.40682752,  0.36757368],
+       [-0.05303592, -0.14892238, -0.09858614, -0.14085162, -0.05789593,
+        -0.03414289, -0.07481176, -0.78773011,  0.56108618],
+       [-0.18093541, -0.27277005, -0.48745867, -0.2744979 , -0.26756368,
+        -0.12867295, -0.18743227, -0.23451576, -0.6337336 ]])
+     fun: array([ 2.43798037e-10, -5.31184957e-10,  2.49777976e-12,  6.04061079e-10,
+       -1.99401939e-10, -1.21951560e-10, -4.86894192e-10,  3.44903162e-10,
+        9.40439393e-12])
+ message: &#39;The solution converged.&#39;
+    nfev: 51
+     qtf: array([ 1.39328954e-09, -2.24838283e-09,  6.35629545e-10,  3.20069999e-09,
+       -6.28330465e-10, -1.74318549e-10, -2.48845633e-09,  1.16473635e-09,
+       -3.38689752e-11])
+       r: array([ 0.41992417, -0.01980743, -0.01429441, -0.02115437, -0.01790781,
+       -0.10512586, -0.0736826 , -0.04734333, -0.03631879,  0.14180923,
+       -0.02058219, -0.00222251, -0.01501924, -0.10194827, -0.0479984 ,
+       -0.03553802, -0.01007234,  0.13259893, -0.00882366, -0.01259103,
+       -0.19757667, -0.12073825, -0.02724658, -0.03888057,  0.16623388,
+       -0.01302666, -0.10734383, -0.07999823, -0.03295847, -0.0122864 ,
+        0.16308741, -0.13690465, -0.07931578, -0.03039358, -0.02892405,
+        0.57907879, -0.1627587 , -0.08255668, -0.07804851,  0.31341855,
+       -0.13873392, -0.11404532,  0.19767052, -0.15741557,  0.10038446])
+  status: 1
+ success: True
+       x: array([0.57843353, 0.94120505, 1.51065459, 0.93516512, 0.83476293,
+       0.41876281, 0.62225338, 0.75079619, 0.75434985])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pstar</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">x</span>
+<span class="n">pstar</span> <span class="o">=</span> <span class="n">pstar</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">pstar</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">pstar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pstar</span><span class="p">])</span>
+<span class="n">ExcessDemand</span><span class="p">(</span><span class="n">pstar</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[50]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 4.47104298e-11,  2.43798037e-10, -5.31184957e-10,  2.49777976e-12,
+        6.04061079e-10, -1.99401939e-10, -1.21951560e-10, -4.86894192e-10,
+        3.44903162e-10,  9.40439393e-12])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+ 
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+            </div>
+            <!-- /.entry-content -->
+    <hr />
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    </div>
+    <!-- AddThis Button END -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="https://github.com/ozak"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://twitter.com/OmerOzakEcon"><i class="fa fa-twitter-square fa-lg"></i> Twitter</a></li>
+                <li class="list-group-item"><a href="https://linkedin.com/in/omerozak"><i class="fa fa-linkedin-square fa-lg"></i> Linkedin</a></li>
+                <li class="list-group-item"><a href="https://www.researchgate.net/profile/Oemer_Oezak"><i class="fa fa-researchgate-square fa-lg"></i> Researchgate</a></li>
+              </ul>
+            </li>
+
+    <li class="list-group-item"><h4><i class="fa fa-external-link fa-lg"></i><span class="icon-label">Links</span></h4>
+      <ul class="list-group" id="links">
+        <li class="list-group-item">
+            <a href="http://omerozak.com/" target="_blank">
+                Ömer Özak
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.smu.edu/economics" target="_blank">
+                Dept. Economics
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="http://www.smu.edu/" target="_blank">
+                SMU
+            </a>
+        </li>
+      </ul>
+    </li>
+
+
+
+            <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
+                            Macroeconomics
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="https://macroeconomics.github.io/tag/ipython.html">
+                            IPython
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-1">
+                        <a href="https://macroeconomics.github.io/tag/notebooks.html">
+                            Notebooks
+                        </a>
+                    </li>
+                    <li class="list-group-item tag-4">
+                        <a href="https://macroeconomics.github.io/tag/economic-growth.html">
+                            Economic Growth
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+    <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+        <div id="gh_repos">
+            <p class="list-group-item">Status updating...</p>
+        </div>
+            <a href="https://github.com/Macroeconomics">@Macroeconomics</a> on GitHub
+    </li>
+    </ul>
+</section>            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2022 Ömer Özak
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="https://macroeconomics.github.io/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://macroeconomics.github.io/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="https://macroeconomics.github.io/theme/js/respond.min.js"></script>
+
+    <!-- GitHub JS -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (!window.jXHR) {
+                var jxhr = document.createElement('script');
+                jxhr.type = 'text/javascript';
+                jxhr.src = 'https://macroeconomics.github.io/theme/js/jXHR.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(jxhr, s);
+            }
+
+            github.showRepos({
+                user: 'Macroeconomics',
+                count: 2,
+                skip_forks: false,
+                target: '#gh_repos'
+            });
+        });
+    </script>
+    <script src="https://macroeconomics.github.io/theme/js/github.js" type="text/javascript"></script>
+    <!-- End GitHub JS Code -->
+
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-586c25633fd6ba9b"></script>
+</body>
+</html>

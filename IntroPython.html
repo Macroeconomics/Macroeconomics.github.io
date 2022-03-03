@@ -116,7 +116,7 @@ Macroeconomics II (Econ-6395)            </a>
                 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1>Introduction to <img src="https://www.python.org/static/community_logos/python-logo-inkscape.svg" alt="Python"> and <img src="https://ipython.org/_static/IPy_header.png" alt="IPython"> using <img src="https://raw.githubusercontent.com/adebar/awesome-jupyter/master/logo.png" alt="Jupyter"></h1>
+<h1>Introduction to <img src="https://www.python.org/static/community_logos/python-logo-inkscape.svg" alt="Python" width="200/"> and <img src="https://ipython.org/_static/IPy_header.png" alt="IPython" width="250/"> using <img src="https://raw.githubusercontent.com/adebar/awesome-jupyter/master/logo.png" alt="Jupyter" width="200/"></h1>
 
 </div>
 </div>
@@ -152,7 +152,7 @@ Powerful interactive shells (terminal, Qt-based and Notebooks based on <a href="
 <p>I personally have switched to using <a href="https://www.continuum.io/downloads">Continuum Anaconda</a> since it make installing all the packages and software I use much easier. You can follow the instructions below or better yet follow the instructions on the <a href="https://econgrowth.github.io/pages/Computation.html">Computation Page</a> of my <a href="https://econgrowth.github.io/">Economic Growth and Comparative Development Course</a>.</p>
 <h2 id="Installing-(I)Python-&amp;-Jupyter">Installing (I)Python &amp; Jupyter<a class="anchor-link" href="#Installing-(I)Python-&amp;-Jupyter">&#182;</a></h2><p>The easiest and most convenient way to install a working version of IPython with all the required packages and tools is using <a href="https://www.anaconda.com/distribution/">Continuum's Anaconda Distribution</a>. You can install following the instructions in that website, or if you can just run <a href="https://www.dropbox.com/s/6st528ethbkmvv2/CondaInstall.sh?dl=0">this script (Mac/Linux)</a>. After installing the latest version of Anaconda, add the <code>Anaconda/bin</code> directory to your <code>PATH</code> variable.</p>
 <p>To create an environment useful for these notebooks, in your terminal execute</p>
-<div class="highlight"><pre><span></span>conda create --name GeoPython3env -c conda-forge <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.6 geopandas georasters pandas numpy matplotlib seaborn jupyter scikit-image scikit-learn scipy r rstudio r-irkernel ipykernel statsmodels pycountry networkx rpy2 rasterio r-tidyr r-tibble r-dplyr pandana urbanaccess dill xlrd pandas-datareader rise jupyterlab cython numba
+<div class="highlight"><pre><span></span>conda create --name GeoPython3env -c conda-forge -c r -c mro --override-channels <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.9 georasters geopandas pandas spatialpandas statsmodels xlrd networkx ipykernel ipyparallel ipython ipython_genutils ipywidgets jupyter jupyterlab kiwisolver matplotlib-base matplotlib scikit-image scikit-learn scipy seaborn geoplot geopy geotiff pycountry nb_conda_kernels stata_kernel nltk
 </pre></div>
 <p>This should create an environment with most of the packages we need. We can always install others down the road.</p>
 <p>To start using one of the environment you will need to exectute the following command</p>
@@ -503,8 +503,8 @@ Powerful interactive shells (terminal, Qt-based and Notebooks based on <a href="
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">d</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;c=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">c</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;d=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">d</span><span class="p">)</span>
 </pre></div>
@@ -528,8 +528,8 @@ Powerful interactive shells (terminal, Qt-based and Notebooks based on <a href="
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a*c=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">c</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;b*d=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">d</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39; a * c = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">c</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39; b * d = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">b</span> <span class="o">*</span> <span class="n">d</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -719,10 +719,10 @@ import matplotlib as plt
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="n">da</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;c=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">c</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;d=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">d</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ca=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">ca</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;da=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">da</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;c = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">c</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;d = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">d</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ca = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">ca</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;da = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">da</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -745,8 +745,8 @@ import matplotlib as plt
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 <span class="n">dm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;cm=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">cm</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dm=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">dm</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;cm = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">cm</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dm = </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">dm</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1304,13 +1304,13 @@ import matplotlib as plt
             <li class="list-group-item"><a href="https://macroeconomics.github.io/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/ipython.html">
-                            IPython
+                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
+                            Macroeconomics
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="https://macroeconomics.github.io/tag/macroeconomics.html">
-                            Macroeconomics
+                        <a href="https://macroeconomics.github.io/tag/ipython.html">
+                            IPython
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -1343,7 +1343,7 @@ import matplotlib as plt
    <div class="container">
       <hr>
       <div class="row">
-         <div class="col-xs-10">&copy; 2016 Ömer Özak
+         <div class="col-xs-10">&copy; 2022 Ömer Özak
             &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
             <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>                <p><small>  <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
