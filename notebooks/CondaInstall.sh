@@ -15,7 +15,7 @@ lowercase(){
 OS=`lowercase \`uname\``
 KERNEL=`uname -r`
 MACH=`uname -m`
-
+ENDING="sh"
 if [ "$OS" == "windowsnt" ]; then
     OS=windows
 elif [ "$OS" == "darwin" ]; then
@@ -63,30 +63,39 @@ else
     fi
 fi
 
+if [ "$OS" == "windows" ]; then
+  ENDING="exe"
+fi
+
 # Create directory where installer will be downloaded into
 {
     mkdir ~/AnacondaInstaller && echo "Anaconda directory created"
 }||{
     echo "Anaconda directory exists already"
 }
+
 # Download installer
-wget http://repo.continuum.io/archive/Anaconda3-4.2.0-$OS-x86_64.sh -O ~/AnacondaInstaller/Anaconda3.sh
+wget http://repo.continuum.io/archive/Anaconda3-2019.07-$OS-x86_64.$ENDING -O ~/AnacondaInstaller/Anaconda3.$ENDING
+
 # Verify Installer
 if [ "$OS" == "MacOSX" ]; then
-    md5 ~/AnacondaInstaller/Anaconda3.sh
+    md5 ~/AnacondaInstaller/Anaconda3.$ENDING
 elif [ "$OS" == "Linux" ]; then
-    md5sum ~/AnacondaInstaller/Anaconda3.sh
+    md5sum ~/AnacondaInstaller/Anaconda3.$ENDING
 fi
+
 # Install
-bash ~/AnacondaInstaller/Anaconda3.sh -b -p $HOME/Anaconda3
+bash ~/AnacondaInstaller/Anaconda3.$ENDING -b -p $HOME/Anaconda3
+
 # Upgrade
 export PATH=$HOME/Anaconda3/bin:$PATH
 unset PYTHONPATH
 conda update conda
-conda update --all
+conda update --all -c conda-forge -c mro -c r
 
+echo "Finished Basic Install!"
 # Tab completion
-conda install argcomplete
+conda install argcomplete -c conda-forge -c mro -c r
 eval "$(register-python-argcomplete conda)"
 
 # What does your configuration look like?
